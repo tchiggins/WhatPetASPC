@@ -18,7 +18,8 @@ namespace WhatPetASPC.Controllers
         // GET: PetTypes
         public ActionResult Index()
         {
-            return View(db.AllPetTypes.ToList());
+            var allPetTypes = db.AllPetTypes.Include(p => p.Species);
+            return View(allPetTypes.ToList());
         }
 
         // GET: PetTypes/Details/5
@@ -39,6 +40,7 @@ namespace WhatPetASPC.Controllers
         // GET: PetTypes/Create
         public ActionResult Create()
         {
+            ViewBag.SpeciesID = new SelectList(db.AllSpecies, "SpeciesID", "SpeciesName");
             return View();
         }
 
@@ -47,7 +49,7 @@ namespace WhatPetASPC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PetTypeID,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetImage")] PetType petType)
+        public ActionResult Create([Bind(Include = "PetTypeID,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetImage,SpeciesID")] PetType petType)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +58,7 @@ namespace WhatPetASPC.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.SpeciesID = new SelectList(db.AllSpecies, "SpeciesID", "SpeciesName", petType.SpeciesID);
             return View(petType);
         }
 
@@ -71,6 +74,7 @@ namespace WhatPetASPC.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.SpeciesID = new SelectList(db.AllSpecies, "SpeciesID", "SpeciesName", petType.SpeciesID);
             return View(petType);
         }
 
@@ -79,7 +83,7 @@ namespace WhatPetASPC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PetTypeID,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetImage")] PetType petType)
+        public ActionResult Edit([Bind(Include = "PetTypeID,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetImage,SpeciesID")] PetType petType)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +91,7 @@ namespace WhatPetASPC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.SpeciesID = new SelectList(db.AllSpecies, "SpeciesID", "SpeciesName", petType.SpeciesID);
             return View(petType);
         }
 

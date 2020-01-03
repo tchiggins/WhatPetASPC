@@ -288,16 +288,16 @@
     <Content Include="Views\PetClasses\Details.cshtml" />
     <Content Include="Views\PetClasses\Edit.cshtml" />
     <Content Include="Views\PetClasses\Index.cshtml" />
-    <Content Include="Views\PetTypes\Create.cshtml" />
-    <Content Include="Views\PetTypes\Delete.cshtml" />
-    <Content Include="Views\PetTypes\Details.cshtml" />
-    <Content Include="Views\PetTypes\Edit.cshtml" />
-    <Content Include="Views\PetTypes\Index.cshtml" />
     <Content Include="Views\Species\Create.cshtml" />
     <Content Include="Views\Species\Delete.cshtml" />
     <Content Include="Views\Species\Details.cshtml" />
     <Content Include="Views\Species\Edit.cshtml" />
     <Content Include="Views\Species\Index.cshtml" />
+    <Content Include="Views\PetTypes\Create.cshtml" />
+    <Content Include="Views\PetTypes\Delete.cshtml" />
+    <Content Include="Views\PetTypes\Details.cshtml" />
+    <Content Include="Views\PetTypes\Edit.cshtml" />
+    <Content Include="Views\PetTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

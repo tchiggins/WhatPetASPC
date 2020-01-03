@@ -8,7 +8,6 @@ namespace WhatPetASPC.Models
     public class PetType
     {
         public int PetTypeID { get; set; }
-        public virtual ICollection<Species> SpeciesID { get; set; }
         public string TypeName { get; set; }
         public string PetSize { get; set; }
         public string PetSolitary { get; set; }
@@ -17,5 +16,8 @@ namespace WhatPetASPC.Models
         public string PetWalk { get; set; }
         public string PetDiet { get; set; }
         public string PetImage { get; set; }
+        public int SpeciesID { get; set; }
+        public virtual Species Species { get; set; }
+
     }
 }

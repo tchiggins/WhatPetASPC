@@ -9,6 +9,7 @@ namespace WhatPetASPC.Models
     {
         public int SpeciesID { get; set; }
         public string SpeciesName { get; set; }
-        public virtual ICollection<PetClass> PetClassID { get; set; }
+        public int PetClassID { get; set; }
+        public virtual PetClass PetClass { get; set; }
     }
 }

@@ -18,7 +18,8 @@ namespace WhatPetASPC.Controllers
         // GET: Species
         public ActionResult Index()
         {
-            return View(db.AllSpecies.ToList());
+            var allSpecies = db.AllSpecies.Include(s => s.PetClass);
+            return View(allSpecies.ToList());
         }
 
         // GET: Species/Details/5
@@ -39,6 +40,7 @@ namespace WhatPetASPC.Controllers
         // GET: Species/Create
         public ActionResult Create()
         {
+            ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClasssName");
             return View();
         }
 
@@ -47,7 +49,7 @@ namespace WhatPetASPC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SpeciesID,SpeciesName")] Species species)
+        public ActionResult Create([Bind(Include = "SpeciesID,SpeciesName,PetClassID")] Species species)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +58,7 @@ namespace WhatPetASPC.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClasssName", species.PetClassID);
             return View(species);
         }
 
@@ -71,6 +74,7 @@ namespace WhatPetASPC.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClasssName", species.PetClassID);
             return View(species);
         }
 
@@ -79,7 +83,7 @@ namespace WhatPetASPC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SpeciesID,SpeciesName")] Species species)
+        public ActionResult Edit([Bind(Include = "SpeciesID,SpeciesName,PetClassID")] Species species)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +91,7 @@ namespace WhatPetASPC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClasssName", species.PetClassID);
             return View(species);
         }
 

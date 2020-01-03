@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.PetClass.ClasssName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.SpeciesName)
         </th>
         <th></th>
@@ -19,6 +22,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetClass.ClasssName)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.SpeciesName)
         </td>
