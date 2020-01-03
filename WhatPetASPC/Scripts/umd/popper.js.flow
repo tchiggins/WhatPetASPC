@@ -1,7 +1,5 @@
 // @flow
-
 export type Position = 'top' | 'right' | 'bottom' | 'left';
-
 export type Placement =
   | 'auto-start'
   | 'auto'
@@ -18,7 +16,6 @@ export type Placement =
   | 'left-end'
   | 'left'
   | 'left-start';
-
 export type Offset = {
   top: number,
   left: number,
@@ -26,11 +23,8 @@ export type Offset = {
   height: number,
   position: Position,
 };
-
 export type Boundary = 'scrollParent' | 'viewport' | 'window';
-
 export type Behavior = 'flip' | 'clockwise' | 'counterclockwise';
-
 export type Data = {
   instance: Popper,
   placement: Placement,
@@ -50,22 +44,18 @@ export type Data = {
     },
   },
 };
-
 export type ModifierFn = (data: Data, options: Object) => Data;
-
 export type Padding = {
   top?: number,
   bottom?: number,
   left?: number,
   right?: number,
 };
-
 export type BaseModifier = {
   order?: number,
   enabled?: boolean,
   fn?: ModifierFn,
 };
-
 export type Modifiers = {
   shift?: BaseModifier,
   offset?: BaseModifier & {
@@ -99,27 +89,21 @@ export type Modifiers = {
     x?: 'bottom' | 'top',
     y?: 'left' | 'right',
   },
-
   [name: string]: (BaseModifier & { [string]: * }) | null,
 };
-
 export type Options = {
   placement?: Placement,
   positionFixed?: boolean,
   eventsEnabled?: boolean,
   modifiers?: Modifiers,
   removeOnDestroy?: boolean,
-
   onCreate?: (data: Data) => void,
-
   onUpdate?: (data: Data) => void,
 };
-
 export type ReferenceObject = {
   +clientHeight: number,
   +clientWidth: number,
   +referenceNode?: Node,
-
   getBoundingClientRect():
     | ClientRect
     | {
@@ -131,7 +115,6 @@ export type ReferenceObject = {
         left: number,
       },
 };
-
 export type Instance = {
   destroy: () => void,
   scheduleUpdate: () => void,
@@ -139,18 +122,14 @@ export type Instance = {
   enableEventListeners: () => void,
   disableEventListeners: () => void,
 };
-
 declare class Popper {
   static placements: Placement;
-
   popper: Element;
   reference: Element | ReferenceObject;
-
   constructor(
     reference: Element | ReferenceObject,
     popper: Element,
     options?: Options
   ): Instance;
 }
-
 declare export default typeof Popper;

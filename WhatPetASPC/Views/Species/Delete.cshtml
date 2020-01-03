@@ -1,11 +1,8 @@
 ﻿@model WhatPetASPC.Models.Species
-
 @{
     ViewBag.Title = "Delete";
 }
-
 <h2>Delete</h2>
-
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Species</h4>
@@ -14,24 +11,18 @@
         <dt>
             @Html.DisplayNameFor(model => model.PetClass.ClasssName)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.PetClass.ClasssName)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.SpeciesName)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.SpeciesName)
         </dd>
-
     </dl>
-
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")

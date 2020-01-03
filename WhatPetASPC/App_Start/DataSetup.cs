@@ -2,22 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
 namespace WhatPetASPC.App_Start
 {
     public class DataSetup
     {
-
         // Populate Species data table
         bool PopulateSpeciesData(Models.Species Data)
         {
             var db = new DAL.PetDB();
             db.AllSpecies.Add(Data);
             db.SaveChanges();
-
             return true;
         }
-
         // Get SpeciesID from the chosen SpeciesName
         int getSpeciesID(string SpeciesName)
         {
@@ -27,7 +23,6 @@ namespace WhatPetASPC.App_Start
                             select Species.SpeciesID;
             return 0;
         }
-
         // Get PetClassID from the chosen ClassName
         int getPetClassID(string ClassName)
         {

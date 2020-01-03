@@ -1,6 +1,5 @@
 import isModifierEnabled from '../utils/isModifierEnabled';
 import getSupportedPropertyName from '../utils/getSupportedPropertyName';
-
 /**
  * Destroys the popper.
  * @method
@@ -8,7 +7,6 @@ import getSupportedPropertyName from '../utils/getSupportedPropertyName';
  */
 export default function destroy() {
   this.state.isDestroyed = true;
-
   // touch DOM only if `applyStyle` modifier is enabled
   if (isModifierEnabled(this.modifiers, 'applyStyle')) {
     this.popper.removeAttribute('x-placement');
@@ -20,9 +18,7 @@ export default function destroy() {
     this.popper.style.willChange = '';
     this.popper.style[getSupportedPropertyName('transform')] = '';
   }
-
   this.disableEventListeners();
-
   // remove the popper if user explicitly asked for the deletion on destroy
   // do not use `remove` because IE11 doesn't support it
   if (this.options.removeOnDestroy) {

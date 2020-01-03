@@ -1,6 +1,5 @@
 import isModifierRequired from '../utils/isModifierRequired';
 import find from '../utils/find';
-
 /**
  * @function
  * @memberof Modifiers
@@ -12,13 +11,11 @@ export default function hide(data) {
   if (!isModifierRequired(data.instance.modifiers, 'hide', 'preventOverflow')) {
     return data;
   }
-
   const refRect = data.offsets.reference;
   const bound = find(
     data.instance.modifiers,
     modifier => modifier.name === 'preventOverflow'
   ).boundaries;
-
   if (
     refRect.bottom < bound.top ||
     refRect.left > bound.right ||
@@ -29,7 +26,6 @@ export default function hide(data) {
     if (data.hide === true) {
       return data;
     }
-
     data.hide = true;
     data.attributes['x-out-of-boundaries'] = '';
   } else {
@@ -37,10 +33,8 @@ export default function hide(data) {
     if (data.hide === false) {
       return data;
     }
-
     data.hide = false;
     data.attributes['x-out-of-boundaries'] = false;
   }
-
   return data;
 }

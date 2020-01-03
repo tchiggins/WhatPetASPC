@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
 namespace WhatPetASPC.Models
 {
     public class PetType
@@ -18,6 +17,5 @@ namespace WhatPetASPC.Models
         public string PetImage { get; set; }
         public int SpeciesID { get; set; }
         public virtual Species Species { get; set; }
-
     }
 }

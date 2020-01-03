@@ -4,9 +4,7 @@ import getOffsetParent from '../utils/getOffsetParent';
 import getBoundingClientRect from '../utils/getBoundingClientRect';
 import getRoundedOffsets from '../utils/getRoundedOffsets';
 import isBrowser from '../utils/isBrowser';
-
 const isFirefox = isBrowser && /Firefox/i.test(navigator.userAgent);
-
 /**
  * @function
  * @memberof Modifiers
@@ -17,7 +15,6 @@ const isFirefox = isBrowser && /Firefox/i.test(navigator.userAgent);
 export default function computeStyle(data, options) {
   const { x, y } = options;
   const { popper } = data.offsets;
-
   // Remove this legacy support in Popper.js v2
   const legacyGpuAccelerationOption = find(
     data.instance.modifiers,
@@ -32,28 +29,22 @@ export default function computeStyle(data, options) {
     legacyGpuAccelerationOption !== undefined
       ? legacyGpuAccelerationOption
       : options.gpuAcceleration;
-
   const offsetParent = getOffsetParent(data.instance.popper);
   const offsetParentRect = getBoundingClientRect(offsetParent);
-
   // Styles
   const styles = {
     position: popper.position,
   };
-
   const offsets = getRoundedOffsets(
     data,
     window.devicePixelRatio < 2 || !isFirefox
   );
-
   const sideA = x === 'bottom' ? 'top' : 'bottom';
   const sideB = y === 'right' ? 'left' : 'right';
-
   // if gpuAcceleration is set to `true` and transform is supported,
   //  we use `translate3d` to apply the position to the popper we
   // automatically use the supported prefixed version if needed
   const prefixedProperty = getSupportedPropertyName('transform');
-
   // now, let's make a step back and look at this code closely (wtf?)
   // If the content of the popper grows once it's been positioned, it
   // may happen that the popper gets misplaced because of the new content
@@ -97,16 +88,13 @@ export default function computeStyle(data, options) {
     styles[sideB] = left * invertLeft;
     styles.willChange = `${sideA}, ${sideB}`;
   }
-
   // Attributes
   const attributes = {
     'x-placement': data.placement,
   };
-
   // Update `data` attributes, styles and arrowStyles
   data.attributes = { ...attributes, ...data.attributes };
   data.styles = { ...styles, ...data.styles };
   data.arrowStyles = { ...data.offsets.arrow, ...data.arrowStyles };
-
   return data;
 }
