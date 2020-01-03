@@ -1,0 +1,26 @@
+﻿@model WhatPetASPC.Models.PetClass
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PetClass</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ClasssName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClasssName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PetClassID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

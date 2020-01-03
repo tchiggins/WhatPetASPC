@@ -1,0 +1,33 @@
+﻿@model IEnumerable<WhatPetASPC.Models.PetClass>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ClasssName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClasssName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PetClassID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PetClassID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PetClassID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<WhatPetASPC.Models.PetType>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetSolitary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetIndoors)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetOutdoors)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetWalk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetDiet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetImage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetSolitary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetIndoors)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetOutdoors)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetWalk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetDiet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetImage)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PetTypeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PetTypeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PetTypeID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,82 @@
+﻿@model WhatPetASPC.Models.PetType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PetType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetSolitary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetSolitary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetIndoors)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetIndoors)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetOutdoors)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetOutdoors)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetWalk)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetWalk)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetDiet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetDiet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetImage)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PetTypeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
