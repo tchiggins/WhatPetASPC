@@ -47,7 +47,7 @@ namespace WhatPetASPC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PetClassID,ClasssName")] PetClass petClass)
+        public ActionResult Create([Bind(Include = "PetClassID,ClassName")] PetClass petClass)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace WhatPetASPC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PetClassID,ClasssName")] PetClass petClass)
+        public ActionResult Edit([Bind(Include = "PetClassID,ClassName")] PetClass petClass)
         {
             if (ModelState.IsValid)
             {

@@ -28,7 +28,7 @@ namespace WhatPetASPC.App_Start
         {
             var db = new DAL.PetDB();
             var MyPetCLass = from PetClass in db.AllPetClasses
-                            where PetClass.ClasssName == ClassName
+                            where PetClass.ClassName == ClassName
                              select PetClass.PetClassID;
             return 0;
         }

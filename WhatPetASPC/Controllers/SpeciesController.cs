@@ -40,7 +40,7 @@ namespace WhatPetASPC.Controllers
         // GET: Species/Create
         public ActionResult Create()
         {
-            ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClasssName");
+            ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClassName");
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace WhatPetASPC.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClasssName", species.PetClassID);
+            ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClassName", species.PetClassID);
             return View(species);
         }
 
@@ -74,7 +74,7 @@ namespace WhatPetASPC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClasssName", species.PetClassID);
+            ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClassName", species.PetClassID);
             return View(species);
         }
 
@@ -91,7 +91,7 @@ namespace WhatPetASPC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClasssName", species.PetClassID);
+            ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClassName", species.PetClassID);
             return View(species);
         }
 

@@ -1,0 +1,11 @@
+SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetImage
+Cat,Abyssinian,Average,FALSE,TRUE,FALSE,FALSE,Carnivore,cat/abyssinian.jpg
+Cat,Aegean,Average,FALSE,TRUE,TRUE,FALSE,Carnivore,cat/aegean.jfif
+Cat,American Curl,Average,FALSE,TRUE,FALSE,FALSE,Carnivore,cat/american_curl.jpg
+Cat,American Bobtail,Large,FALSE,TRUE,FALSE,FALSE,Carnivore,cat/american_bobtail.jfif
+Cat,American Shorthair,Large,FALSE,TRUE,FALSE,FALSE,Carnivore,cat/american_shorthair.jpg
+Cat,American Wirehair,Large,FALSE,TRUE,FALSE,FALSE,Carnivore,cat/american_wirehair.jpg
+Cat,Aphrodite Giant,Large,FALSE,TRUE,TRUE,FALSE,Carnivore,cat/aphrodite_giant.jpg
+Cat,Arabian Mau,Average,FALSE,TRUE,TRUE,FALSE,Carnivore,cat/arabian_mau.jpg
+Cat,Australian Mist,Average,FALSE,TRUE,TRUE,FALSE,Carnivore,cat/australian_mist.jpg
+Cat,Asian,Average,FALSE,TRUE,FALSE,FALSE,Carnivore,cat/asian.jfif

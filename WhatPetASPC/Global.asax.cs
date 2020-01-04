@@ -1,3 +1,4 @@
+using EntityFramework.Seeder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,9 @@ namespace WhatPetASPC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            var db = new DAL.PetDB();
+            db.AllPetClasses.SeedFromResource("WhatPetASPC.Files.PetClass.csv", c => c.PetClassID);
+            db.SaveChanges();
         }
     }
 }
