@@ -1,7 +1,7 @@
 PetClassID,ClassName
-1,Mammal
-2,Reptile
-3,Bird
+1,Amphibian
+2,Bird
+3,Fish
 4,Insect
-5,Amphibian
-6,Fish
+5,Mammal
+6,Reptile
