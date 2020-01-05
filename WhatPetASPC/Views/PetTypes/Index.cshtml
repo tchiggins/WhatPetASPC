@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Index";
 }
+@using MvcApplication8.Models
+
 <h2>Index</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -37,40 +39,41 @@
         </th>
         <th></th>
     </tr>
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Species.SpeciesName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TypeName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetSize)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetSolitary)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetIndoors)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetOutdoors)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetWalk)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetDiet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetImage)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PetTypeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PetTypeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PetTypeID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Species.SpeciesName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetSolitary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetIndoors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetOutdoors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetWalk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetDiet)
+            </td>
+            <td>
+                @Html.Image("../Content/Images/pets/"+item.PetImage, "../Contents/Images/pets/" + item.PetImage, "100")
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PetTypeID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PetTypeID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PetTypeID })
+            </td>
+        </tr>
+    }
 </table>
