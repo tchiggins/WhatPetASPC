@@ -12,11 +12,6 @@ namespace WhatPetASPC.DAL
 {
     public class PetDB : DbContext
     {
-
-        public PetDB() : base("DefaultConnection")
-        {
-        }
-
         public DbSet<PetClass> AllPetClasses { get; set; }
         public DbSet<Species> AllSpecies { get; set; }
         public DbSet<PetType> AllPetTypes { get; set; }

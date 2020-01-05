@@ -8,6 +8,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using WhatPetASPC.App_Start;
+
 namespace WhatPetASPC
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -18,9 +20,11 @@ namespace WhatPetASPC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            var db = new DAL.PetDB();
-            db.AllPetClasses.SeedFromResource("WhatPetASPC.Files.PetClass.csv", c => c.PetClassID);
-            db.SaveChanges();
+
+            DataSetup.ClearPetClassTable();
+            DataSetup.PC_CSVImport();
+            DataSetup.ClearSpeciesTable();
+            DataSetup.SP_CSVImport();
         }
     }
 }
