@@ -1,4 +1,3 @@
-using EntityFramework.Seeder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +20,13 @@ namespace WhatPetASPC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            DataSetup.ClearPetClassTable();
-            DataSetup.PC_CSVImport();
-            DataSetup.ClearSpeciesTable();
-            DataSetup.SP_CSVImport();
+            // Load the static data
+            DataSetup.PetClass.ClassTable();
+            DataSetup.PetClass.CSVImport();
+            DataSetup.Species.ClearTable();
+            DataSetup.Species.CSVImport();
+            DataSetup.PetTypes.ClearTable();
+            DataSetup.PetTypes.CSVImport();
         }
     }
 }

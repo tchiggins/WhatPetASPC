@@ -10,23 +10,9 @@ namespace WhatPetASPC.App_Start
 {
     public class DataSetup
     {
-        // Clear the PetClass Table
-        public static void ClearPetClassTable()
-        {
-            var db = new DAL.PetDB();
-            db.AllPetClasses.RemoveRange(db.AllPetClasses);
-            db.SaveChanges();
-        }
 
-        // Clear the Species Table
-        public static void ClearSpeciesTable()
-        {
-            var db = new DAL.PetDB();
-            db.AllSpecies.RemoveRange(db.AllSpecies);
-            db.SaveChanges();
-        }
         // Load the DataTable
-        public static DataTable LoadDataTable(string FileName)
+        static DataTable LoadDataTable(string FileName)
         {
             var dt = new DataTable();
             using (var reader = new StreamReader(FileName))
@@ -40,73 +26,150 @@ namespace WhatPetASPC.App_Start
             }
             return dt;
         }
-        // Load the PetClass CSV file
-        public static void PC_CSVImport()
+
+        public class PetClass
         {
-            // Upload and save the file
-            string CSVPath = HttpContext.Current.Server.MapPath("~/Files/PetClass.csv");
-
-            int rows;
-            DataTable dt = LoadDataTable(CSVPath);
-            rows = dt.Rows.Count;
-
-            // Load all the data
-            var db = new DAL.PetDB();
-
-            for (int r = 0; r < rows; r++)
+            // Clear the PetClass Table
+            public static void ClassTable()
             {
-                var pc = new Models.PetClass
-                {
-                    PetClassID = Int32.Parse(dt.Rows[r].ItemArray[0].ToString()),
-                    ClassName = dt.Rows[r].ItemArray[1].ToString()
-                };
-                db.AllPetClasses.Add(pc);
+                var db = new DAL.PetDB();
+                db.AllPetClasses.RemoveRange(db.AllPetClasses);
+                db.SaveChanges();
             }
-            db.SaveChanges();
-        }
-        // Load the Species CSV file
-        public static void SP_CSVImport()
-        {
-            // Upload and save the file
-            string CSVPath = HttpContext.Current.Server.MapPath("~/Files/Species.csv");
 
-            int rows;
-            DataTable dt = LoadDataTable(CSVPath);
-            rows = dt.Rows.Count;
-
-            // Load all the data
-            var db = new DAL.PetDB();
-
-            for (int r = 0; r < rows; r++)
+            // Load the PetClass CSV file
+            public static void CSVImport()
             {
-                var sp = new Models.Species()
+                // Upload and save the file
+                // PetClassID,ClassName
+                string CSVPath = HttpContext.Current.Server.MapPath(Constants.PetClass.CSV_FileName);
+
+                int rows;
+                DataTable dt = LoadDataTable(CSVPath);
+                rows = dt.Rows.Count;
+
+                // Load all the data
+                var db = new DAL.PetDB();
+
+                for (int r = 0; r < rows; r++)
                 {
-                    SpeciesID = Int32.Parse(dt.Rows[r].ItemArray[0].ToString()),
-                    PetClassID = getPetClassID(dt.Rows[r].ItemArray[1].ToString()),
-                    SpeciesName = dt.Rows[r].ItemArray[2].ToString()
-                };
-                if (sp.PetClassID != 0)
-                    db.AllSpecies.Add(sp);
+                    var pc = new Models.PetClass
+                    {
+                        PetClassID = Int32.Parse(dt.Rows[r].ItemArray[Constants.PetClass.PetClassIDPos].ToString()),
+                        ClassName = dt.Rows[r].ItemArray[Constants.PetClass.ClassNamePos].ToString()
+                    };
+                    db.AllPetClasses.Add(pc);
+                }
+                db.SaveChanges();
             }
-            db.SaveChanges();
         }
-        // Get SpeciesID from the chosen SpeciesName
-        static int getSpeciesID(string SpeciesName)
+
+        public class Species
         {
-            var db = new DAL.PetDB();
-            var MySpecies = from Species in db.AllSpecies
-                            where Species.SpeciesName == SpeciesName
-                            select Species.SpeciesID;
-            return 0;
+
+            // Get PetClassID from the chosen ClassName
+            static int getPetClassID(string ClassName)
+            {
+                var db = new DAL.PetDB();
+                var MyPetCLass = from PetClass in db.AllPetClasses
+                                 where PetClass.ClassName == ClassName
+                                 select PetClass.PetClassID;
+                return MyPetCLass.FirstOrDefault();
+            }
+            
+            // Clear the Species Table
+            public static void ClearTable()
+            {
+                var db = new DAL.PetDB();
+                db.AllSpecies.RemoveRange(db.AllSpecies);
+                db.SaveChanges();
+            }
+
+            // Load the Species CSV file
+            public static void CSVImport()
+            {
+                // Upload and save the file
+                // SpeciesID,ClassName,SpeciesName
+                string CSVPath = HttpContext.Current.Server.MapPath(Constants.Species.CSV_FileName);
+
+                int rows;
+                DataTable dt = LoadDataTable(CSVPath);
+                rows = dt.Rows.Count;
+
+                // Load all the data
+                var db = new DAL.PetDB();
+
+                for (int r = 0; r < rows; r++)
+                {
+                    var sp = new Models.Species()
+                    {
+                        SpeciesID = Int32.Parse(dt.Rows[r].ItemArray[Constants.Species.SpeciesIDPos].ToString()),
+                        PetClassID = getPetClassID(dt.Rows[r].ItemArray[Constants.Species.ClassNamePos].ToString()),
+                        SpeciesName = dt.Rows[r].ItemArray[Constants.Species.SpeciesNamePos].ToString()
+                    };
+                    if (sp.PetClassID != 0)
+                        db.AllSpecies.Add(sp);
+                }
+                db.SaveChanges();
+            }
         }
-        // Get PetClassID from the chosen ClassName
-        static int getPetClassID(string ClassName)
+
+        public class PetTypes
         {
-            var db = new DAL.PetDB();
-            var MyPetCLass = from PetClass in db.AllPetClasses
-                            where PetClass.ClassName == ClassName
-                             select PetClass.PetClassID;
-            return MyPetCLass.FirstOrDefault();
+            // Get SpeciesID from the chosen SpeciesName
+            static int getSpeciesID(string SpeciesName)
+            {
+                var db = new DAL.PetDB();
+                var MySpecies = from Species in db.AllSpecies
+                                where Species.SpeciesName == SpeciesName
+                                select Species.SpeciesID;
+
+                return MySpecies.FirstOrDefault();
+            }
+            
+            // Clear the PetType Table
+            public static void ClearTable()
+            {
+                var db = new DAL.PetDB();
+                db.AllPetTypes.RemoveRange(db.AllPetTypes);
+                db.SaveChanges();
+            }
+
+            // Load the PetTypes CSV file
+            public static void CSVImport()
+            {
+                // Upload and save the file
+                // PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetImage
+                string CSVPath = HttpContext.Current.Server.MapPath(Constants.PetTypes.CSV_FileName);
+
+                int rows;
+                DataTable dt = LoadDataTable(CSVPath);
+                rows = dt.Rows.Count;
+
+                // Load all the data
+                var db = new DAL.PetDB();
+
+                for (int r = 0; r < rows; r++)
+                {
+                    var pt = new Models.PetType()
+                    {
+                        // PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetImage
+                        PetTypeID = Int32.Parse(dt.Rows[r].ItemArray[0].ToString()),
+                        SpeciesID = getSpeciesID(dt.Rows[r].ItemArray[Constants.PetTypes.SpeciesNamePos].ToString()),
+                        TypeName = dt.Rows[r].ItemArray[Constants.PetTypes.TypeNamePos].ToString(),
+                        PetSize = dt.Rows[r].ItemArray[Constants.PetTypes.PetSizePos].ToString(),
+                        PetSolitary = dt.Rows[r].ItemArray[Constants.PetTypes.PetSolitaryPos].ToString(),
+                        PetIndoors = dt.Rows[r].ItemArray[Constants.PetTypes.PetIndoorsPos].ToString(),
+                        PetOutdoors = dt.Rows[r].ItemArray[Constants.PetTypes.PetOutdoorsPos].ToString(),
+                        PetWalk = dt.Rows[r].ItemArray[Constants.PetTypes.PetWalkPos].ToString(),
+                        PetDiet = dt.Rows[r].ItemArray[Constants.PetTypes.PetDietPos].ToString(),
+                        PetImage = dt.Rows[r].ItemArray[Constants.PetTypes.PetImagePos].ToString()
+                    };
+                    if (pt.SpeciesID != 0)
+                        db.AllPetTypes.Add(pt);
+                }
+                db.SaveChanges();
+            }
         }
     }
 }
