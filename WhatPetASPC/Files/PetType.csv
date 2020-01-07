@@ -8,4 +8,7 @@ PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWal
 7,Cat,Aphrodite Giant,Large,FALSE,TRUE,TRUE,FALSE,Carnivore,cat/aphrodite_giant.jpg
 8,Cat,Arabian Mau,Average,FALSE,TRUE,TRUE,FALSE,Carnivore,cat/arabian_mau.jpg
 9,Cat,Asian,Average,FALSE,TRUE,FALSE,FALSE,Carnivore,cat/asian.jfif
-10,Cat,Australian Mist,Average,FALSE,TRUE,TRUE,FALSE,Carnivore,cat/australian_mist.jpg
+10,Cat,Asian Semi-Longhair,Average,FALSE,TRUE,FALSE,FALSE,Carnivore,cat/asian_semi_longhair.jpg
+11,Cat,Australian Mist,Average,FALSE,TRUE,TRUE,FALSE,Carnivore,cat/australian_mist.jpg
+12,Cat,Balinese,Average,FALSE,TRUE,FALSE,FALSE,Carnivore,cat/balinese.png
+13,Cat,Bambino,
