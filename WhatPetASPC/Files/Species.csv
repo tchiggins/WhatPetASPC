@@ -1,19 +1,19 @@
 SpeciesID,ClassName,SpeciesName
-1,Insect,Bee
-2,Mammal,Cat
-3,Bird,Chicken
-4,Mammal,Dog
-5,Bird,Duck
-6,Mammal,Ferret
-7,Mammal,Gerbil
-8,Fish,Goldfish
-9,Bird,Goose
-10,Mammal,Hamster
-11,Mammal,Hare
-12,Mammal,Horse
-13,Reptile,Lizard
-14,Bird,Parakeet
-15,Bird,Parrot
+1,Bird,Chicken
+2,Bird,Duck
+3,Bird,Goose
+4,Bird,Parakeet
+5,Bird,Parrot
+6,Fish,Goldfish
+7,Insect,Bee
+8,Insect,Stick Insect
+9,Mammal,Cat
+10,Mammal,Dog
+11,Mammal,Ferret
+12,Mammal,Gerbil
+13,Mammal,Hamster
+14,Mammal,Hare
+15,Mammal,Horse
 16,Mammal,Rabbit
-17,Reptile,Snake
-18,Insect,Stick Insect
+17,Reptile,Lizard
+18,Reptile,Snake

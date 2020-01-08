@@ -37,5 +37,17 @@
             public const int PetDietPos     = 8;
             public const int PetImagePos    = 9;
         }
+
+        public static class SizeCategories
+        {
+            // 
+            public const string SC_FileName = "~/Files/SizeCategories.csv";
+
+            public const int SizeCategIDPos             = 0;
+            public const int AverageSizeLowerBoundPos   = 1;
+            public const int AverageSizeUpperBoundPos   = 2;
+            public const int AverageMassLowerBoundPos   = 3;
+            public const int AverageMassUpperBoundPos   = 4;
+        }
     }
 }

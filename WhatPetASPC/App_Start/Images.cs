@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
 namespace MvcApplication8.Models
 {
     public static class ImageHelper
@@ -18,4 +17,3 @@ namespace MvcApplication8.Models
         }
     }
 }
-
