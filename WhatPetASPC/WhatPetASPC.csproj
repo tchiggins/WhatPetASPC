@@ -204,6 +204,7 @@
     <EmbeddedResource Include="Files\PetClass.csv" />
     <EmbeddedResource Include="Files\PetType.csv" />
     <EmbeddedResource Include="Files\Species.csv" />
+    <Content Include="Files\SizeCategories.csv" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
