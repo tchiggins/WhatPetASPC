@@ -68,7 +68,10 @@
             </td>
             <td>
                 @{String Image = ("../Content/Images/pets/" + item.PetImage);}
-                @Html.Image(Image, Image, "100")
+
+                @* Show a small image that displays the ShowImage view when clicked *@
+                <a href="@Url.Action("ShowImage", "PetTypes", new { id = item.PetTypeID })"><img alt="@Image" src="@Url.Content(Image)" style="height:100px;"></a>
+
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.PetTypeID }) |
