@@ -67,7 +67,8 @@
                 @Html.DisplayFor(modelItem => item.PetDiet)
             </td>
             <td>
-                @Html.Image("../Content/Images/pets/"+item.PetImage, "../Contents/Images/pets/" + item.PetImage, "100")
+                @{String Image = ("../Content/Images/pets/" + item.PetImage);}
+                @Html.Image(Image, Image, "100")
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.PetTypeID }) |
