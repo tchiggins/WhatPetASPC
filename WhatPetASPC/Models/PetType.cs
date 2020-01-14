@@ -14,5 +14,6 @@
         public string PetImage { get; set; }
         public int SpeciesID { get; set; }
         public virtual Species Species { get; set; }
+        public virtual CostCategories CostCategories { get; set; }
     }
 }

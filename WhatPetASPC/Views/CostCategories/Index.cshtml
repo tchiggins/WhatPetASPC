@@ -1,11 +1,8 @@
 ﻿@model IEnumerable<WhatPetASPC.Models.CostCategories>
-
 @{
     ViewBag.Title = "Index";
 }
-
 <h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -16,7 +13,6 @@
         </th>
         <th></th>
     </tr>
-
 @foreach (var item in Model) {
     <tr>
         <td>
@@ -29,5 +25,4 @@
         </td>
     </tr>
 }
-
 </table>
