@@ -15,6 +15,21 @@ namespace WhatPetASPC.Controllers
     {
         private PetDB db = new PetDB();
 
+        // Show single image
+        public ActionResult ShowImage(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            PetType petType = db.AllPetTypes.Find(id);
+            if (petType == null)
+            {
+                return HttpNotFound();
+            }
+            return View(petType);
+        }
+        
         // GET: PetTypes
         public ActionResult Index(int? SelectedSpecies)
         {
