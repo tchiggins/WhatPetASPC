@@ -29,14 +29,12 @@ export default function getRoundedOffsets(data, shouldRound) {
   const isVariation = data.placement.indexOf('-') !== -1;
   const sameWidthParity = referenceWidth % 2 === popperWidth % 2;
   const bothOddWidth = referenceWidth % 2 === 1 && popperWidth % 2 === 1;
-
   const horizontalToInteger = !shouldRound
     ? noRound
     : isVertical || isVariation || sameWidthParity
     ? round
     : floor;
   const verticalToInteger = !shouldRound ? noRound : round;
-
   return {
     left: horizontalToInteger(
       bothOddWidth && !isVariation && shouldRound

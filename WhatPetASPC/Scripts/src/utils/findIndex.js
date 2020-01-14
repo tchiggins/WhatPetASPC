@@ -1,5 +1,4 @@
 import find from './find';
-
 /**
  * Return the index of the matching object
  * @method
@@ -14,7 +13,6 @@ export default function findIndex(arr, prop, value) {
   if (Array.prototype.findIndex) {
     return arr.findIndex(cur => cur[prop] === value);
   }
-
   // use `find` + `indexOf` if `findIndex` isn't supported
   const match = find(arr, obj => obj[prop] === value);
   return arr.indexOf(match);

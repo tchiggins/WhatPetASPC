@@ -27,7 +27,6 @@ import runModifiers from './runModifiers';
 import setAttributes from './setAttributes';
 import setStyles from './setStyles';
 import setupEventListeners from './setupEventListeners';
-
 /** @namespace Popper.Utils */
 export {
   computeAutoPlacement,
@@ -60,7 +59,6 @@ export {
   setStyles,
   setupEventListeners,
 };
-
 // This is here just for backward compatibility with versions lower than v1.10.3
 // you should import the utilities using named exports, if you want them all use:
 // ```

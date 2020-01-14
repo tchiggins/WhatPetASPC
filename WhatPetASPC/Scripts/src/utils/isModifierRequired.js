@@ -1,5 +1,4 @@
 import find from './find';
-
 /**
  * Helper used to know if the given modifier depends from another one.<br />
  * It checks if the needed modifier is listed and enabled.
@@ -16,7 +15,6 @@ export default function isModifierRequired(
   requestedName
 ) {
   const requesting = find(modifiers, ({ name }) => name === requestingName);
-
   const isRequired =
     !!requesting &&
     modifiers.some(modifier => {
@@ -26,7 +24,6 @@ export default function isModifierRequired(
         modifier.order < requesting.order
       );
     });
-
   if (!isRequired) {
     const requesting = `\`${requestingName}\``;
     const requested = `\`${requestedName}\``;

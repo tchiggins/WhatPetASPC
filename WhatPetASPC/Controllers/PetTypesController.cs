@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using WhatPetASPC.DAL;
 using WhatPetASPC.Models;
-
 namespace WhatPetASPC.Controllers
 {
     public class PetTypesController : Controller
     {
         private PetDB db = new PetDB();
-
         // Show single image
         public ActionResult ShowImage(int? id)
         {
@@ -29,7 +24,6 @@ namespace WhatPetASPC.Controllers
             }
             return View(petType);
         }
-        
         // GET: PetTypes
         public ActionResult Index(int? SelectedSpecies)
         {
@@ -43,14 +37,11 @@ namespace WhatPetASPC.Controllers
             var sql = petTypeList.ToString();
             return View(petTypeList.ToList());
         }
-        
         // GET: PetTypes
         //public ActionResult Index()
         //{
         //    var allPetTypes = db.AllPetTypes.Include(p => p.Species);
         //    return View(allPetTypes.ToList());
-        //}
-
         // GET: PetTypes/Details/5
         public ActionResult Details(int? id)
         {
@@ -65,14 +56,12 @@ namespace WhatPetASPC.Controllers
             }
             return View(petType);
         }
-
         // GET: PetTypes/Create
         public ActionResult Create()
         {
             ViewBag.SpeciesID = new SelectList(db.AllSpecies, "SpeciesID", "SpeciesName");
             return View();
         }
-
         // POST: PetTypes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -86,11 +75,9 @@ namespace WhatPetASPC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             ViewBag.SpeciesID = new SelectList(db.AllSpecies, "SpeciesID", "SpeciesName", petType.SpeciesID);
             return View(petType);
         }
-
         // GET: PetTypes/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -106,7 +93,6 @@ namespace WhatPetASPC.Controllers
             ViewBag.SpeciesID = new SelectList(db.AllSpecies, "SpeciesID", "SpeciesName", petType.SpeciesID);
             return View(petType);
         }
-
         // POST: PetTypes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -123,7 +109,6 @@ namespace WhatPetASPC.Controllers
             ViewBag.SpeciesID = new SelectList(db.AllSpecies, "SpeciesID", "SpeciesName", petType.SpeciesID);
             return View(petType);
         }
-
         // GET: PetTypes/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -138,7 +123,6 @@ namespace WhatPetASPC.Controllers
             }
             return View(petType);
         }
-
         // POST: PetTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -149,7 +133,6 @@ namespace WhatPetASPC.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

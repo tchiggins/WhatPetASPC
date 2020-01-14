@@ -1,5 +1,4 @@
 import isBrowser from './isBrowser';
-
 const timeoutDuration = (function(){
   const longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
   for (let i = 0; i < longerTimeoutBrowsers.length; i += 1) {
@@ -9,7 +8,6 @@ const timeoutDuration = (function(){
   }
   return 0;
 }());
-
 export function microtaskDebounce(fn) {
   let called = false
   return () => {
@@ -23,7 +21,6 @@ export function microtaskDebounce(fn) {
     })
   }
 }
-
 export function taskDebounce(fn) {
   let scheduled = false;
   return () => {
@@ -36,10 +33,7 @@ export function taskDebounce(fn) {
     }
   };
 }
-
 const supportsMicroTasks = isBrowser && window.Promise
-
-
 /**
 * Create a debounced version of a method, that's asynchronously deferred
 * but called in the minimum time possible.

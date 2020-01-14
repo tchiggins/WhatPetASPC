@@ -4,18 +4,15 @@ import getScrollParent from './getScrollParent';
 import getBoundingClientRect from './getBoundingClientRect';
 import runIsIE from './isIE';
 import getClientRect from './getClientRect';
-
 export default function getOffsetRectRelativeToArbitraryNode(children, parent, fixedPosition = false) {
   const isIE10 = runIsIE(10);
   const isHTML = parent.nodeName === 'HTML';
   const childrenRect = getBoundingClientRect(children);
   const parentRect = getBoundingClientRect(parent);
   const scrollParent = getScrollParent(children);
-
   const styles = getStyleComputedProperty(parent);
   const borderTopWidth = parseFloat(styles.borderTopWidth, 10);
   const borderLeftWidth = parseFloat(styles.borderLeftWidth, 10);
-
   // In cases where the parent is fixed, we must ignore negative scroll in offset calc
   if(fixedPosition && isHTML) {
     parentRect.top = Math.max(parentRect.top, 0);
@@ -29,7 +26,6 @@ export default function getOffsetRectRelativeToArbitraryNode(children, parent, f
   });
   offsets.marginTop = 0;
   offsets.marginLeft = 0;
-
   // Subtract margins of documentElement in case it's being used as parent
   // we do this only on HTML because it's the only element that behaves
   // differently when margins are applied to it. The margins are included in
@@ -37,17 +33,14 @@ export default function getOffsetRectRelativeToArbitraryNode(children, parent, f
   if (!isIE10 && isHTML) {
     const marginTop = parseFloat(styles.marginTop, 10);
     const marginLeft = parseFloat(styles.marginLeft, 10);
-
     offsets.top -= borderTopWidth - marginTop;
     offsets.bottom -= borderTopWidth - marginTop;
     offsets.left -= borderLeftWidth - marginLeft;
     offsets.right -= borderLeftWidth - marginLeft;
-
     // Attach marginTop and marginLeft because in some circumstances we may need them
     offsets.marginTop = marginTop;
     offsets.marginLeft = marginLeft;
   }
-
   if (
     isIE10 && !fixedPosition
       ? parent.contains(scrollParent)
@@ -55,6 +48,5 @@ export default function getOffsetRectRelativeToArbitraryNode(children, parent, f
   ) {
     offsets = includeScroll(offsets, parent);
   }
-
   return offsets;
 }

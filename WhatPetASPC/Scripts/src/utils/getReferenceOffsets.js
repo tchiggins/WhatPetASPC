@@ -2,7 +2,6 @@ import findCommonOffsetParent from './findCommonOffsetParent';
 import getOffsetRectRelativeToArbitraryNode from './getOffsetRectRelativeToArbitraryNode';
 import getFixedPositionOffsetParent from './getFixedPositionOffsetParent';
 import getReferenceNode from './getReferenceNode';
-
 /**
  * Get offsets to the reference element
  * @method

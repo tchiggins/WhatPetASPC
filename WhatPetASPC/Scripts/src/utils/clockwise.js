@@ -1,8 +1,6 @@
 import placements from '../methods/placements';
-
 // Get rid of `auto` `auto-start` and `auto-end`
 const validPlacements = placements.slice(3);
-
 /**
  * Given an initial placement, returns all the subsequent placements
  * clockwise (or counter-clockwise).

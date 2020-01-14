@@ -1,5 +1,4 @@
 import getScroll from './getScroll';
-
 /*
  * Sum or subtract the element scroll values (left and top) from a given rect object
  * @method
