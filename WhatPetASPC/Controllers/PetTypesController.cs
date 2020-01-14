@@ -15,12 +15,26 @@ namespace WhatPetASPC.Controllers
     {
         private PetDB db = new PetDB();
 
-        // GET: PetTypes
-        public ActionResult Index()
+        // GET: Species
+        public ActionResult Index(int? SelectedSpecies)
         {
-            var allPetTypes = db.AllPetTypes.Include(p => p.Species);
-            return View(allPetTypes.ToList());
+            var MySpecies = db.AllSpecies.OrderBy(q => q.SpeciesName).ToList();
+            ViewBag.SelectedSpecies = new SelectList(MySpecies, "SpeciesID", "SpeciesName", SelectedSpecies);
+            int speciesID = SelectedSpecies.GetValueOrDefault();
+
+            IQueryable<PetType> petTypeList = db.AllPetTypes
+                .Where(c => !SelectedSpecies.HasValue || c.SpeciesID == speciesID)
+                .OrderBy(d => d.SpeciesID);
+            var sql = petTypeList.ToString();
+            return View(petTypeList.ToList());
         }
+        
+        // GET: PetTypes
+        //public ActionResult Index()
+        //{
+        //    var allPetTypes = db.AllPetTypes.Include(p => p.Species);
+        //    return View(allPetTypes.ToList());
+        //}
 
         // GET: PetTypes/Details/5
         public ActionResult Details(int? id)

@@ -2,6 +2,13 @@
 @{
     ViewBag.Title = "Index";
 }
+@using (Html.BeginForm())
+{
+    <p>
+        Select Species: @Html.DropDownList("SelectedSpecies", "All")
+        <input type="submit" value="Filter" />
+    </p>
+}
 @using MvcApplication8.Models
 
 <h2>Index</h2>
@@ -67,7 +74,7 @@
                 @Html.DisplayFor(modelItem => item.PetDiet)
             </td>
             <td>
-                @Html.Image("../Content/Images/pets/"+item.PetImage, "../Contents/Images/pets/" + item.PetImage, "100")
+                @Html.Image("../Content/Images/pets/" + item.PetImage, "../Contents/Images/pets/" + item.PetImage, "100")
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.PetTypeID }) |
