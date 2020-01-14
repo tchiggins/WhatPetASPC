@@ -10,11 +10,33 @@ namespace WhatPetASPC.Controllers
     {
         private PetDB db = new PetDB();
         // GET: Species
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    var allSpecies = db.AllSpecies.Include(s => s.PetClass);
+        //    return View(allSpecies.ToList());
+        //}
+
+        private void PopulateClassesDropDownList(object SelectedClasses = null)
         {
-            var allSpecies = db.AllSpecies.Include(s => s.PetClass);
-            return View(allSpecies.ToList());
+            var classQuery = from d in db.AllPetClasses
+                                   orderby d.ClassName
+                                   select d;
+            ViewBag.PetClassID = new SelectList(classQuery, "PetClassID", "ClassName", SelectedClasses);
         }
+        
+        public ActionResult Index(int? SelectedClasses)
+        {
+            var MyPetClasses = db.AllPetClasses.OrderBy(q => q.ClassName).ToList();
+            ViewBag.SelectedClasses = new SelectList(MyPetClasses, "PetClassID", "ClassName", SelectedClasses);
+            int PetClassID = SelectedClasses.GetValueOrDefault();
+
+            IQueryable<Species> speciesList = db.AllSpecies
+                .Where(c => !SelectedClasses.HasValue || c.PetClassID == PetClassID)
+                .OrderBy(d => d.SpeciesID);
+            var sql = speciesList.ToString();
+            return View(speciesList.ToList());
+        }
+
         // GET: Species/Details/5
         public ActionResult Details(int? id)
         {
