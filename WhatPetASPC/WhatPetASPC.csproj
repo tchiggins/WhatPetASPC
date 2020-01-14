@@ -140,6 +140,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\Images.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CostCategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PetClassesController.cs" />
     <Compile Include="Controllers\PetTypesController.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CostCategories.cs" />
     <Compile Include="Models\PetClass.cs" />
     <Compile Include="Models\PetType.cs" />
     <Compile Include="Models\Species.cs" />
@@ -205,6 +207,7 @@
     <EmbeddedResource Include="Files\PetType.csv" />
     <EmbeddedResource Include="Files\Species.csv" />
     <Content Include="Files\SizeCategories.csv" />
+    <Content Include="Files\CostCategories.csv" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -326,6 +329,11 @@
     <Content Include="Views\PetTypes\Details.cshtml" />
     <Content Include="Views\PetTypes\Edit.cshtml" />
     <Content Include="Views\PetTypes\Index.cshtml" />
+    <Content Include="Views\CostCategories\Create.cshtml" />
+    <Content Include="Views\CostCategories\Delete.cshtml" />
+    <Content Include="Views\CostCategories\Details.cshtml" />
+    <Content Include="Views\CostCategories\Edit.cshtml" />
+    <Content Include="Views\CostCategories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

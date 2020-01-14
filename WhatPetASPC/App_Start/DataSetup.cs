@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CsvHelper;
 using System.IO;
 using System.Data;
-
 namespace WhatPetASPC.App_Start
 {
     public class DataSetup
     {
-
         // Load the DataTable
         static DataTable LoadDataTable(string FileName)
         {
@@ -26,7 +23,6 @@ namespace WhatPetASPC.App_Start
             }
             return dt;
         }
-
         public class PetClass
         {
             // Clear the PetClass Table
@@ -36,18 +32,15 @@ namespace WhatPetASPC.App_Start
                 db.AllPetClasses.RemoveRange(db.AllPetClasses);
                 db.SaveChanges();
             }
-
             // Load the PetClass CSV file
             public static void CSVImport()
             {
                 // Upload and save the file
                 // PetClassID,ClassName
                 string CSVPath = HttpContext.Current.Server.MapPath(Constants.PetClass.CSV_FileName);
-
                 int rows;
                 DataTable dt = LoadDataTable(CSVPath);
                 rows = dt.Rows.Count;
-
                 // Load all the data
                 var db = new DAL.PetDB();
 
@@ -63,10 +56,8 @@ namespace WhatPetASPC.App_Start
                 db.SaveChanges();
             }
         }
-
         public class Species
         {
-
             // Get PetClassID from the chosen ClassName
             static int getPetClassID(string ClassName)
             {
@@ -76,7 +67,6 @@ namespace WhatPetASPC.App_Start
                                  select PetClass.PetClassID;
                 return MyPetCLass.FirstOrDefault();
             }
-            
             // Clear the Species Table
             public static void ClearTable()
             {
@@ -84,21 +74,17 @@ namespace WhatPetASPC.App_Start
                 db.AllSpecies.RemoveRange(db.AllSpecies);
                 db.SaveChanges();
             }
-
             // Load the Species CSV file
             public static void CSVImport()
             {
                 // Upload and save the file
                 // SpeciesID,ClassName,SpeciesName
                 string CSVPath = HttpContext.Current.Server.MapPath(Constants.Species.CSV_FileName);
-
                 int rows;
                 DataTable dt = LoadDataTable(CSVPath);
                 rows = dt.Rows.Count;
-
                 // Load all the data
                 var db = new DAL.PetDB();
-
                 for (int r = 0; r < rows; r++)
                 {
                     var sp = new Models.Species()
@@ -113,7 +99,10 @@ namespace WhatPetASPC.App_Start
                 db.SaveChanges();
             }
         }
-
+        public class CostCategories
+        {
+            // 
+        }
         public class PetTypes
         {
             // Get SpeciesID from the chosen SpeciesName
@@ -123,10 +112,8 @@ namespace WhatPetASPC.App_Start
                 var MySpecies = from Species in db.AllSpecies
                                 where Species.SpeciesName == SpeciesName
                                 select Species.SpeciesID;
-
                 return MySpecies.FirstOrDefault();
             }
-            
             // Clear the PetType Table
             public static void ClearTable()
             {
@@ -134,26 +121,22 @@ namespace WhatPetASPC.App_Start
                 db.AllPetTypes.RemoveRange(db.AllPetTypes);
                 db.SaveChanges();
             }
-
             // Load the PetTypes CSV file
             public static void CSVImport()
             {
                 // Upload and save the file
                 // PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetImage
                 string CSVPath = HttpContext.Current.Server.MapPath(Constants.PetTypes.CSV_FileName);
-
                 int rows;
                 DataTable dt = LoadDataTable(CSVPath);
                 rows = dt.Rows.Count;
-
                 // Load all the data
                 var db = new DAL.PetDB();
-
                 for (int r = 0; r < rows; r++)
                 {
                     var pt = new Models.PetType()
                     {
-                        // PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetImage
+                        // PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage
                         PetTypeID = Int32.Parse(dt.Rows[r].ItemArray[0].ToString()),
                         SpeciesID = getSpeciesID(dt.Rows[r].ItemArray[Constants.PetTypes.SpeciesNamePos].ToString()),
                         TypeName = dt.Rows[r].ItemArray[Constants.PetTypes.TypeNamePos].ToString(),
@@ -163,6 +146,7 @@ namespace WhatPetASPC.App_Start
                         PetOutdoors = dt.Rows[r].ItemArray[Constants.PetTypes.PetOutdoorsPos].ToString(),
                         PetWalk = dt.Rows[r].ItemArray[Constants.PetTypes.PetWalkPos].ToString(),
                         PetDiet = dt.Rows[r].ItemArray[Constants.PetTypes.PetDietPos].ToString(),
+                        PetDietCost = dt.Rows[r].ItemArray[Constants.PetTypes.PetDietCostPos].ToString(),
                         PetImage = dt.Rows[r].ItemArray[Constants.PetTypes.PetImagePos].ToString()
                     };
                     if (pt.SpeciesID != 0)

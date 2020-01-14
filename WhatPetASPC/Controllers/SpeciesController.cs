@@ -1,27 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using WhatPetASPC.DAL;
 using WhatPetASPC.Models;
-
 namespace WhatPetASPC.Controllers
 {
     public class SpeciesController : Controller
     {
         private PetDB db = new PetDB();
-
         // GET: Species
         public ActionResult Index()
         {
             var allSpecies = db.AllSpecies.Include(s => s.PetClass);
             return View(allSpecies.ToList());
         }
-
         // GET: Species/Details/5
         public ActionResult Details(int? id)
         {
@@ -36,14 +29,12 @@ namespace WhatPetASPC.Controllers
             }
             return View(species);
         }
-
         // GET: Species/Create
         public ActionResult Create()
         {
             ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClassName");
             return View();
         }
-
         // POST: Species/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -57,11 +48,9 @@ namespace WhatPetASPC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClassName", species.PetClassID);
             return View(species);
         }
-
         // GET: Species/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -77,7 +66,6 @@ namespace WhatPetASPC.Controllers
             ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClassName", species.PetClassID);
             return View(species);
         }
-
         // POST: Species/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -94,7 +82,6 @@ namespace WhatPetASPC.Controllers
             ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClassName", species.PetClassID);
             return View(species);
         }
-
         // GET: Species/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -109,7 +96,6 @@ namespace WhatPetASPC.Controllers
             }
             return View(species);
         }
-
         // POST: Species/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -120,7 +106,6 @@ namespace WhatPetASPC.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
+﻿using System.Web.Mvc;
 namespace WhatPetASPC.Controllers
 {
     public class HomeController : Controller
@@ -12,14 +7,12 @@ namespace WhatPetASPC.Controllers
         {
             return View();
         }
-
         public ActionResult About()
         {
             ViewBag.Message = "WhatPet - Select your ideal pet friend.";
 
             return View();
         }
-
         public ActionResult Contact()
         {
             ViewBag.Message = "Contact Us";

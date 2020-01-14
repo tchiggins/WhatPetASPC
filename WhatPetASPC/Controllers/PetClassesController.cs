@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using WhatPetASPC.DAL;
 using WhatPetASPC.Models;
-
 namespace WhatPetASPC.Controllers
 {
     public class PetClassesController : Controller
     {
         private PetDB db = new PetDB();
-
         // GET: PetClasses
         public ActionResult Index()
         {
             return View(db.AllPetClasses.ToList());
         }
-
         // GET: PetClasses/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,13 +28,11 @@ namespace WhatPetASPC.Controllers
             }
             return View(petClass);
         }
-
         // GET: PetClasses/Create
         public ActionResult Create()
         {
             return View();
         }
-
         // POST: PetClasses/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -55,10 +46,8 @@ namespace WhatPetASPC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(petClass);
         }
-
         // GET: PetClasses/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -73,7 +62,6 @@ namespace WhatPetASPC.Controllers
             }
             return View(petClass);
         }
-
         // POST: PetClasses/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -89,7 +77,6 @@ namespace WhatPetASPC.Controllers
             }
             return View(petClass);
         }
-
         // GET: PetClasses/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -104,7 +91,6 @@ namespace WhatPetASPC.Controllers
             }
             return View(petClass);
         }
-
         // POST: PetClasses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -115,7 +101,6 @@ namespace WhatPetASPC.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
