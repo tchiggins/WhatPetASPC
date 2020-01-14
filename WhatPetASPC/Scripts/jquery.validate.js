@@ -1,8 +1,6 @@
 /*!
  * jQuery Validation Plugin v1.19.1
- *
  * https://jqueryvalidation.org/
- *
  * Copyright (c) 2019 Jörn Zaefferer
  * Released under the MIT license
  */
@@ -36,8 +34,7 @@ $.extend( $.fn, {
 		$.data( this[ 0 ], "validator", validator );
 		if ( validator.settings.onsubmit ) {
 			this.on( "click.validate", ":submit", function( event ) {
-				// Track the used submit button to properly handle scripted
-				// submits later.
+				// Track the used submit button to properly handle scripted submits later.
 				validator.submitButton = event.currentTarget;
 				// Allow suppressing validation by adding a cancel class to the submit button
 				if ( $( this ).hasClass( "cancel" ) ) {

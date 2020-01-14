@@ -23,7 +23,6 @@ namespace WhatPetASPC.Controllers
                                    select d;
             ViewBag.PetClassID = new SelectList(classQuery, "PetClassID", "ClassName", SelectedClasses);
         }
-        
         public ActionResult Index(int? SelectedClasses)
         {
             var MyPetClasses = db.AllPetClasses.OrderBy(q => q.ClassName).ToList();
@@ -36,7 +35,6 @@ namespace WhatPetASPC.Controllers
             var sql = speciesList.ToString();
             return View(speciesList.ToList());
         }
-
         // GET: Species/Details/5
         public ActionResult Details(int? id)
         {

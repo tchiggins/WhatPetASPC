@@ -101,7 +101,7 @@ namespace WhatPetASPC.App_Start
         }
         public class CostCategories
         {
-            // 
+            //
         }
         public class PetTypes
         {

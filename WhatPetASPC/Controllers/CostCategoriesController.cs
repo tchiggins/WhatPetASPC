@@ -46,7 +46,6 @@ namespace WhatPetASPC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(costCategories);
         }
         // GET: CostCategories/Edit/5

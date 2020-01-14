@@ -13,8 +13,7 @@ import isIE from './isIE';
  */
 export default function getBoundingClientRect(element) {
   let rect = {};
-  // IE10 10 FIX: Please, don't ask, the element isn't
-  // considered in DOM in some circumstances...
+  // IE10 10 FIX: Please, don't ask, the element isn't considered in DOM in some circumstances...
   // This isn't reproducible in IE10 compatibility mode of IE11
   try {
     if (isIE(10)) {

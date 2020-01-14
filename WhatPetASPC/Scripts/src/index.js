@@ -76,8 +76,7 @@ export default class Popper {
     }
     this.state.eventsEnabled = eventsEnabled;
   }
-  // We can't use class properties because they don't get listed in the
-  // class prototype and break stuff like Sinon stubs
+  // We can't use class properties because they don't get listed in the class prototype and break stuff like Sinon stubs
   update() {
     return update.call(this);
   }

@@ -37,7 +37,6 @@ const supportsMicroTasks = isBrowser && window.Promise
 /**
 * Create a debounced version of a method, that's asynchronously deferred
 * but called in the minimum time possible.
-*
 * @method
 * @memberof Popper.Utils
 * @argument {Function} fn

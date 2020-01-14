@@ -1,10 +1,8 @@
 ﻿@model WhatPetASPC.Models.PetType
-
 @{
     ViewBag.Title = "ShowImage";
 }
 @using MvcApplication8.Models
-
 <div>
     <h4>@Html.DisplayFor(modelItem => Model.TypeName)</h4>
     @{String Image = ("../../Content/Images/pets/" + Model.PetImage);}

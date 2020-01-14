@@ -26,10 +26,8 @@ export default function getOffsetRectRelativeToArbitraryNode(children, parent, f
   });
   offsets.marginTop = 0;
   offsets.marginLeft = 0;
-  // Subtract margins of documentElement in case it's being used as parent
-  // we do this only on HTML because it's the only element that behaves
-  // differently when margins are applied to it. The margins are included in
-  // the box of the documentElement, in the other cases not.
+  // Subtract margins of documentElement in case it's being used as parent we do this only on HTML because it's the only element that behaves differently when margins are applied to it.
+  // The margins are included in the box of the documentElement, in the other cases not.
   if (!isIE10 && isHTML) {
     const marginTop = parseFloat(styles.marginTop, 10);
     const marginLeft = parseFloat(styles.marginLeft, 10);

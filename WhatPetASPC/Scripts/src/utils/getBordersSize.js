@@ -1,4 +1,4 @@
-/*
+/**
  * Helper to detect borders of a given element
  * @method
  * @memberof Popper.Utils

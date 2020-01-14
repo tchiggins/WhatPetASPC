@@ -69,16 +69,13 @@
     subClass.prototype.constructor = subClass;
     subClass.__proto__ = superClass;
   }
-  /**
+  /*
    * --------------------------------------------------------------------------
    * Bootstrap (v4.4.1): util.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
-   */
-  /**
-   * ------------------------------------------------------------------------
    * Private TransitionEnd Helpers
-   * ------------------------------------------------------------------------
+   * --------------------------------------------------------------------------
    */
   var TRANSITION_END = 'transitionend';
   var MAX_UID = 1000000;
@@ -115,7 +112,7 @@
     $.fn.emulateTransitionEnd = transitionEndEmulator;
     $.event.special[Util.TRANSITION_END] = getSpecialTransitionEndEvent();
   }
-  /**
+  /*
    * --------------------------------------------------------------------------
    * Public Util Api
    * --------------------------------------------------------------------------

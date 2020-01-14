@@ -1,23 +1,18 @@
 /*!
  * jQuery JavaScript Library v3.4.1
  * https://jquery.com/
- *
  * Includes Sizzle.js
  * https://sizzlejs.com/
- *
  * Copyright JS Foundation and other contributors
  * Released under the MIT license
  * https://jquery.org/license
- *
  * Date: 2019-05-01T21:04Z
  */
 ( function( global, factory ) {
 	"use strict";
 	if ( typeof module === "object" && typeof module.exports === "object" ) {
-		// For CommonJS and CommonJS-like environments where a proper `window`
-		// is present, execute the factory and get jQuery.
-		// For environments that do not have a `window` with a `document`
-		// (such as Node.js), expose a factory as module.exports.
+		// For CommonJS and CommonJS-like environments where a proper `window` is present, execute the factory and get jQuery.
+		// For environments that do not have a `window` with a `document` (such as Node.js), expose a factory as module.exports.
 		// This accentuates the need for the creation of a real `window`.
 		// e.g. var jQuery = require("jquery")(window);
 		// See ticket #14549 for more info.
@@ -34,10 +29,8 @@
 	}
 // Pass this if window is not defined yet
 } )( typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
-// Edge <= 12 - 13+, Firefox <=18 - 45+, IE 10 - 11, Safari 5.1 - 9+, iOS 6 - 9.1
-// throw exceptions when non-strict code (e.g., ASP.NET 4.5) accesses strict mode
-// arguments.callee.caller (trac-13335). But as of jQuery 3.0 (2016), strict mode should be common
-// enough that all such attempts are guarded in a try block.
+// Edge <= 12 - 13+, Firefox <=18 - 45+, IE 10 - 11, Safari 5.1 - 9+, iOS 6 - 9.1 throw exceptions when non-strict code (e.g., ASP.NET 4.5) accesses strict mode
+// arguments.callee.caller (trac-13335). But as of jQuery 3.0 (2016), strict mode should be common enough that all such attempts are guarded in a try block.
 "use strict";
 var arr = [];
 var document = window.document;
@@ -54,8 +47,7 @@ var ObjectFunctionString = fnToString.call( Object );
 var support = {};
 var isFunction = function isFunction( obj ) {
       // Support: Chrome <=57, Firefox <=52
-      // In some browsers, typeof returns "function" for HTML <object> elements
-      // (i.e., `typeof document.createElement( "object" ) === "function"`).
+      // In some browsers, typeof returns "function" for HTML <object> elements (i.e., `typeof document.createElement( "object" ) === "function"`).
       // We don't want to classify *any* DOM node as a function.
       return typeof obj === "function" && typeof obj.nodeType !== "number";
   };
@@ -77,14 +69,10 @@ var isWindow = function isWindow( obj ) {
 			for ( i in preservedScriptAttributes ) {
 				// Support: Firefox 64+, Edge 18+
 				// Some browsers don't support the "nonce" property on scripts.
-				// On the other hand, just using `getAttribute` is not enough as
-				// the `nonce` attribute is reset to an empty string whenever it
-				// becomes browsing-context connected.
+				// On the other hand, just using `getAttribute` is not enough as the `nonce` attribute is reset to an empty string whenever it becomes browsing-context connected.
 				// See https://github.com/whatwg/html/issues/2369
 				// See https://html.spec.whatwg.org/#nonce-attributes
-				// The `node.getAttribute` check was added for the sake of
-				// `jQuery.globalEval` so that it can fake a nonce-containing node
-				// via an object.
+				// The `node.getAttribute` check was added for the sake of `jQuery.globalEval` so that it can fake a nonce-containing node via an object.
 				val = node[ i ] || node.getAttribute && node.getAttribute( i );
 				if ( val ) {
 					script.setAttribute( i, val );
@@ -103,8 +91,7 @@ function toType( obj ) {
 		typeof obj;
 }
 /* global Symbol */
-// Defining this global in .eslintrc.json would create a danger of using the global
-// unguarded in another place, it seems safer to define global only for this module
+// Defining this global in .eslintrc.json would create a danger of using the global unguarded in another place, it seems safer to define global only for this module.
 var
 	version = "3.4.1",
 	// Define a local copy of jQuery
@@ -135,8 +122,7 @@ jQuery.fn = jQuery.prototype = {
 		// Return just the one element from the set
 		return num < 0 ? this[ num + this.length ] : this[ num ];
 	},
-	// Take an array of elements and push it onto the stack
-	// (returning the new matched element set)
+	// Take an array of elements and push it onto the stack (returning the new matched element set)
 	pushStack: function( elems ) {
 		// Build a new jQuery matched element set
 		var ret = jQuery.merge( this.constructor(), elems );
@@ -331,8 +317,7 @@ jQuery.extend( {
 			i = 0,
 			length = elems.length,
 			callbackExpect = !invert;
-		// Go through the array, only saving the items
-		// that pass the validator function
+		// Go through the array, only saving the items that pass the validator function
 		for ( ; i < length; i++ ) {
 			callbackInverse = !callback( elems[ i ], i );
 			if ( callbackInverse !== callbackExpect ) {
@@ -369,8 +354,7 @@ jQuery.extend( {
 	},
 	// A global GUID counter for objects
 	guid: 1,
-	// jQuery.support is not used in Core but other projects attach their
-	// properties to it so it needs to exist.
+	// jQuery.support is not used in Core but other projects attach their properties to it so it needs to exist.
 	support: support
 } );
 if ( typeof Symbol === "function" ) {
@@ -384,8 +368,7 @@ function( i, name ) {
 function isArrayLike( obj ) {
 	// Support: real iOS 8.2 only (not reproducible in simulator)
 	// `in` check used to prevent JIT error (gh-2145)
-	// hasOwn isn't used here due to false negatives
-	// regarding Nodelist length in IE
+	// hasOwn isn't used here due to false negatives regarding Nodelist length in IE
 	var length = !!obj && "length" in obj && obj.length,
 		type = toType( obj );
 	if ( isFunction( obj ) || isWindow( obj ) ) {
@@ -398,11 +381,9 @@ var Sizzle =
 /*!
  * Sizzle CSS Selector Engine v2.3.4
  * https://sizzlejs.com/
- *
  * Copyright JS Foundation and other contributors
  * Released under the MIT license
  * https://js.foundation/
- *
  * Date: 2019-04-08
  */
 (function( window ) {
@@ -545,8 +526,7 @@ var i,
 	},
 	// Used for iframes
 	// See setDocument()
-	// Removing the function wrapper causes a "Permission Denied"
-	// error in IE
+	// Removing the function wrapper causes a "Permission Denied" error in IE
 	unloadHandler = function() {
 		setDocument();
 	},
@@ -600,8 +580,7 @@ function Sizzle( selector, context, results, seed ) {
 		}
 		context = context || document;
 		if ( documentIsHTML ) {
-			// If the selector is sufficiently simple, try using a "get*By*" DOM method
-			// (excepting DocumentFragment context, where the methods don't exist)
+			// If the selector is sufficiently simple, try using a "get*By*" DOM method (excepting DocumentFragment context, where the methods don't exist)
 			if ( nodeType !== 11 && (match = rquickExpr.exec( selector )) ) {
 				// ID selector
 				if ( (m = match[1]) ) {
@@ -650,10 +629,8 @@ function Sizzle( selector, context, results, seed ) {
 				(nodeType !== 1 || context.nodeName.toLowerCase() !== "object") ) {
 				newSelector = selector;
 				newContext = context;
-				// qSA considers elements outside a scoping root when evaluating child or
-				// descendant combinators, which is not what we want.
-				// In such cases, we work around the behavior by prefixing every selector in the
-				// list with an ID selector referencing the scope context.
+				// qSA considers elements outside a scoping root when evaluating child or descendant combinators, which is not what we want.
+				// In such cases, we work around the behavior by prefixing every selector in the list with an ID selector referencing the scope context.
 				// Thanks to Andrew Dupont for this technique.
 				if ( nodeType === 1 && rdescend.test( selector ) ) {
 					// Capture the context ID, setting it first if necessary
@@ -693,9 +670,7 @@ function Sizzle( selector, context, results, seed ) {
 }
 /**
  * Create key-value caches of limited size
- * @returns {function(string, object)} Returns the Object data after storing it on itself with
- *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
- *	deleting the oldest entry
+ * @returns {function(string, object)} Returns the Object data after storing it on itself with property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength) deleting the oldest entry.
  */
 function createCache() {
 	var keys = [];
@@ -829,8 +804,7 @@ function createDisabledPseudo( disabled ) {
 			}
 			return elem.disabled === disabled;
 		// Try to winnow out elements that can't be disabled before trusting the disabled property.
-		// Some victims get caught in our net (label, legend, menu, track), but it shouldn't
-		// even exist on them, let alone have a boolean value.
+		// Some victims get caught in our net (label, legend, menu, track), but it shouldn't even exist on them, let alone have a boolean value.
 		} else if ( "label" in elem ) {
 			return elem.disabled === disabled;
 		}
@@ -912,8 +886,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	/* Attributes
 	---------------------------------------------------------------------- */
 	// Support: IE<8
-	// Verify that getAttribute really returns attributes and not properties
-	// (excepting IE8 booleans)
+	// Verify that getAttribute really returns attributes and not properties (excepting IE8 booleans)
 	support.attributes = assert(function( el ) {
 		el.className = "i";
 		return !el.getAttribute("className");
@@ -929,8 +902,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	support.getElementsByClassName = rnative.test( document.getElementsByClassName );
 	// Support: IE<10
 	// Check if getElementById returns elements by name
-	// The broken getElementById methods don't pick up programmatically-set names,
-	// so use a roundabout getElementsByName test
+	// The broken getElementById methods don't pick up programmatically-set names, so use a roundabout getElementsByName test
 	support.getById = assert(function( el ) {
 		docElem.appendChild( el ).id = expando;
 		return !document.getElementsByName || !document.getElementsByName( expando ).length;
@@ -1023,8 +995,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// matchesSelector(:active) reports false when true (IE9/Opera 11.5)
 	rbuggyMatches = [];
 	// qSa(:focus) reports false when true (Chrome 21)
-	// We allow this because of a bug in IE8/9 that throws an error
-	// whenever `document.activeElement` is accessed on an iframe
+	// We allow this because of a bug in IE8/9 that throws an error whenever `document.activeElement` is accessed on an iframe
 	// So, we allow :focus to pass through QSA all the time to avoid the IE error
 	// See https://bugs.jquery.com/ticket/13378
 	rbuggyQSA = [];
@@ -1033,9 +1004,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 		// Regex strategy adopted from Diego Perini
 		assert(function( el ) {
 			// Select is set to empty string on purpose
-			// This is to test IE's treatment of not explicitly
-			// setting a boolean content attribute,
-			// since its presence should be enough
+			// This is to test IE's treatment of not explicitly/ setting a boolean content attribute, since its presence should be enough.
 			// https://bugs.jquery.com/ticket/12359
 			docElem.appendChild( el ).innerHTML = "<a id='" + expando + "'></a>" +
 				"<select id='" + expando + "-\r\\' msallowcapture=''>" +
@@ -1104,8 +1073,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 		docElem.oMatchesSelector ||
 		docElem.msMatchesSelector) )) ) {
 		assert(function( el ) {
-			// Check to see if it's possible to do matchesSelector
-			// on a disconnected node (IE 9)
+			// Check to see if it's possible to do matchesSelector on a disconnected node (IE 9)
 			support.disconnectedMatch = matches.call( el, "*" );
 			// This should fail with an exception
 			// Gecko does not error, returns false instead
@@ -1242,8 +1210,7 @@ Sizzle.matchesSelector = function( elem, expr ) {
 			var ret = matches.call( elem, expr );
 			// IE 9's matchesSelector returns false on disconnected nodes
 			if ( ret || support.disconnectedMatch ||
-					// As well, disconnected nodes are said to be in a document
-					// fragment in IE 9
+					// As well, disconnected nodes are said to be in a document fragment in IE 9
 					elem.document && elem.document.nodeType !== 11 ) {
 				return ret;
 			}
@@ -1565,9 +1532,7 @@ Expr = Sizzle.selectors = {
 			var args,
 				fn = Expr.pseudos[ pseudo ] || Expr.setFilters[ pseudo.toLowerCase() ] ||
 					Sizzle.error( "unsupported pseudo: " + pseudo );
-			// The user may use createPseudo to indicate that
-			// arguments are needed to create the filter function
-			// just as Sizzle does
+			// The user may use createPseudo to indicate that arguments are needed to create the filter function just as Sizzle does
 			if ( fn[ expando ] ) {
 				return fn( argument );
 			}
@@ -1594,9 +1559,7 @@ Expr = Sizzle.selectors = {
 	pseudos: {
 		// Potentially complex pseudos
 		"not": markFunction(function( selector ) {
-			// Trim the selector passed to compile
-			// to avoid treating leading and trailing
-			// spaces as combinators
+			// Trim the selector passed to compile to avoid treating leading and trailing spaces as combinators
 			var input = [],
 				results = [],
 				matcher = compile( selector.replace( rtrim, "$1" ) );
@@ -8436,7 +8399,7 @@ jQuery.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( 
 // Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084
 // Blink bug: https://bugs.chromium.org/p/chromium/issues/detail?id=589347
 // getComputedStyle returns percent when specified for top/left/bottom/right;
-// rather than make the css module depend on the offset module, just check for it here
+// Rather than make the css module depend on the offset module, just check for it here
 jQuery.each( [ "top", "left" ], function( i, prop ) {
 	jQuery.cssHooks[ prop ] = addGetHookIf( support.pixelPosition,
 		function( elem, computed ) {
@@ -8469,8 +8432,7 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 				// Get document width or height
 				if ( elem.nodeType === 9 ) {
 					doc = elem.documentElement;
-					// Either scroll[Width/Height] or offset[Width/Height] or client[Width/Height],
-					// whichever is greatest
+					// Either scroll[Width/Height] or offset[Width/Height] or client[Width/Height], whichever is greatest
 					return Math.max(
 						elem.body[ "scroll" + name ], doc[ "scroll" + name ],
 						elem.body[ "offset" + name ], doc[ "offset" + name ],
@@ -8519,8 +8481,7 @@ jQuery.fn.extend( {
 			this.off( types, selector || "**", fn );
 	}
 } );
-// Bind a function to a context, optionally partially applying any
-// arguments.
+// Bind a function to a context, optionally partially applying any arguments.
 // jQuery.proxy is deprecated to promote standards (specifically Function#bind)
 // However, it is not slated for removal any time soon
 jQuery.proxy = function( fn, context ) {
@@ -8530,8 +8491,7 @@ jQuery.proxy = function( fn, context ) {
 		context = fn;
 		fn = tmp;
 	}
-	// Quick check to determine if target is callable, in the spec
-	// this throws a TypeError, but we will just return undefined.
+	// Quick check to determine if target is callable, in the spec this throws a TypeError, but we will just return undefined.
 	if ( !isFunction( fn ) ) {
 		return undefined;
 	}
@@ -8560,9 +8520,7 @@ jQuery.camelCase = camelCase;
 jQuery.type = toType;
 jQuery.now = Date.now;
 jQuery.isNumeric = function( obj ) {
-	// As of jQuery 3.0, isNumeric is limited to
-	// strings and numbers (primitives or objects)
-	// that can be coerced to finite numbers (gh-2662)
+	// As of jQuery 3.0, isNumeric is limited to strings and numbers (primitives or objects) that can be coerced to finite numbers (gh-2662)
 	var type = jQuery.type( obj );
 	return ( type === "number" || type === "string" ) &&
 		// parseFloat NaNs numeric-cast false positives ("")
@@ -8570,16 +8528,11 @@ jQuery.isNumeric = function( obj ) {
 		// subtraction forces infinities to NaN
 		!isNaN( obj - parseFloat( obj ) );
 };
-// Register as a named AMD module, since jQuery can be concatenated with other
-// files that may use define, but not via a proper concatenation script that
-// understands anonymous AMD modules. A named AMD is safest and most robust
-// way to register. Lowercase jquery is used because AMD module names are
-// derived from file names, and jQuery is normally delivered in a lowercase
-// file name. Do this after creating the global so that if an AMD module wants
-// to call noConflict to hide this version of jQuery, it will work.
-// Note that for maximum portability, libraries that are not jQuery should
-// declare themselves as anonymous modules, and avoid setting a global if an
-// AMD loader is present. jQuery is a special case. For more information, see
+// Register as a named AMD module, since jQuery can be concatenated with other files that may use define, but not via a proper concatenation script that understands anonymous AMD modules.
+// A named AMD is safest and most robust way to register.
+// Lowercase jquery is used because AMD module names are derived from file names, and jQuery is normally delivered in a lowercase file name.
+// Do this after creating the global so that if an AMD module wants to call noConflict to hide this version of jQuery, it will work.
+// Note that for maximum portability, libraries that are not jQuery should declare themselves as anonymous modules, and avoid setting a global if an AMD loader is present. jQuery is a special case. For more information, see
 // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
 if ( typeof define === "function" && define.amd ) {
 	define( "jquery", [], function() {
