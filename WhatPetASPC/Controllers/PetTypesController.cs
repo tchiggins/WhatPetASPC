@@ -15,8 +15,8 @@ namespace WhatPetASPC.Controllers
     {
         private PetDB db = new PetDB();
 
-        // GET: Species
-        public ActionResult Index(int? SelectedSpecies)
+        // GET: PetTypes
+        public ActionResult Index()
         {
             var MySpecies = db.AllSpecies.OrderBy(q => q.SpeciesName).ToList();
             ViewBag.SelectedSpecies = new SelectList(MySpecies, "SpeciesID", "SpeciesName", SelectedSpecies);

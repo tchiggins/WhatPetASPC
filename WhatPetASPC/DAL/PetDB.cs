@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using WhatPetASPC.Models;
+﻿using WhatPetASPC.Models;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-
-
-
 namespace WhatPetASPC.DAL
 {
     public class PetDB : DbContext
@@ -20,5 +13,6 @@ namespace WhatPetASPC.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+        public System.Data.Entity.DbSet<WhatPetASPC.Models.CostCategories> CostCategories { get; set; }
     }
 }
