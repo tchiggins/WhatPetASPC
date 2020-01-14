@@ -13,6 +13,6 @@ namespace WhatPetASPC.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
-        //public System.Data.Entity.DbSet<WhatPetASPC.Models.CostCategories> CostCategories { get; set; }
+        public System.Data.Entity.DbSet<WhatPetASPC.Models.CostCategories> CostCategories { get; set; }
     }
 }
