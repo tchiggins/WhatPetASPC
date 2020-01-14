@@ -327,6 +327,11 @@
     <Content Include="Views\PetTypes\Edit.cshtml" />
     <Content Include="Views\PetTypes\Index.cshtml" />
     <Content Include="Views\PetTypes\ShowImage.cshtml" />
+	<Content Include="Views\CostCategories\Create.cshtml" />
+    <Content Include="Views\CostCategories\Delete.cshtml" />
+    <Content Include="Views\CostCategories\Details.cshtml" />
+    <Content Include="Views\CostCategories\Edit.cshtml" />
+    <Content Include="Views\CostCategories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
