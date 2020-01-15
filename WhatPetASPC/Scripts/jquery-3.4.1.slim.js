@@ -11,10 +11,8 @@
 ( function( global, factory ) {
 	"use strict";
 	if ( typeof module === "object" && typeof module.exports === "object" ) {
-		// For CommonJS and CommonJS-like environments where a proper `window`
-		// is present, execute the factory and get jQuery.
-		// For environments that do not have a `window` with a `document`
-		// (such as Node.js), expose a factory as module.exports.
+		// For CommonJS and CommonJS-like environments where a proper `window` is present, execute the factory and get jQuery.
+		// For environments that do not have a `window` with a `document` (such as Node.js), expose a factory as module.exports.
 		// This accentuates the need for the creation of a real `window`.
 		// e.g. var jQuery = require("jquery")(window);
 		// See ticket #14549 for more info.
@@ -49,8 +47,7 @@ var ObjectFunctionString = fnToString.call( Object );
 var support = {};
 var isFunction = function isFunction( obj ) {
       // Support: Chrome <=57, Firefox <=52
-      // In some browsers, typeof returns "function" for HTML <object> elements
-      // (i.e., `typeof document.createElement( "object" ) === "function"`).
+      // In some browsers, typeof returns "function" for HTML <object> elements (i.e., `typeof document.createElement( "object" ) === "function"`).
       // We don't want to classify *any* DOM node as a function.
       return typeof obj === "function" && typeof obj.nodeType !== "number";
   };
@@ -72,14 +69,10 @@ var isWindow = function isWindow( obj ) {
 			for ( i in preservedScriptAttributes ) {
 				// Support: Firefox 64+, Edge 18+
 				// Some browsers don't support the "nonce" property on scripts.
-				// On the other hand, just using `getAttribute` is not enough as
-				// the `nonce` attribute is reset to an empty string whenever it
-				// becomes browsing-context connected.
+				// On the other hand, just using `getAttribute` is not enough as the `nonce` attribute is reset to an empty string whenever it becomes browsing-context connected.
 				// See https://github.com/whatwg/html/issues/2369
 				// See https://html.spec.whatwg.org/#nonce-attributes
-				// The `node.getAttribute` check was added for the sake of
-				// `jQuery.globalEval` so that it can fake a nonce-containing node
-				// via an object.
+				// The `node.getAttribute` check was added for the sake of `jQuery.globalEval` so that it can fake a nonce-containing node via an object.
 				val = node[ i ] || node.getAttribute && node.getAttribute( i );
 				if ( val ) {
 					script.setAttribute( i, val );
@@ -98,8 +91,7 @@ function toType( obj ) {
 		typeof obj;
 }
 /* global Symbol */
-// Defining this global in .eslintrc.json would create a danger of using the global
-// unguarded in another place, it seems safer to define global only for this module
+// Defining this global in .eslintrc.json would create a danger of using the global unguarded in another place, it seems safer to define global only for this module
 var
 	version = "3.4.1 -ajax,-ajax/jsonp,-ajax/load,-ajax/parseXML,-ajax/script,-ajax/var/location,-ajax/var/nonce,-ajax/var/rquery,-ajax/xhr,-manipulation/_evalUrl,-event/ajax,-effects,-effects/Tween,-effects/animatedSelector",
 	// Define a local copy of jQuery
@@ -130,8 +122,7 @@ jQuery.fn = jQuery.prototype = {
 		// Return just the one element from the set
 		return num < 0 ? this[ num + this.length ] : this[ num ];
 	},
-	// Take an array of elements and push it onto the stack
-	// (returning the new matched element set)
+	// Take an array of elements and push it onto the stack (returning the new matched element set)
 	pushStack: function( elems ) {
 		// Build a new jQuery matched element set
 		var ret = jQuery.merge( this.constructor(), elems );
@@ -326,8 +317,7 @@ jQuery.extend( {
 			i = 0,
 			length = elems.length,
 			callbackExpect = !invert;
-		// Go through the array, only saving the items
-		// that pass the validator function
+		// Go through the array, only saving the items that pass the validator function
 		for ( ; i < length; i++ ) {
 			callbackInverse = !callback( elems[ i ], i );
 			if ( callbackInverse !== callbackExpect ) {
@@ -364,8 +354,7 @@ jQuery.extend( {
 	},
 	// A global GUID counter for objects
 	guid: 1,
-	// jQuery.support is not used in Core but other projects attach their
-	// properties to it so it needs to exist.
+	// jQuery.support is not used in Core but other projects attach their properties to it so it needs to exist.
 	support: support
 } );
 if ( typeof Symbol === "function" ) {
@@ -379,8 +368,7 @@ function( i, name ) {
 function isArrayLike( obj ) {
 	// Support: real iOS 8.2 only (not reproducible in simulator)
 	// `in` check used to prevent JIT error (gh-2145)
-	// hasOwn isn't used here due to false negatives
-	// regarding Nodelist length in IE
+	// hasOwn isn't used here due to false negatives regarding Nodelist length in IE
 	var length = !!obj && "length" in obj && obj.length,
 		type = toType( obj );
 	if ( isFunction( obj ) || isWindow( obj ) ) {
@@ -393,11 +381,9 @@ var Sizzle =
 /*!
  * Sizzle CSS Selector Engine v2.3.4
  * https://sizzlejs.com/
- *
  * Copyright JS Foundation and other contributors
  * Released under the MIT license
  * https://js.foundation/
- *
  * Date: 2019-04-08
  */
 (function( window ) {
@@ -540,8 +526,7 @@ var i,
 	},
 	// Used for iframes
 	// See setDocument()
-	// Removing the function wrapper causes a "Permission Denied"
-	// error in IE
+	// Removing the function wrapper causes a "Permission Denied" error in IE
 	unloadHandler = function() {
 		setDocument();
 	},
@@ -595,8 +580,7 @@ function Sizzle( selector, context, results, seed ) {
 		}
 		context = context || document;
 		if ( documentIsHTML ) {
-			// If the selector is sufficiently simple, try using a "get*By*" DOM method
-			// (excepting DocumentFragment context, where the methods don't exist)
+			// If the selector is sufficiently simple, try using a "get*By*" DOM method (excepting DocumentFragment context, where the methods don't exist)
 			if ( nodeType !== 11 && (match = rquickExpr.exec( selector )) ) {
 				// ID selector
 				if ( (m = match[1]) ) {
@@ -645,10 +629,8 @@ function Sizzle( selector, context, results, seed ) {
 				(nodeType !== 1 || context.nodeName.toLowerCase() !== "object") ) {
 				newSelector = selector;
 				newContext = context;
-				// qSA considers elements outside a scoping root when evaluating child or
-				// descendant combinators, which is not what we want.
-				// In such cases, we work around the behavior by prefixing every selector in the
-				// list with an ID selector referencing the scope context.
+				// qSA considers elements outside a scoping root when evaluating child or descendant combinators, which is not what we want.
+				// In such cases, we work around the behavior by prefixing every selector in the list with an ID selector referencing the scope context.
 				// Thanks to Andrew Dupont for this technique.
 				if ( nodeType === 1 && rdescend.test( selector ) ) {
 					// Capture the context ID, setting it first if necessary
@@ -688,9 +670,7 @@ function Sizzle( selector, context, results, seed ) {
 }
 /**
  * Create key-value caches of limited size
- * @returns {function(string, object)} Returns the Object data after storing it on itself with
- *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
- *	deleting the oldest entry
+ * @returns {function(string, object)} Returns the Object data after storing it on itself with property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength) deleting the oldest entry
  */
 function createCache() {
 	var keys = [];
@@ -824,8 +804,7 @@ function createDisabledPseudo( disabled ) {
 			}
 			return elem.disabled === disabled;
 		// Try to winnow out elements that can't be disabled before trusting the disabled property.
-		// Some victims get caught in our net (label, legend, menu, track), but it shouldn't
-		// even exist on them, let alone have a boolean value.
+		// Some victims get caught in our net (label, legend, menu, track), but it shouldn't even exist on them, let alone have a boolean value.
 		} else if ( "label" in elem ) {
 			return elem.disabled === disabled;
 		}
@@ -907,8 +886,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	/* Attributes
 	---------------------------------------------------------------------- */
 	// Support: IE<8
-	// Verify that getAttribute really returns attributes and not properties
-	// (excepting IE8 booleans)
+	// Verify that getAttribute really returns attributes and not properties (excepting IE8 booleans)
 	support.attributes = assert(function( el ) {
 		el.className = "i";
 		return !el.getAttribute("className");
@@ -924,8 +902,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	support.getElementsByClassName = rnative.test( document.getElementsByClassName );
 	// Support: IE<10
 	// Check if getElementById returns elements by name
-	// The broken getElementById methods don't pick up programmatically-set names,
-	// so use a roundabout getElementsByName test
+	// The broken getElementById methods don't pick up programmatically-set names, so use a roundabout getElementsByName test
 	support.getById = assert(function( el ) {
 		docElem.appendChild( el ).id = expando;
 		return !document.getElementsByName || !document.getElementsByName( expando ).length;
@@ -1018,8 +995,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// matchesSelector(:active) reports false when true (IE9/Opera 11.5)
 	rbuggyMatches = [];
 	// qSa(:focus) reports false when true (Chrome 21)
-	// We allow this because of a bug in IE8/9 that throws an error
-	// whenever `document.activeElement` is accessed on an iframe
+	// We allow this because of a bug in IE8/9 that throws an error whenever `document.activeElement` is accessed on an iframe
 	// So, we allow :focus to pass through QSA all the time to avoid the IE error
 	// See https://bugs.jquery.com/ticket/13378
 	rbuggyQSA = [];
@@ -1028,9 +1004,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 		// Regex strategy adopted from Diego Perini
 		assert(function( el ) {
 			// Select is set to empty string on purpose
-			// This is to test IE's treatment of not explicitly
-			// setting a boolean content attribute,
-			// since its presence should be enough
+			// This is to test IE's treatment of not explicitly setting a boolean content attribute, since its presence should be enough
 			// https://bugs.jquery.com/ticket/12359
 			docElem.appendChild( el ).innerHTML = "<a id='" + expando + "'></a>" +
 				"<select id='" + expando + "-\r\\' msallowcapture=''>" +
@@ -1099,8 +1073,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 		docElem.oMatchesSelector ||
 		docElem.msMatchesSelector) )) ) {
 		assert(function( el ) {
-			// Check to see if it's possible to do matchesSelector
-			// on a disconnected node (IE 9)
+			// Check to see if it's possible to do matchesSelector on a disconnected node (IE 9)
 			support.disconnectedMatch = matches.call( el, "*" );
 			// This should fail with an exception
 			// Gecko does not error, returns false instead
@@ -1237,8 +1210,7 @@ Sizzle.matchesSelector = function( elem, expr ) {
 			var ret = matches.call( elem, expr );
 			// IE 9's matchesSelector returns false on disconnected nodes
 			if ( ret || support.disconnectedMatch ||
-					// As well, disconnected nodes are said to be in a document
-					// fragment in IE 9
+					// As well, disconnected nodes are said to be in a document fragment in IE 9
 					elem.document && elem.document.nodeType !== 11 ) {
 				return ret;
 			}
@@ -1485,8 +1457,7 @@ Expr = Sizzle.selectors = {
 						start = [ forward ? parent.firstChild : parent.lastChild ];
 						// non-xml :nth-child(...) stores cache data on `parent`
 						if ( forward && useCache ) {
-							// Seek `elem` from a previously-cached index
-							// ...in a gzip-friendly way
+							// Seek `elem` from a previously-cached index in a gzip-friendly way
 							node = parent;
 							outerCache = node[ expando ] || (node[ expando ] = {});
 							// Support: IE <9 only
@@ -1520,8 +1491,7 @@ Expr = Sizzle.selectors = {
 								nodeIndex = cache[ 0 ] === dirruns && cache[ 1 ];
 								diff = nodeIndex;
 							}
-							// xml :nth-child(...)
-							// or :nth-last-child(...) or :nth(-last)?-of-type(...)
+							// xml :nth-child(...) or :nth-last-child(...) or :nth(-last)?-of-type(...)
 							if ( diff === false ) {
 								// Use the same loop as above to seek `elem` from the start
 								while ( (node = ++nodeIndex && node && node[ dir ] ||
@@ -1560,9 +1530,7 @@ Expr = Sizzle.selectors = {
 			var args,
 				fn = Expr.pseudos[ pseudo ] || Expr.setFilters[ pseudo.toLowerCase() ] ||
 					Sizzle.error( "unsupported pseudo: " + pseudo );
-			// The user may use createPseudo to indicate that
-			// arguments are needed to create the filter function
-			// just as Sizzle does
+			// The user may use createPseudo to indicate that arguments are needed to create the filter function just as Sizzle does
 			if ( fn[ expando ] ) {
 				return fn( argument );
 			}
@@ -1589,9 +1557,7 @@ Expr = Sizzle.selectors = {
 	pseudos: {
 		// Potentially complex pseudos
 		"not": markFunction(function( selector ) {
-			// Trim the selector passed to compile
-			// to avoid treating leading and trailing
-			// spaces as combinators
+			// Trim the selector passed to compile to avoid treating leading and trailing spaces as combinators
 			var input = [],
 				results = [],
 				matcher = compile( selector.replace( rtrim, "$1" ) );
@@ -1626,10 +1592,7 @@ Expr = Sizzle.selectors = {
 				return ( elem.textContent || getText( elem ) ).indexOf( text ) > -1;
 			};
 		}),
-		// "Whether an element is represented by a :lang() selector
-		// is based solely on the element's language value
-		// being equal to the identifier C,
-		// or beginning with the identifier C immediately followed by "-".
+		// "Whether an element is represented by a :lang() selector is based solely on the element's language value being equal to the identifier C, or beginning with the identifier C immediately followed by "-".
 		// The matching of C against the element's language value is performed case-insensitively.
 		// The identifier C does not have to be a valid language name."
 		// http://www.w3.org/TR/selectors/#lang-pseudo
@@ -1673,8 +1636,7 @@ Expr = Sizzle.selectors = {
 			return (nodeName === "input" && !!elem.checked) || (nodeName === "option" && !!elem.selected);
 		},
 		"selected": function( elem ) {
-			// Accessing this property makes selected-by-default
-			// options in Safari work properly
+			// Accessing this property makes selected-by-default options in Safari work properly
 			if ( elem.parentNode ) {
 				elem.parentNode.selectedIndex;
 			}
@@ -1683,8 +1645,7 @@ Expr = Sizzle.selectors = {
 		// Contents
 		"empty": function( elem ) {
 			// http://www.w3.org/TR/selectors/#empty-pseudo
-			// :empty is negated by element (1) or content nodes (text: 3; cdata: 4; entity ref: 5),
-			//   but not by others (comment: 8; processing instruction: 7; etc.)
+			// :empty is negated by element (1) or content nodes (text: 3; cdata: 4; entity ref: 5), but not by others (comment: 8; processing instruction: 7; etc.)
 			// nodeType < 6 works because attributes (2) do not appear as children
 			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
 				if ( elem.nodeType < 6 ) {
@@ -1818,8 +1779,7 @@ tokenize = Sizzle.tokenize = function( selector, parseOnly ) {
 			break;
 		}
 	}
-	// Return the length of the invalid excess
-	// if we're just parsing
+	// Return the length of the invalid excess if we're just parsing
 	// Otherwise, throw an error or return tokens
 	return parseOnly ?
 		soFar.length :
@@ -2115,16 +2075,11 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 					}
 				}
 			}
-			// `i` is now the count of elements visited above, and adding it to `matchedCount`
-			// makes the latter nonnegative.
+			// `i` is now the count of elements visited above, and adding it to `matchedCount` makes the latter nonnegative.
 			matchedCount += i;
 			// Apply set filters to unmatched elements
-			// NOTE: This can be skipped if there are no unmatched elements (i.e., `matchedCount`
-			// equals `i`), unless we didn't visit _any_ elements in the above loop because we have
-			// no element matchers and no seed.
-			// Incrementing an initially-string "0" `i` allows `i` to remain a string only in that
-			// case, which will result in a "00" `matchedCount` that differs from `i` but is also
-			// numerically zero.
+			// NOTE: This can be skipped if there are no unmatched elements (i.e., `matchedCount` equals `i`), unless we didn't visit _any_ elements in the above loop because we have no element matchers and no seed.
+			// Incrementing an initially-string "0" `i` allows `i` to remain a string only in that case, which will result in a "00" `matchedCount` that differs from `i` but is also numerically zero.
 			if ( bySet && i !== matchedCount ) {
 				j = 0;
 				while ( (matcher = setMatchers[j++]) ) {
@@ -2201,8 +2156,7 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 		compiled = typeof selector === "function" && selector,
 		match = !seed && tokenize( (selector = compiled.selector || selector) );
 	results = results || [];
-	// Try to minimize operations if there is only one selector in the list and no seed
-	// (the latter of which guarantees us context)
+	// Try to minimize operations if there is only one selector in the list and no seed (the latter of which guarantees us context)
 	if ( match.length === 1 ) {
 		// Reduce context if the leading compound selector is an ID
 		tokens = match[0] = match[0].slice( 0 );
@@ -2410,8 +2364,7 @@ jQuery.fn.extend( {
 	is: function( selector ) {
 		return !!winnow(
 			this,
-			// If this is a positional/relative selector, check membership in the returned set
-			// so $("p:first").is("p:last") won't return true for a doc with two "p".
+			// If this is a positional/relative selector, check membership in the returned set so $("p:first").is("p:last") won't return true for a doc with two "p".
 			typeof selector === "string" && rneedsContext.test( selector ) ?
 				jQuery( selector ) :
 				selector || [],
@@ -2433,8 +2386,7 @@ var rootjQuery,
 		if ( !selector ) {
 			return this;
 		}
-		// Method init() accepts an alternate rootjQuery
-		// so migrate can support jQuery.sub (gh-2101)
+		// Method init() accepts an alternate rootjQuery so migrate can support jQuery.sub (gh-2101)
 		root = root || rootjQuery;
 		// Handle HTML strings
 		if ( typeof selector === "string" ) {
@@ -2626,8 +2578,7 @@ jQuery.each( {
 			return elem.contentDocument;
 		}
 		// Support: IE 9 - 11 only, iOS 7 only, Android Browser <=4.3 only
-		// Treat the template element as a regular one in browsers that
-		// don't support it.
+		// Treat the template element as a regular one in browsers that don't support it.
 		if ( nodeName( elem, "template" ) ) {
 			elem = elem.content || elem;
 		}
@@ -2666,29 +2617,20 @@ function createOptions( options ) {
 }
 /*
  * Create a callback list using the following parameters:
- *
  *	options: an optional list of space-separated options that will change how
  *			the callback list behaves or a more traditional option object
- *
  * By default a callback list will act like an event callback list and can be
  * "fired" multiple times.
- *
  * Possible options:
- *
  *	once:			will ensure the callback list can only be fired once (like a Deferred)
- *
  *	memory:			will keep track of previous values and will call any callback added
  *					after the list has been fired right away with the latest "memorized"
  *					values (like a Deferred)
- *
  *	unique:			will ensure a callback can only be added once (no duplicate in the list)
- *
  *	stopOnFalse:	interrupt callings when a callback returns false
- *
  */
 jQuery.Callbacks = function( options ) {
-	// Convert options from String-formatted to Object-formatted if needed
-	// (we check in cache first)
+	// Convert options from String-formatted to Object-formatted if needed (we check in cache first)
 	options = typeof options === "string" ?
 		createOptions( options ) :
 		jQuery.extend( {}, options );
@@ -2710,8 +2652,7 @@ jQuery.Callbacks = function( options ) {
 		fire = function() {
 			// Enforce single-firing
 			locked = locked || options.once;
-			// Execute callbacks for all pending executions,
-			// respecting firingIndex overrides and runtime changes
+			// Execute callbacks for all pending executions, respecting firingIndex overrides and runtime changes
 			fired = firing = true;
 			for ( ; queue.length; firingIndex = -1 ) {
 				memory = queue.shift();
@@ -2982,8 +2923,7 @@ jQuery.extend( {
 										}
 									// Handle all other returned values
 									} else {
-										// Only substitute handlers pass on context
-										// and multiple values (non-spec behavior)
+										// Only substitute handlers pass on context and multiple values (non-spec behavior)
 										if ( handler !== Identity ) {
 											that = undefined;
 											args = [ returned ];
@@ -3008,8 +2948,7 @@ jQuery.extend( {
 											// https://promisesaplus.com/#point-61
 											// Ignore post-resolution exceptions
 											if ( depth + 1 >= maxDepth ) {
-												// Only substitute handlers pass on context
-												// and multiple values (non-spec behavior)
+												// Only substitute handlers pass on context and multiple values (non-spec behavior)
 												if ( handler !== Thrower ) {
 													that = undefined;
 													args = [ e ];
@@ -3020,13 +2959,11 @@ jQuery.extend( {
 									};
 							// Support: Promises/A+ section 2.3.3.3.1
 							// https://promisesaplus.com/#point-57
-							// Re-resolve promises immediately to dodge false rejection from
-							// subsequent errors
+							// Re-resolve promises immediately to dodge false rejection from subsequent errors
 							if ( depth ) {
 								process();
 							} else {
-								// Call an optional hook to record the stack, in case of exception
-								// since it's otherwise lost when execution goes async
+								// Call an optional hook to record the stack, in case of exception since it's otherwise lost when execution goes async
 								if ( jQuery.Deferred.getStackHook ) {
 									process.stackTrace = jQuery.Deferred.getStackHook();
 								}
@@ -3167,8 +3104,7 @@ jQuery.extend( {
 		return master.promise();
 	}
 } );
-// These usually indicate a programmer mistake during development,
-// warn about them ASAP rather than swallowing them by default.
+// These usually indicate a programmer mistake during development, warn about them ASAP rather than swallowing them by default.
 var rerrorNames = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
 jQuery.Deferred.exceptionHook = function( error, stack ) {
 	// Support: IE 8 - 9 only
@@ -3187,9 +3123,7 @@ var readyList = jQuery.Deferred();
 jQuery.fn.ready = function( fn ) {
 	readyList
 		.then( fn )
-		// Wrap jQuery.readyException in a function so that the lookup
-		// happens at the time of error handling instead of callback
-		// registration.
+		// Wrap jQuery.readyException in a function so that the lookup happens at the time of error handling instead of callback registration.
 		.catch( function( error ) {
 			jQuery.readyException( error );
 		} );
@@ -3198,8 +3132,7 @@ jQuery.fn.ready = function( fn ) {
 jQuery.extend( {
 	// Is the DOM ready to be used? Set to true once it occurs.
 	isReady: false,
-	// A counter to track how many items to wait for before
-	// the ready event fires. See #6781
+	// A counter to track how many items to wait for before the ready event fires. See #6781
 	readyWait: 1,
 	// Handle when the DOM is ready
 	ready: function( wait ) {
@@ -3224,8 +3157,7 @@ function completed() {
 	window.removeEventListener( "load", completed );
 	jQuery.ready();
 }
-// Catch cases where $(document).ready() is called
-// after the browser event has already occurred.
+// Catch cases where $(document).ready() is called after the browser event has already occurred.
 // Support: IE <=9 - 10 only
 // Older IE sometimes signals "interactive" too soon
 if ( document.readyState === "complete" ||
@@ -3321,17 +3253,13 @@ Data.prototype = {
 		// If not, create one
 		if ( !value ) {
 			value = {};
-			// We can accept data for non-element nodes in modern browsers,
-			// but we should not, see #8335.
+			// We can accept data for non-element nodes in modern browsers, but we should not, see #8335.
 			// Always return an empty object.
 			if ( acceptData( owner ) ) {
-				// If it is a node unlikely to be stringify-ed or looped over
-				// use plain assignment
+				// If it is a node unlikely to be stringify-ed or looped over use plain assignment
 				if ( owner.nodeType ) {
 					owner[ this.expando ] = value;
-				// Otherwise secure it in a non-enumerable property
-				// configurable must be true to allow the property to be
-				// deleted when data is removed
+				// Otherwise secure it in a non-enumerable property configurable must be true to allow the property to be deleted when data is removed
 				} else {
 					Object.defineProperty( owner, this.expando, {
 						value: value,
@@ -3366,29 +3294,20 @@ Data.prototype = {
 	},
 	access: function( owner, key, value ) {
 		// In cases where either:
-		//
 		//   1. No key was specified
 		//   2. A string key was specified, but no value provided
-		//
-		// Take the "read" path and allow the get method to determine
-		// which value to return, respectively either:
-		//
+		// Take the "read" path and allow the get method to determine which value to return, respectively either:
 		//   1. The entire cache object
 		//   2. The data stored at the key
-		//
 		if ( key === undefined ||
 				( ( key && typeof key === "string" ) && value === undefined ) ) {
 			return this.get( owner, key );
 		}
-		// When the key is not a string, or both a key and value
-		// are specified, set or extend (existing objects) with either:
-		//
+		// When the key is not a string, or both a key and value are specified, set or extend (existing objects) with either:
 		//   1. An object of properties
 		//   2. A key and value
-		//
 		this.set( owner, key, value );
-		// Since the "set" path can have two possible entry points
-		// return the expected data based on which path was taken[*]
+		// Since the "set" path can have two possible entry points return the expected data based on which path was taken[*]
 		return value !== undefined ? value : key;
 	},
 	remove: function( owner, key ) {
@@ -3419,8 +3338,7 @@ Data.prototype = {
 		// Remove the expando if there's no more data
 		if ( key === undefined || jQuery.isEmptyObject( cache ) ) {
 			// Support: Chrome <=35 - 45
-			// Webkit & Blink performance suffers when deleting properties
-			// from DOM nodes, so set to undefined instead
+			// Webkit & Blink performance suffers when deleting properties from DOM nodes, so set to undefined instead
 			// https://bugs.chromium.org/p/chromium/issues/detail?id=378607 (bug restricted)
 			if ( owner.nodeType ) {
 				owner[ this.expando ] = undefined;
@@ -3439,8 +3357,7 @@ var dataUser = new Data();
 //	Implementation Summary
 //
 //	1. Enforce API surface and semantic compatibility with 1.9.x branch
-//	2. Improve the module's maintainability by reducing the storage
-//		paths to a single mechanism.
+//	2. Improve the module's maintainability by reducing the storage paths to a single mechanism.
 //	3. Use the same single mechanism to support "private" and "user" data.
 //	4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
 //	5. Avoid exposing implementation details on user objects (eg. expando properties)
@@ -3468,8 +3385,7 @@ function getData( data ) {
 }
 function dataAttr( elem, key, data ) {
 	var name;
-	// If nothing was found internally, try to fetch any
-	// data from the HTML5 data-* attribute
+	// If nothing was found internally, try to fetch any data from the HTML5 data-* attribute
 	if ( data === undefined && elem.nodeType === 1 ) {
 		name = "data-" + key.replace( rmultiDash, "-$&" ).toLowerCase();
 		data = elem.getAttribute( name );
@@ -3495,8 +3411,7 @@ jQuery.extend( {
 	removeData: function( elem, name ) {
 		dataUser.remove( elem, name );
 	},
-	// TODO: Now that all calls to _data and _removeData have been replaced
-	// with direct calls to dataPriv methods, these can be deprecated.
+	// TODO: Now that all calls to _data and _removeData have been replaced with direct calls to dataPriv methods, these can be deprecated.
 	_data: function( elem, name, data ) {
 		return dataPriv.access( elem, name, data );
 	},
@@ -3539,11 +3454,7 @@ jQuery.fn.extend( {
 		}
 		return access( this, function( value ) {
 			var data;
-			// The calling jQuery object (element matches) is not empty
-			// (and therefore has an element appears at this[ 0 ]) and the
-			// `value` parameter was not undefined. An empty jQuery object
-			// will result in `undefined` for elem = this[ 0 ] which will
-			// throw an exception if an attempt to read a data cache is made.
+			// The calling jQuery object (element matches) is not empty (and therefore has an element appears at this[ 0 ]) and the `value` parameter was not undefined. An empty jQuery object will result in `undefined` for elem = this[ 0 ] which will throw an exception if an attempt to read a data cache is made.
 			if ( elem && value === undefined ) {
 				// Attempt to get data from the cache
 				// The key will always be camelCased in Data
@@ -3551,8 +3462,7 @@ jQuery.fn.extend( {
 				if ( data !== undefined ) {
 					return data;
 				}
-				// Attempt to "discover" the data in
-				// HTML5 custom data-* attrs
+				// Attempt to "discover" the data in HTML5 custom data-* attrs
 				data = dataAttr( elem, key );
 				if ( data !== undefined ) {
 					return data;
@@ -3605,8 +3515,7 @@ jQuery.extend( {
 			startLength--;
 		}
 		if ( fn ) {
-			// Add a progress sentinel to prevent the fx queue from being
-			// automatically dequeued
+			// Add a progress sentinel to prevent the fx queue from being automatically dequeued
 			if ( type === "fx" ) {
 				queue.unshift( "inprogress" );
 			}
@@ -3658,8 +3567,7 @@ jQuery.fn.extend( {
 	clearQueue: function( type ) {
 		return this.queue( type || "fx", [] );
 	},
-	// Get a promise resolved when queues of a certain type
-	// are emptied (fx is the type by default)
+	// Get a promise resolved when queues of a certain type are emptied (fx is the type by default)
 	promise: function( type, obj ) {
 		var tmp,
 			count = 1,
@@ -3698,8 +3606,7 @@ var documentElement = document.documentElement;
 	// Support: IE 9 - 11+, Edge 12 - 18+, iOS 10.0 - 10.2 only
 	// Check attachment across shadow DOM boundaries when possible (gh-3504)
 	// Support: iOS 10.0-10.2 only
-	// Early iOS 10 versions support `attachShadow` but not `getRootNode`,
-	// leading to errors. We need to check for `getRootNode`.
+	// Early iOS 10 versions support `attachShadow` but not `getRootNode`, leading to errors. We need to check for `getRootNode`.
 	if ( documentElement.getRootNode ) {
 		isAttached = function( elem ) {
 			return jQuery.contains( elem.ownerDocument, elem ) ||
@@ -3707,8 +3614,7 @@ var documentElement = document.documentElement;
 		};
 	}
 var isHiddenWithinTree = function( elem, el ) {
-		// isHiddenWithinTree might be called from jQuery#filter function;
-		// in that case, element will be second argument
+		// isHiddenWithinTree might be called from jQuery#filter function; in that case, element will be second argument
 		elem = el || elem;
 		// Inline style trumps all
 		return elem.style.display === "none" ||
@@ -3818,9 +3724,7 @@ function showHide( elements, show ) {
 		}
 		display = elem.style.display;
 		if ( show ) {
-			// Since we force visibility upon cascade-hidden elements, an immediate (and slow)
-			// check is required in this first loop unless we have a nonempty display value (either
-			// inline or about-to-be-restored)
+			// Since we force visibility upon cascade-hidden elements, an immediate (and slow) check is required in this first loop unless we have a nonempty display value (either inline or about-to-be-restored)
 			if ( display === "none" ) {
 				values[ index ] = dataPriv.get( elem, "display" ) || null;
 				if ( !values[ index ] ) {
@@ -3873,9 +3777,7 @@ var rscriptType = ( /^$|^module$|\/(?:java|ecma)script/i );
 var wrapMap = {
 	// Support: IE <=9 only
 	option: [ 1, "<select multiple='multiple'>", "</select>" ],
-	// XHTML parsers do not magically insert elements in the
-	// same way that tag soup parsers do. So we cannot shorten
-	// this by omitting <tbody> or other required elements.
+	// XHTML parsers do not magically insert elements in the same way that tag soup parsers do. So we cannot shorten this by omitting <tbody> or other required elements.
 	thead: [ 1, "<table>", "</table>" ],
 	col: [ 2, "<table><colgroup>", "</colgroup></table>" ],
 	tr: [ 2, "<table><tbody>", "</tbody></table>" ],
@@ -4016,10 +3918,7 @@ function returnFalse() {
 }
 // Support: IE <=9 - 11+
 // focus() and blur() are asynchronous, except when they are no-op.
-// So expect focus to be synchronous when the element is already active,
-// and blur to be synchronous when the element is not already active.
-// (focus and blur are always synchronous in other supported browsers,
-// this just defines when we can count on it).
+// So expect focus to be synchronous when the element is already active, and blur to be synchronous when the element is not already active (focus and blur are always synchronous in other supported browsers, this just defines when we can count on it).
 function expectSync( elem, type ) {
 	return ( elem === safeActiveElement() ) === ( type === "focus" );
 }
@@ -4117,8 +4016,7 @@ jQuery.event = {
 		}
 		if ( !( eventHandle = elemData.handle ) ) {
 			eventHandle = elemData.handle = function( e ) {
-				// Discard the second event of a jQuery.event.trigger() and
-				// when an event is called after a page has unloaded
+				// Discard the second event of a jQuery.event.trigger() and when an event is called after a page has unloaded
 				return typeof jQuery !== "undefined" && jQuery.event.triggered !== e.type ?
 					jQuery.event.dispatch.apply( elem, arguments ) : undefined;
 			};
@@ -4225,8 +4123,7 @@ jQuery.event = {
 					}
 				}
 			}
-			// Remove generic event handler if we removed something and no more handlers exist
-			// (avoids potential for endless recursion during removal of special event handlers)
+			// Remove generic event handler if we removed something and no more handlers exist (avoids potential for endless recursion during removal of special event handlers)
 			if ( origCount && !handlers.length ) {
 				if ( !special.teardown ||
 					special.teardown.call( elem, namespaces, elemData.handle ) === false ) {
@@ -4266,8 +4163,7 @@ jQuery.event = {
 			j = 0;
 			while ( ( handleObj = matched.handlers[ j++ ] ) &&
 				!event.isImmediatePropagationStopped() ) {
-				// If the event is namespaced, then each handler is only invoked if it is
-				// specially universal or its namespaces are a superset of the event's.
+				// If the event is namespaced, then each handler is only invoked if it is specially universal or its namespaces are a superset of the event's.
 				if ( !event.rnamespace || handleObj.namespace === false ||
 					event.rnamespace.test( handleObj.namespace ) ) {
 					event.handleObj = handleObj;
@@ -4420,10 +4316,7 @@ jQuery.event = {
 		}
 	}
 };
-// Ensure the presence of an event listener that handles manually-triggered
-// synthetic events by interrupting progress until reinvoked in response to
-// *native* events that it fires directly, ensuring that state changes have
-// already occurred before other listeners are invoked.
+// Ensure the presence of an event listener that handles manually-triggered synthetic events by interrupting progress until reinvoked in response to *native* events that it fires directly, ensuring that state changes have already occurred before other listeners are invoked.
 function leverageNative( el, type, expectSync ) {
 	// Missing expectSync indicates a trigger call, which must force setup through jQuery.event.add
 	if ( !expectSync ) {
@@ -4441,12 +4334,10 @@ function leverageNative( el, type, expectSync ) {
 				saved = dataPriv.get( this, type );
 			if ( ( event.isTrigger & 1 ) && this[ type ] ) {
 				// Interrupt processing of the outer synthetic .trigger()ed event
-				// Saved data should be false in such cases, but might be a leftover capture object
-				// from an async native handler (gh-4350)
+				// Saved data should be false in such cases, but might be a leftover capture object from an async native handler (gh-4350)
 				if ( !saved.length ) {
 					// Store arguments for use when handling the inner native event
-					// There will always be at least one argument (an event object), so this array
-					// will not be confused with a leftover capture object.
+					// There will always be at least one argument (an event object), so this array will not be confused with a leftover capture object.
 					saved = slice.call( arguments );
 					dataPriv.set( this, type, saved );
 					// Trigger the native event and capture its result
@@ -4466,12 +4357,8 @@ function leverageNative( el, type, expectSync ) {
 						event.preventDefault();
 						return result.value;
 					}
-				// If this is an inner synthetic event for an event with a bubbling surrogate
-				// (focus or blur), assume that the surrogate already propagated from triggering the
-				// native event and prevent that from happening again here.
-				// This technically gets the ordering wrong w.r.t. to `.trigger()` (in which the
-				// bubbling surrogate propagates *after* the non-bubbling base), but that seems
-				// less bad than duplication.
+				// If this is an inner synthetic event for an event with a bubbling surrogate (focus or blur), assume that the surrogate already propagated from triggering the native event and prevent that from happening again here.
+				// This technically gets the ordering wrong w.r.t. to `.trigger()` (in which the bubbling surrogate propagates *after* the non-bubbling base), but that seems less bad than duplication.
 				} else if ( ( jQuery.event.special[ type ] || {} ).delegateType ) {
 					event.stopPropagation();
 				}
@@ -4509,8 +4396,7 @@ jQuery.Event = function( src, props ) {
 	if ( src && src.type ) {
 		this.originalEvent = src;
 		this.type = src.type;
-		// Events bubbling up the document may have been marked as prevented
-		// by a handler lower down the tree; reflect the correct value.
+		// Events bubbling up the document may have been marked as prevented by a handler lower down the tree; reflect the correct value.
 		this.isDefaultPrevented = src.defaultPrevented ||
 				src.defaultPrevented === undefined &&
 				// Support: Android <=2.3 only
@@ -4643,10 +4529,8 @@ jQuery.each( { focus: "focusin", blur: "focusout" }, function( type, delegateTyp
 		delegateType: delegateType
 	};
 } );
-// Create mouseenter/leave events using mouseover/out and event-time checks
-// so that event delegation works in jQuery.
+// Create mouseenter/leave events using mouseover/out and event-time checks so that event delegation works in jQuery.
 // Do the same for pointerenter/pointerleave and pointerover/pointerout
-//
 // Support: Safari 7 only
 // Safari sends mouseenter too often; see:
 // https://bugs.chromium.org/p/chromium/issues/detail?id=470258
@@ -4819,9 +4703,7 @@ function domManip( collection, args, callback, ignored ) {
 		if ( first || ignored ) {
 			scripts = jQuery.map( getAll( fragment, "script" ), disableScript );
 			hasScripts = scripts.length;
-			// Use the original fragment for the last item
-			// instead of the first because it can end up
-			// being emptied incorrectly in certain situations (#8070).
+			// Use the original fragment for the last item instead of the first because it can end up being emptied incorrectly in certain situations (#8070).
 			for ( ; i < l; i++ ) {
 				node = fragment;
 				if ( i !== iNoClone ) {
@@ -5096,8 +4978,7 @@ var getStyles = function( elem ) {
 	};
 var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 ( function() {
-	// Executing both pixelPosition & boxSizingReliable tests require only one layout
-	// so they're executed at the same time to save the second computation.
+	// Executing both pixelPosition & boxSizingReliable tests require only one layout so they're executed at the same time to save the second computation.
 	function computeStyleTests() {
 		// This is a singleton, we need to execute it only once
 		if ( !div ) {
@@ -5128,8 +5009,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 		div.style.position = "absolute";
 		scrollboxSizeVal = roundPixelMeasures( div.offsetWidth / 3 ) === 12;
 		documentElement.removeChild( container );
-		// Nullify the div so it wouldn't be stored in the memory and
-		// it will also be a sign that checks already performed
+		// Nullify the div so it wouldn't be stored in the memory and it will also be a sign that checks already performed
 		div = null;
 	}
 	function roundPixelMeasures( measure ) {
@@ -5174,9 +5054,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 function curCSS( elem, name, computed ) {
 	var width, minWidth, maxWidth, ret,
 		// Support: Firefox 51+
-		// Retrieving style before computed somehow
-		// fixes an issue with getting wrong values
-		// on detached elements
+		// Retrieving style before computed somehow fixes an issue with getting wrong values on detached elements
 		style = elem.style;
 	computed = computed || getStyles( elem );
 	// getPropertyValue is needed for:
@@ -5188,8 +5066,7 @@ function curCSS( elem, name, computed ) {
 			ret = jQuery.style( elem, name );
 		}
 		// A tribute to the "awesome hack by Dean Edwards"
-		// Android Browser returns percentage for some values,
-		// but width seems to be reliably pixels.
+		// Android Browser returns percentage for some values, but width seems to be reliably pixels.
 		// This is against the CSSOM draft spec:
 		// https://drafts.csswg.org/cssom/#resolved-values
 		if ( !support.pixelBoxStyles() && rnumnonpx.test( ret ) && rboxStyle.test( name ) ) {
@@ -5217,8 +5094,7 @@ function addGetHookIf( conditionFn, hookFn ) {
 	return {
 		get: function() {
 			if ( conditionFn() ) {
-				// Hook not needed (or it's not possible to use it due
-				// to missing dependency), remove it.
+				// Hook not needed (or it's not possible to use it due to missing dependency), remove it.
 				delete this.get;
 				return;
 			}
@@ -5254,8 +5130,7 @@ function finalPropName( name ) {
 	return vendorProps[ name ] = vendorPropName( name ) || name;
 }
 var
-	// Swappable if display is none or starts with table
-	// except "table", "table-cell", or "table-caption"
+	// Swappable if display is none or starts with table except "table", "table-cell", or "table-caption"
 	// See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
 	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
 	rcustomProp = /^--/,
@@ -5265,8 +5140,7 @@ var
 		fontWeight: "400"
 	};
 function setPositiveNumber( elem, value, subtract ) {
-	// Any relative (+/-) values have already been
-	// normalized at this point
+	// Any relative (+/-) values have already been normalized at this point
 	var matches = rcssNum.exec( value );
 	return matches ?
 		// Guard against undefined "subtract", e.g., when used as in cssHooks
@@ -5297,8 +5171,7 @@ function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computed
 			} else {
 				extra += jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
 			}
-		// If we get here with a border-box (content + padding + border), we're seeking "content" or
-		// "padding" or "margin"
+		// If we get here with a border-box (content + padding + border), we're seeking "content" or "padding" or "margin"
 		} else {
 			// For "content", subtract padding
 			if ( box === "content" ) {
@@ -5359,8 +5232,7 @@ function getWidthOrHeight( elem, dimension, extra ) {
 		elem.getClientRects().length ) {
 		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
 		// Where available, offsetWidth/offsetHeight approximate border box dimensions.
-		// Where not available (e.g., SVG), assume unreliable box-sizing and interpret the
-		// retrieved value as a content box dimension.
+		// Where not available (e.g., SVG), assume unreliable box-sizing and interpret the retrieved value as a content box dimension.
 		valueIsBorderBox = offsetProp in elem;
 		if ( valueIsBorderBox ) {
 			val = elem[ offsetProp ];
@@ -5382,8 +5254,7 @@ function getWidthOrHeight( elem, dimension, extra ) {
 	) + "px";
 }
 jQuery.extend( {
-	// Add in style property hooks for overriding the default
-	// behavior of getting and setting a style property
+	// Add in style property hooks for overriding the default behavior of getting and setting a style property
 	cssHooks: {
 		opacity: {
 			get: function( elem, computed ) {
@@ -5418,8 +5289,7 @@ jQuery.extend( {
 		"zIndex": true,
 		"zoom": true
 	},
-	// Add in properties whose names you wish to fix before
-	// setting or getting the value
+	// Add in properties whose names you wish to fix before setting or getting the value
 	cssProps: {},
 	// Get and set the style property on a DOM Node
 	style: function( elem, name, value, extra ) {
@@ -5432,9 +5302,7 @@ jQuery.extend( {
 			origName = camelCase( name ),
 			isCustomProp = rcustomProp.test( name ),
 			style = elem.style;
-		// Make sure that we're working with the right name. We don't
-		// want to query the value if it is a CSS custom property
-		// since they are user-defined.
+		// Make sure that we're working with the right name. We don't want to query the value if it is a CSS custom property since they are user-defined.
 		if ( !isCustomProp ) {
 			name = finalPropName( origName );
 		}
@@ -5454,8 +5322,7 @@ jQuery.extend( {
 				return;
 			}
 			// If a number was passed in, add the unit (except for certain CSS properties)
-			// The isCustomProp check can be removed in jQuery 4.0 when we only auto-append
-			// "px" to a few hardcoded values.
+			// The isCustomProp check can be removed in jQuery 4.0 when we only auto-append "px" to a few hardcoded values.
 			if ( type === "number" && !isCustomProp ) {
 				value += ret && ret[ 3 ] || ( jQuery.cssNumber[ origName ] ? "" : "px" );
 			}
@@ -5486,9 +5353,7 @@ jQuery.extend( {
 		var val, num, hooks,
 			origName = camelCase( name ),
 			isCustomProp = rcustomProp.test( name );
-		// Make sure that we're working with the right name. We don't
-		// want to modify the value if it is a CSS custom property
-		// since they are user-defined.
+		// Make sure that we're working with the right name. We don't want to modify the value if it is a CSS custom property since they are user-defined.
 		if ( !isCustomProp ) {
 			name = finalPropName( origName );
 		}
@@ -5518,15 +5383,12 @@ jQuery.each( [ "height", "width" ], function( i, dimension ) {
 	jQuery.cssHooks[ dimension ] = {
 		get: function( elem, computed, extra ) {
 			if ( computed ) {
-				// Certain elements can have dimension info if we invisibly show them
-				// but it must have a current display style that would benefit
+				// Certain elements can have dimension info if we invisibly show them but it must have a current display style that would benefit
 				return rdisplayswap.test( jQuery.css( elem, "display" ) ) &&
 					// Support: Safari 8+
-					// Table columns in Safari have non-zero offsetWidth & zero
-					// getBoundingClientRect().width unless display is changed.
+					// Table columns in Safari have non-zero offsetWidth & zero getBoundingClientRect().width unless display is changed.
 					// Support: IE <=11 only
-					// Running getBoundingClientRect on a disconnected node
-					// in IE throws an error.
+					// Running getBoundingClientRect on a disconnected node in IE throws an error.
 					( !elem.getClientRects().length || !elem.getBoundingClientRect().width ) ?
 						swap( elem, cssShow, function() {
 							return getWidthOrHeight( elem, dimension, extra );
@@ -5537,8 +5399,7 @@ jQuery.each( [ "height", "width" ], function( i, dimension ) {
 		set: function( elem, value, extra ) {
 			var matches,
 				styles = getStyles( elem ),
-				// Only read styles.position if the test has a chance to fail
-				// to avoid forcing a reflow.
+				// Only read styles.position if the test has a chance to fail to avoid forcing a reflow.
 				scrollboxSizeBuggy = !support.scrollboxSize() &&
 					styles.position === "absolute",
 				// To avoid forcing a reflow, only fetch boxSizing if we need it (gh-3991)
@@ -5554,8 +5415,7 @@ jQuery.each( [ "height", "width" ], function( i, dimension ) {
 						styles
 					) :
 					0;
-			// Account for unreliable border-box dimensions by comparing offset* to computed and
-			// faking a content-box to get border and padding (gh-3699)
+			// Account for unreliable border-box dimensions by comparing offset* to computed and faking a content-box to get border and padding (gh-3699)
 			if ( isBorderBox && scrollboxSizeBuggy ) {
 				subtract -= Math.ceil(
 					elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ] -
@@ -5806,8 +5666,7 @@ jQuery.extend( {
 		tabIndex: {
 			get: function( elem ) {
 				// Support: IE <=9 - 11 only
-				// elem.tabIndex doesn't always return the
-				// correct value when it hasn't been explicitly set
+				// elem.tabIndex doesn't always return the correct value when it hasn't been explicitly set
 				// https://web.archive.org/web/20141116233347/http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
 				// Use proper attribute retrieval(#12072)
 				var tabindex = jQuery.find.attr( elem, "tabindex" );
@@ -5831,13 +5690,9 @@ jQuery.extend( {
 	}
 } );
 // Support: IE <=11 only
-// Accessing the selectedIndex property
-// forces the browser to respect setting selected
-// on the option
-// The getter ensures a default option is selected
-// when in an optgroup
-// eslint rule "no-unused-expressions" is disabled for this code
-// since it considers such accessions noop
+// Accessing the selectedIndex property forces the browser to respect setting selected on the option.
+// The getter ensures a default option is selected when in an optgroup.
+// eslint rule "no-unused-expressions" is disabled for this code since it considers such accessions noop.
 if ( !support.optSelected ) {
 	jQuery.propHooks.selected = {
 		get: function( elem ) {
@@ -5994,10 +5849,8 @@ jQuery.fn.extend( {
 					// Store className if set
 					dataPriv.set( this, "__className__", className );
 				}
-				// If the element has a class name or if we're passed `false`,
-				// then remove the whole classname (if there was one, the above saved it).
-				// Otherwise bring back whatever was previously saved (if anything),
-				// falling back to the empty string if nothing was stored.
+				// If the element has a class name or if we're passed `false`, then remove the whole classname (if there was one, the above saved it).
+				// Otherwise bring back whatever was previously saved (if anything), falling back to the empty string if nothing was stored.
 				if ( this.setAttribute ) {
 					this.setAttribute( "class",
 						className || value === false ?
@@ -6317,8 +6170,7 @@ jQuery.fn.extend( {
 // Related ticket - https://bugzilla.mozilla.org/show_bug.cgi?id=687787
 //
 // Support: Chrome <=48 - 49, Safari <=9.0 - 9.1
-// focus(in | out) events fire after focus & blur events,
-// which is spec violation - http://www.w3.org/TR/DOM-Level-3-Events/#events-focusevent-event-order
+// focus(in | out) events fire after focus & blur events, which is spec violation - http://www.w3.org/TR/DOM-Level-3-Events/#events-focusevent-event-order
 // Related ticket - https://bugs.chromium.org/p/chromium/issues/detail?id=449857
 if ( !support.focusin ) {
 	jQuery.each( { focus: "focusin", blur: "focusout" }, function( orig, fix ) {
@@ -6381,8 +6233,7 @@ function buildParams( prefix, obj, traditional, add ) {
 		add( prefix, obj );
 	}
 }
-// Serialize an array of form elements or a set of
-// key/values into a query string
+// Serialize an array of form elements or a set of key/values into a query string
 jQuery.param = function( a, traditional ) {
 	var prefix,
 		s = [],
@@ -6404,8 +6255,7 @@ jQuery.param = function( a, traditional ) {
 			add( this.name, this.value );
 		} );
 	} else {
-		// If traditional, encode the "old" way (the way 1.3.2 or older
-		// did it), otherwise encode params recursively.
+		// If traditional, encode the "old" way (the way 1.3.2 or older did it), otherwise encode params recursively.
 		for ( prefix in a ) {
 			buildParams( prefix, a[ prefix ], traditional, add );
 		}
@@ -6502,8 +6352,7 @@ jQuery.expr.pseudos.visible = function( elem ) {
 	return !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
 };
 // Support: Safari 8 only
-// In Safari 8 documents created via document.implementation.createHTMLDocument
-// collapse sibling forms: the second one becomes a child of the first one.
+// In Safari 8 documents created via document.implementation.createHTMLDocument collapse sibling forms: the second one becomes a child of the first one.
 // Because of that, this security measure has to be disabled in Safari 8.
 // https://bugs.webkit.org/show_bug.cgi?id=137337
 support.createHTMLDocument = ( function() {
@@ -6512,8 +6361,7 @@ support.createHTMLDocument = ( function() {
 	return body.childNodes.length === 2;
 } )();
 // Argument "data" should be string of html
-// context (optional): If specified, the fragment will be created in this context,
-// defaults to document
+// context (optional): If specified, the fragment will be created in this context, defaults to document
 // keepScripts (optional): If true, will include scripts passed in the html string
 jQuery.parseHTML = function( data, context, keepScripts ) {
 	if ( typeof data !== "string" ) {
@@ -6525,13 +6373,10 @@ jQuery.parseHTML = function( data, context, keepScripts ) {
 	}
 	var base, parsed, scripts;
 	if ( !context ) {
-		// Stop scripts or inline event handlers from being executed immediately
-		// by using document.implementation
+		// Stop scripts or inline event handlers from being executed immediately by using document.implementation
 		if ( support.createHTMLDocument ) {
 			context = document.implementation.createHTMLDocument( "" );
-			// Set the base href for the created document
-			// so any parsed elements with URLs
-			// are based on the document's URL (gh-2965)
+			// Set the base href for the created document so any parsed elements with URLs are based on the document's URL (gh-2965)
 			base = context.createElement( "base" );
 			base.href = document.location.href;
 			context.head.appendChild( base );
@@ -6566,8 +6411,7 @@ jQuery.offset = {
 		curCSSLeft = jQuery.css( elem, "left" );
 		calculatePosition = ( position === "absolute" || position === "fixed" ) &&
 			( curCSSTop + curCSSLeft ).indexOf( "auto" ) > -1;
-		// Need to be able to calculate position if either
-		// top or left is auto and position is either absolute or fixed
+		// Need to be able to calculate position if either top or left is auto and position is either absolute or fixed
 		if ( calculatePosition ) {
 			curPosition = curElem.position();
 			curTop = curPosition.top;
@@ -6611,8 +6455,7 @@ jQuery.fn.extend( {
 		}
 		// Return zeros for disconnected and hidden (display: none) elements (gh-2310)
 		// Support: IE <=11 only
-		// Running getBoundingClientRect on a
-		// disconnected node in IE throws an error
+		// Running getBoundingClientRect on a disconnected node in IE throws an error
 		if ( !elem.getClientRects().length ) {
 			return { top: 0, left: 0 };
 		}
@@ -6639,8 +6482,7 @@ jQuery.fn.extend( {
 			offset = elem.getBoundingClientRect();
 		} else {
 			offset = this.offset();
-			// Account for the *real* offset parent, which can be the document or its root element
-			// when a statically positioned element is identified
+			// Account for the *real* offset parent, which can be the document or its root element when a statically positioned element is identified
 			doc = elem.ownerDocument;
 			offsetParent = elem.offsetParent || doc.documentElement;
 			while ( offsetParent &&
@@ -6662,14 +6504,10 @@ jQuery.fn.extend( {
 		};
 	},
 	// This method will return documentElement in the following cases:
-	// 1) For the element inside the iframe without offsetParent, this method will return
-	//    documentElement of the parent window
+	// 1) For the element inside the iframe without offsetParent, this method will return documentElement of the parent window
 	// 2) For the hidden or detached element
 	// 3) For body or html element, i.e. in case of the html node - it will return itself
-	//
-	// but those exceptions were never presented as a real life use-cases
-	// and might be considered as more preferable results.
-	//
+	// but those exceptions were never presented as a real life use-cases and might be considered as more preferable results.
 	// This logic, however, is not guaranteed and can change at any point in the future
 	offsetParent: function() {
 		return this.map( function() {
@@ -6711,8 +6549,7 @@ jQuery.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( 
 // Add the top/left cssHooks using jQuery.fn.position
 // Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084
 // Blink bug: https://bugs.chromium.org/p/chromium/issues/detail?id=589347
-// getComputedStyle returns percent when specified for top/left/bottom/right;
-// rather than make the css module depend on the offset module, just check for it here
+// getComputedStyle returns percent when specified for top/left/bottom/right; rather than make the css module depend on the offset module, just check for it here
 jQuery.each( [ "top", "left" ], function( i, prop ) {
 	jQuery.cssHooks[ prop ] = addGetHookIf( support.pixelPosition,
 		function( elem, computed ) {
@@ -6745,8 +6582,7 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 				// Get document width or height
 				if ( elem.nodeType === 9 ) {
 					doc = elem.documentElement;
-					// Either scroll[Width/Height] or offset[Width/Height] or client[Width/Height],
-					// whichever is greatest
+					// Either scroll[Width/Height] or offset[Width/Height] or client[Width/Height], whichever is greatest
 					return Math.max(
 						elem.body[ "scroll" + name ], doc[ "scroll" + name ],
 						elem.body[ "offset" + name ], doc[ "offset" + name ],
@@ -6795,8 +6631,7 @@ jQuery.fn.extend( {
 			this.off( types, selector || "**", fn );
 	}
 } );
-// Bind a function to a context, optionally partially applying any
-// arguments.
+// Bind a function to a context, optionally partially applying any arguments.
 // jQuery.proxy is deprecated to promote standards (specifically Function#bind)
 // However, it is not slated for removal any time soon
 jQuery.proxy = function( fn, context ) {
@@ -6806,8 +6641,7 @@ jQuery.proxy = function( fn, context ) {
 		context = fn;
 		fn = tmp;
 	}
-	// Quick check to determine if target is callable, in the spec
-	// this throws a TypeError, but we will just return undefined.
+	// Quick check to determine if target is callable, in the spec this throws a TypeError, but we will just return undefined.
 	if ( !isFunction( fn ) ) {
 		return undefined;
 	}
@@ -6836,26 +6670,15 @@ jQuery.camelCase = camelCase;
 jQuery.type = toType;
 jQuery.now = Date.now;
 jQuery.isNumeric = function( obj ) {
-	// As of jQuery 3.0, isNumeric is limited to
-	// strings and numbers (primitives or objects)
-	// that can be coerced to finite numbers (gh-2662)
+	// As of jQuery 3.0, isNumeric is limited to strings and numbers (primitives or objects) that can be coerced to finite numbers (gh-2662)
 	var type = jQuery.type( obj );
 	return ( type === "number" || type === "string" ) &&
-		// parseFloat NaNs numeric-cast false positives ("")
-		// ...but misinterprets leading-number strings, particularly hex literals ("0x...")
+		// parseFloat NaNs numeric-cast false positives ("") but misinterprets leading-number strings, particularly hex literals ("0x...")
 		// subtraction forces infinities to NaN
 		!isNaN( obj - parseFloat( obj ) );
 };
-// Register as a named AMD module, since jQuery can be concatenated with other
-// files that may use define, but not via a proper concatenation script that
-// understands anonymous AMD modules. A named AMD is safest and most robust
-// way to register. Lowercase jquery is used because AMD module names are
-// derived from file names, and jQuery is normally delivered in a lowercase
-// file name. Do this after creating the global so that if an AMD module wants
-// to call noConflict to hide this version of jQuery, it will work.
-// Note that for maximum portability, libraries that are not jQuery should
-// declare themselves as anonymous modules, and avoid setting a global if an
-// AMD loader is present. jQuery is a special case. For more information, see
+// Register as a named AMD module, since jQuery can be concatenated with other files that may use define, but not via a proper concatenation script that understands anonymous AMD modules. A named AMD is safest and most robust way to register. Lowercase jquery is used because AMD module names are derived from file names, and jQuery is normally delivered in a lowercase file name. Do this after creating the global so that if an AMD module wants to call noConflict to hide this version of jQuery, it will work.
+// Note that for maximum portability, libraries that are not jQuery should declare themselves as anonymous modules, and avoid setting a global if an AMD loader is present. jQuery is a special case. For more information, see
 // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
 if ( typeof define === "function" && define.amd ) {
 	define( "jquery", [], function() {
@@ -6876,9 +6699,7 @@ jQuery.noConflict = function( deep ) {
 	}
 	return jQuery;
 };
-// Expose jQuery and $ identifiers, even in AMD
-// (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
-// and CommonJS for browser emulators (#13566)
+// Expose jQuery and $ identifiers, even in AMD (#7102#comment:10, https://github.com/jquery/jquery/pull/557) and CommonJS for browser emulators (#13566)
 if ( !noGlobal ) {
 	window.jQuery = window.$ = jQuery;
 }

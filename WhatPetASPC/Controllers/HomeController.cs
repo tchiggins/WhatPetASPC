@@ -10,13 +10,11 @@ namespace WhatPetASPC.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "WhatPet - Select your ideal pet friend.";
-
             return View();
         }
         public ActionResult Contact()
         {
             ViewBag.Message = "Contact Us";
-
             return View();
         }
     }

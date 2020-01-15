@@ -364,8 +364,7 @@ $.extend( $.validator, {
 					this.form = $( this ).closest( "form" )[ 0 ];
 					this.name = $( this ).attr( "name" );
 				}
-				// Ignore the element if it belongs to another form. This will happen mainly
-				// when setting the `form` attribute of an input to the id of another form.
+				// Ignore the element if it belongs to another form. This will happen mainly when setting the `form` attribute of an input to the id of another form.
 				if ( currentForm !== this.form ) {
 					return;
 				}
@@ -419,8 +418,7 @@ $.extend( $.validator, {
 			} else {
 				this.prepareElement( checkElement );
 				this.currentElements = $( checkElement );
-				// If this element is grouped, then validate all group elements already
-				// containing a value
+				// If this element is grouped, then validate all group elements already containing a value
 				group = this.groups[ checkElement.name ];
 				if ( group ) {
 					$.each( this.groups, function( name, testgroup ) {
@@ -509,8 +507,7 @@ $.extend( $.validator, {
 			var count = 0,
 				i;
 			for ( i in obj ) {
-				// This check allows counting elements with empty error
-				// message as invalid elements
+				// This check allows counting elements with empty error message as invalid elements
 				if ( obj[ i ] !== undefined && obj[ i ] !== null && obj[ i ] !== false ) {
 					count++;
 				}
@@ -654,15 +651,13 @@ $.extend( $.validator, {
 				dependencyMismatch = false,
 				val = this.elementValue( element ),
 				result, method, rule, normalizer;
-			// Prioritize the local normalizer defined for this element over the global one
-			// if the former exists, otherwise user the global one in case it exists.
+			// Prioritize the local normalizer defined for this element over the global one if the former exists, otherwise user the global one in case it exists.
 			if ( typeof rules.normalizer === "function" ) {
 				normalizer = rules.normalizer;
 			} else if (	typeof this.settings.normalizer === "function" ) {
 				normalizer = this.settings.normalizer;
 			}
-			// If normalizer is defined, then call it to retreive the changed value instead
-			// of using the real one.
+			// If normalizer is defined, then call it to retreive the changed value instead of using the real one.
 			// Note that `this` in the normalizer is `element`.
 			if ( normalizer ) {
 				val = normalizer.call( element, val );
@@ -673,8 +668,7 @@ $.extend( $.validator, {
 				rule = { method: method, parameters: rules[ method ] };
 				try {
 					result = $.validator.methods[ method ].call( this, val, element, rule.parameters );
-					// If a method indicates that the field is optional and therefore valid,
-					// don't mark it as valid when there are no other rules
+					// If a method indicates that the field is optional and therefore valid, don't mark it as valid when there are no other rules
 					if ( result === "dependency-mismatch" && rulesCount === 1 ) {
 						dependencyMismatch = true;
 						continue;
@@ -706,9 +700,7 @@ $.extend( $.validator, {
 			}
 			return true;
 		},
-		// Return the custom message for the given element and validation method
-		// specified in the element's HTML5 data attribute
-		// return the generic message if present and no method specific message is present
+		// Return the custom message for the given element and validation method specified in the element's HTML5 data attribute return the generic message if present and no method specific message is present
 		customDataMessage: function( element, method ) {
 			return $( element ).data( "msg" + method.charAt( 0 ).toUpperCase() +
 				method.substring( 1 ).toLowerCase() ) || $( element ).data( "msg" );
@@ -727,15 +719,13 @@ $.extend( $.validator, {
 			}
 			return undefined;
 		},
-		// The second parameter 'rule' used to be a string, and extended to an object literal
-		// of the following form:
+		// The second parameter 'rule' used to be a string, and extended to an object literal of the following form:
 		// rule = {
 		//     method: "method name",
 		//     parameters: "the given method parameters"
 		// }
 		//
-		// The old behavior still supported, kept to maintain backward compatibility with
-		// old code, and will be removed in the next major release.
+		// The old behavior still supported, kept to maintain backward compatibility with old code, and will be removed in the next major release.
 		defaultMessage: function( element, rule ) {
 			if ( typeof rule === "string" ) {
 				rule = { method: rule };
@@ -825,8 +815,7 @@ $.extend( $.validator, {
 				// Maintain reference to the element to be placed into the DOM
 				place = error;
 				if ( this.settings.wrapper ) {
-					// Make sure the element is visible, even in IE
-					// actually showing the wrapped element is handled elsewhere
+					// Make sure the element is visible, even in IE actually showing the wrapped element is handled elsewhere
 					place = error.hide().show().wrap( "<" + this.settings.wrapper + "/>" ).parent();
 				}
 				if ( this.labelContainer.length ) {
@@ -840,8 +829,7 @@ $.extend( $.validator, {
 				if ( error.is( "label" ) ) {
 					// If the error is a label, then associate using 'for'
 					error.attr( "for", elementID );
-					// If the element is not a child of an associated label, then it's necessary
-					// to explicitly apply aria-describedby
+					// If the element is not a child of an associated label, then it's necessary to explicitly apply aria-describedby
 				} else if ( error.parents( "label[for='" + this.escapeCssMeta( elementID ) + "']" ).length === 0 ) {
 					errorID = error.attr( "id" );
 					// Respect existing non-error aria-describedby
@@ -888,9 +876,7 @@ $.extend( $.validator, {
 				.errors()
 				.filter( selector );
 		},
-		// See https://api.jquery.com/category/selectors/, for CSS
-		// meta-characters that should be escaped in order to be used with JQuery
-		// as a literal part of a name/id or any selector.
+		// See https://api.jquery.com/category/selectors/, for CSS meta-characters that should be escaped in order to be used with JQuery as a literal part of a name/id or any selector.
 		escapeCssMeta: function( string ) {
 			return string.replace( /([\\!"#$%&'()*+,./:;<=>?@\[\]^`{|}~])/g, "\\$1" );
 		},
@@ -957,10 +943,7 @@ $.extend( $.validator, {
 			$( element ).removeClass( this.settings.pendingClass );
 			if ( valid && this.pendingRequest === 0 && this.formSubmitted && this.form() ) {
 				$( this.currentForm ).submit();
-				// Remove the hidden input that was used as a replacement for the
-				// missing submit button. The hidden input is added by `handle()`
-				// to ensure that the value of the used submit button is passed on
-				// for scripted submits triggered by this method
+				// Remove the hidden input that was used as a replacement for the missing submit button. The hidden input is added by `handle()` to ensure that the value of the used submit button is passed on for scripted submits triggered by this method
 				if ( this.submitButton ) {
 					$( "input:hidden[name='" + this.submitButton.name + "']", this.currentForm ).remove();
 				}
@@ -1031,8 +1014,7 @@ $.extend( $.validator, {
 		return rules;
 	},
 	normalizeAttributeRule: function( rules, type, method, value ) {
-		// Convert the value to a number for number inputs, and for text for backwards compability
-		// allows type="date" and others to be compared as strings
+		// Convert the value to a number for number inputs, and for text for backwards compability allows type="date" and others to be compared as strings
 		if ( /min|max|step/.test( method ) && ( type === null || /number|range|text/.test( type ) ) ) {
 			value = Number( value );
 			// Support Opera Mini, which returns NaN for undefined minlength
@@ -1043,8 +1025,7 @@ $.extend( $.validator, {
 		if ( value || value === 0 ) {
 			rules[ method ] = value;
 		} else if ( type === method && type !== "range" ) {
-			// Exception: the jquery validate 'range' method
-			// does not test for the html5 'range' type
+			// Exception: the jquery validate 'range' method does not test for the html5 'range' type
 			rules[ method ] = true;
 		}
 	},
@@ -1057,8 +1038,7 @@ $.extend( $.validator, {
 			// Support for <input required> in both html5 and older browsers
 			if ( method === "required" ) {
 				value = element.getAttribute( method );
-				// Some browsers return an empty string for the required attribute
-				// and non-HTML5 browsers might have required="" markup
+				// Some browsers return an empty string for the required attribute and non-HTML5 browsers might have required="" markup
 				if ( value === "" ) {
 					value = true;
 				}
@@ -1208,9 +1188,7 @@ $.extend( $.validator, {
 		// https://jqueryvalidation.org/url-method/
 		url: function( value, element ) {
 			// Copyright (c) 2010-2013 Diego Perini, MIT licensed
-			// https://gist.github.com/dperini/729294
-			// see also https://mathiasbynens.be/demo/url-regex
-			// modified to allow protocol-relative URLs
+			// https://gist.github.com/dperini/729294 see also https://mathiasbynens.be/demo/url-regex modified to allow protocol-relative URLs
 			return this.optional( element ) || /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test( value );
 		},
 		// https://jqueryvalidation.org/date-method/

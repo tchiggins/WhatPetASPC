@@ -3,23 +3,9 @@
  * @version 1.16.0
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-/**
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * Get CSS computed property of the given element
  * @method
  * @memberof Popper.Utils
@@ -125,8 +111,7 @@ function getOffsetParent(element) {
   if (!nodeName || nodeName === 'BODY' || nodeName === 'HTML') {
     return element ? element.ownerDocument.documentElement : document.documentElement;
   }
-  // .offsetParent will return the closest TH, TD or TABLE in case
-  // no offsetParent is present, I hate this job...
+  // .offsetParent will return the closest TH, TD or TABLE in case no offsetParent is present, I hate this job...
   if (['TH', 'TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'static') {
     return getOffsetParent(offsetParent);
   }
@@ -207,7 +192,7 @@ function getScroll(element, side = 'top') {
   }
   return element[upperSide];
 }
-/*
+/**
  * Sum or subtract the element scroll values (left and top) from a given rect object
  * @method
  * @memberof Popper.Utils
@@ -226,7 +211,7 @@ function includeScroll(rect, element, subtract = false) {
   rect.right += scrollLeft * modifier;
   return rect;
 }
-/*
+/**
  * Helper to detect borders of a given element
  * @method
  * @memberof Popper.Utils
@@ -285,8 +270,7 @@ function getClientRect(offsets) {
  */
 function getBoundingClientRect(element) {
   let rect = {};
-  // IE10 10 FIX: Please, don't ask, the element isn't
-  // considered in DOM in some circumstances...
+  // IE10 10 FIX: Please, don't ask, the element isn't considered in DOM in some circumstances...
   // This isn't reproducible in IE10 compatibility mode of IE11
   try {
     if (isIE(10)) {
@@ -347,9 +331,7 @@ function getOffsetRectRelativeToArbitraryNode(children, parent, fixedPosition = 
   offsets.marginTop = 0;
   offsets.marginLeft = 0;
   // Subtract margins of documentElement in case it's being used as parent
-  // we do this only on HTML because it's the only element that behaves
-  // differently when margins are applied to it. The margins are included in
-  // the box of the documentElement, in the other cases not.
+  // we do this only on HTML because it's the only element that behaves differently when margins are applied to it. The margins are included in the box of the documentElement, in the other cases not.
   if (!isIE10 && isHTML) {
     const marginTop = parseFloat(styles.marginTop, 10);
     const marginLeft = parseFloat(styles.marginLeft, 10);
@@ -461,7 +443,7 @@ function getBoundaries(popper, reference, padding, boundariesElement, fixedPosit
       boundaries.left += offsets.left - offsets.marginLeft;
       boundaries.right = width + offsets.left;
     } else {
-      // for all the other DOM elements, this one is good
+      // For all the other DOM elements, this one is good
       boundaries = offsets;
     }
   }
@@ -478,8 +460,7 @@ function getArea({ width, height }) {
   return width * height;
 }
 /**
- * Utility used to transform the `auto` placement to the placement with more
- * available space.
+ * Utility used to transform the `auto` placement to the placement with more available space.
  * @method
  * @memberof Popper.Utils
  * @argument {Object} data - The data object generated by update method
@@ -555,9 +536,7 @@ function taskDebounce(fn) {
 }
 const supportsMicroTasks = isBrowser && window.Promise;
 /**
-* Create a debounced version of a method, that's asynchronously deferred
-* but called in the minimum time possible.
-*
+* Create a debounced version of a method, that's asynchronously deferred but called in the minimum time possible.
 * @method
 * @memberof Popper.Utils
 * @argument {Function} fn
@@ -804,8 +783,7 @@ function removeEventListeners(reference, state) {
   return state;
 }
 /**
- * Loop trough the list of modifiers and run them in order,
- * each of them will then edit the data object.
+ * Loop trough the list of modifiers and run them in order, each of them will then edit the data object.
  * @method
  * @memberof Popper.Utils
  * @param {dataObject} data
@@ -823,8 +801,7 @@ function runModifiers(modifiers, data, ends) {
     const fn = modifier['function'] || modifier.fn; // eslint-disable-line dot-notation
     if (modifier.enabled && isFunction(fn)) {
       // Add properties to offsets to make them a complete clientRect object
-      // we do this before each modifier to make sure the previous one doesn't
-      // mess with these values
+      // we do this before each modifier to make sure the previous one doesn't mess with these values
       data.offsets.popper = getClientRect(data.offsets.popper);
       data.offsets.reference = getClientRect(data.offsets.reference);
       data = fn(data, modifier);
