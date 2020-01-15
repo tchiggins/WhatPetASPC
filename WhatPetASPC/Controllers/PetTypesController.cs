@@ -5,11 +5,14 @@ using System.Net;
 using System.Web.Mvc;
 using WhatPetASPC.DAL;
 using WhatPetASPC.Models;
+using System.Collections.Generic;
+
 namespace WhatPetASPC.Controllers
 {
     public class PetTypesController : Controller
     {
         private PetDB db = new PetDB();
+
         // Show single image
         public ActionResult ShowImage(int? id)
         {
@@ -24,24 +27,36 @@ namespace WhatPetASPC.Controllers
             }
             return View(petType);
         }
+
         // GET: PetTypes
         public ActionResult Index(int? SelectedSpecies)
         {
+            // Add the All type to the species list for the pulldown menu
+            var AllSpecies = new Species
+            {
+                SpeciesName = "All",
+                SpeciesID = 0
+            };
+            List<Species> MyList = new List<Species>
+            {
+                AllSpecies
+            };
+
             var MySpecies = db.AllSpecies.OrderBy(q => q.SpeciesName).ToList();
-            ViewBag.SelectedSpecies = new SelectList(MySpecies, "SpeciesID", "SpeciesName", SelectedSpecies);
+            MyList.AddRange(MySpecies);
+
+            ViewBag.SelectedSpecies = new SelectList(MyList, "SpeciesID", "SpeciesName", SelectedSpecies);
+
             int speciesID = SelectedSpecies.GetValueOrDefault();
 
+            // Select the list of items that match the pulldown or all if All is selected
             IQueryable<PetType> petTypeList = db.AllPetTypes
-                .Where(c => !SelectedSpecies.HasValue || c.SpeciesID == speciesID)
+                .Where(c => !SelectedSpecies.HasValue || c.SpeciesID == speciesID || speciesID == 0)
                 .OrderBy(d => d.SpeciesID);
             var sql = petTypeList.ToString();
             return View(petTypeList.ToList());
         }
-        // GET: PetTypes
-        //public ActionResult Index()
-        //{
-        //    var allPetTypes = db.AllPetTypes.Include(p => p.Species);
-        //    return View(allPetTypes.ToList());
+
         // GET: PetTypes/Details/5
         public ActionResult Details(int? id)
         {

@@ -2,11 +2,20 @@
 @{
     ViewBag.Title = "Index";
 }
-@using (Html.BeginForm())
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $("body").on("change", "#ddlClass", function () {
+        $("#hfClassName").val($(this).find("option:selected").text());
+        document.forms["ClassForm"].submit();
+    });
+</script>
+
+@using (Html.BeginForm("Index", "Species", FormMethod.Post, new { @name = "ClassForm" }))
 {
     <p>
-        Select Pet Class: @Html.DropDownList("SelectedClasses", "All")
-        <input type="submit" value="Filter" />
+        @Html.DropDownList("SelectedClasses", null, new { @id = "ddlClass" })
+        @Html.Hidden("ClassName", null, new { @id = "hfClassName" })
     </p>
 }
 <h2>Index</h2>

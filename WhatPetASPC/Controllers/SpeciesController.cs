@@ -4,33 +4,36 @@ using System.Net;
 using System.Web.Mvc;
 using WhatPetASPC.DAL;
 using WhatPetASPC.Models;
+using System.Collections.Generic;
+
 namespace WhatPetASPC.Controllers
 {
     public class SpeciesController : Controller
     {
         private PetDB db = new PetDB();
-        // GET: Species
-        //public ActionResult Index()
-        //{
-        //    var allSpecies = db.AllSpecies.Include(s => s.PetClass);
-        //    return View(allSpecies.ToList());
-        //}
 
-        private void PopulateClassesDropDownList(object SelectedClasses = null)
-        {
-            var classQuery = from d in db.AllPetClasses
-                                   orderby d.ClassName
-                                   select d;
-            ViewBag.PetClassID = new SelectList(classQuery, "PetClassID", "ClassName", SelectedClasses);
-        }
         public ActionResult Index(int? SelectedClasses)
         {
+            // Add the All type to the species list for the pulldown menu
+            var AllClasses = new PetClass
+            {
+                ClassName = "All",
+                PetClassID = 0
+            };
+            List<PetClass> MyList = new List<PetClass>
+            {
+                AllClasses
+            };
+
             var MyPetClasses = db.AllPetClasses.OrderBy(q => q.ClassName).ToList();
-            ViewBag.SelectedClasses = new SelectList(MyPetClasses, "PetClassID", "ClassName", SelectedClasses);
+            MyList.AddRange(MyPetClasses);
+
+            ViewBag.SelectedClasses = new SelectList(MyList, "PetClassID", "ClassName", SelectedClasses);
             int PetClassID = SelectedClasses.GetValueOrDefault();
 
+            // Select the list of items that match the pulldown or all if All is selected
             IQueryable<Species> speciesList = db.AllSpecies
-                .Where(c => !SelectedClasses.HasValue || c.PetClassID == PetClassID)
+                .Where(c => !SelectedClasses.HasValue || c.PetClassID == PetClassID || PetClassID == 0)
                 .OrderBy(d => d.SpeciesID);
             var sql = speciesList.ToString();
             return View(speciesList.ToList());

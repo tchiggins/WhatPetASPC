@@ -2,14 +2,23 @@
 @{
     ViewBag.Title = "Index";
 }
-@using (Html.BeginForm())
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $("body").on("change", "#ddlSpecies", function () {
+        $("#hfSpeciesName").val($(this).find("option:selected").text());
+        document.forms["SpeciesForm"].submit();
+    });
+</script>
+
+@using (Html.BeginForm("Index", "PetTypes", FormMethod.Post, new { @name = "SpeciesForm" }))
 {
     <p>
-        Select Species: @Html.DropDownList("SelectedSpecies", "All")
-        <input type="submit" value="Filter" />
-    </p>
+        @Html.DropDownList("SelectedSpecies", null, new { @id = "ddlSpecies" })
+        @Html.Hidden("SpeciesName", null, new { @id = "hfSpeciesName" })
+   </p>
 }
-@using MvcApplication8.Models
+
 <h2>Index</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
