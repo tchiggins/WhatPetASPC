@@ -1768,6 +1768,13 @@
             </summary>
             <param name="dateTimeStyle">The date time style.</param>
         </member>
+        <member name="M:CsvHelper.Configuration.MapTypeConverterOption.TimespanStyles(System.Globalization.TimeSpanStyles)">
+            <summary>
+            The <see cref="T:System.Globalization.TimeSpanStyles"/> to use when type converting.
+            This is used when doing <see cref="T:System.TimeSpan"/> converting.
+            </summary>
+            <param name="timeSpanStyles">The time span styles.</param>
+        </member>
         <member name="M:CsvHelper.Configuration.MapTypeConverterOption.NumberStyles(System.Globalization.NumberStyles)">
             <summary>
             The <see cref="M:CsvHelper.Configuration.MapTypeConverterOption.NumberStyles(System.Globalization.NumberStyles)"/> to use when type converting.
@@ -1780,6 +1787,13 @@
             The string format to be used when type converting.
             </summary>
             <param name="formats">The format.</param>
+        </member>
+        <member name="M:CsvHelper.Configuration.MapTypeConverterOption.UriKind(System.UriKind)">
+            <summary>
+            The <see cref="M:CsvHelper.Configuration.MapTypeConverterOption.UriKind(System.UriKind)"/> to use when converting.
+            This is used when doing <see cref="T:System.Uri"/> conversions.
+            </summary>
+            <param name="uriKind">Kind of the URI.</param>
         </member>
         <member name="M:CsvHelper.Configuration.MapTypeConverterOption.BooleanValues(System.Boolean,System.Boolean,System.String[])">
             <summary>
@@ -6461,11 +6475,6 @@
             Converts a <see cref="T:System.Double"/> to and from a <see cref="T:System.String"/>.
             </summary>
         </member>
-        <member name="M:CsvHelper.TypeConversion.DoubleConverter.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:CsvHelper.TypeConversion.DoubleConverter"/> class.
-            </summary>
-        </member>
         <member name="M:CsvHelper.TypeConversion.DoubleConverter.ConvertToString(System.Object,CsvHelper.IWriterRow,CsvHelper.Configuration.MemberMapData)">
             <summary>
             Converts the object to a string.
@@ -6757,11 +6766,6 @@
             Converts a <see cref="T:System.Single"/> to and from a <see cref="T:System.String"/>.
             </summary>
         </member>
-        <member name="M:CsvHelper.TypeConversion.SingleConverter.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:CsvHelper.TypeConversion.SingleConverter"/> class.
-            </summary>
-        </member>
         <member name="M:CsvHelper.TypeConversion.SingleConverter.ConvertToString(System.Object,CsvHelper.IWriterRow,CsvHelper.Configuration.MemberMapData)">
             <summary>
             Converts the object to a string.
@@ -7013,6 +7017,11 @@
             Gets or sets the string format.
             </summary>
         </member>
+        <member name="P:CsvHelper.TypeConversion.TypeConverterOptions.UriKind">
+            <summary>
+            Gets or sets the <see cref="P:CsvHelper.TypeConversion.TypeConverterOptions.UriKind"/>.
+            </summary>
+        </member>
         <member name="P:CsvHelper.TypeConversion.TypeConverterOptions.BooleanTrueValues">
             <summary>
             Gets the list of values that can be
@@ -7124,6 +7133,22 @@
             <param name="row">The <see cref="T:CsvHelper.IReaderRow"/> for the current record.</param>
             <param name="memberMapData">The <see cref="T:CsvHelper.Configuration.MemberMapData"/> for the member being created.</param>
             <returns>The object created from the string.</returns>
+        </member>
+        <member name="T:CsvHelper.TypeConversion.UriConverter">
+            <summary>
+            Converts a <see cref="T:System.Uri"/> to and from a <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="M:CsvHelper.TypeConversion.UriConverter.ConvertFromString(System.String,CsvHelper.IReaderRow,CsvHelper.Configuration.MemberMapData)">
+            <summary>
+            Converts the <see cref="T:System.String"/>  to a <see cref="T:System.Uri"/>.
+            </summary>
+            <param name="text">The string to convert to an object.</param>
+            <param name="row">The <see cref="T:CsvHelper.IReaderRow" /> for the current record.</param>
+            <param name="memberMapData">The <see cref="T:CsvHelper.Configuration.MemberMapData" /> for the member being created.</param>
+            <returns>
+            The <see cref="T:System.Uri"/> created from the string.
+            </returns>
         </member>
         <member name="T:CsvHelper.ValidationException">
             <summary>
