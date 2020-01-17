@@ -592,11 +592,6 @@
     <Content Include="Views\CostCategories\Details.cshtml" />
     <Content Include="Views\CostCategories\Edit.cshtml" />
     <Content Include="Views\CostCategories\Index.cshtml" />
-    <Content Include="Views\Create.cshtml" />
-    <Content Include="Views\Delete.cshtml" />
-    <Content Include="Views\Details.cshtml" />
-    <Content Include="Views\Edit.cshtml" />
-    <Content Include="Views\Index.cshtml" />
     <Content Include="Views\Questions\Create.cshtml" />
     <Content Include="Views\Questions\Delete.cshtml" />
     <Content Include="Views\Questions\Details.cshtml" />
