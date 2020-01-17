@@ -48,7 +48,7 @@
             // CostID,CostBracket
             public const string CC_FileName = "~/Files/CostCategories.csv";
             public const int CostIDPos      = 0;
-            public const int CostBracket    = 1;
+            public const int CostBracketPos = 1;
         }
     }
 }

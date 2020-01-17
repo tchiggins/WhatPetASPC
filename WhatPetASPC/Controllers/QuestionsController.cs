@@ -12,7 +12,7 @@ namespace WhatPetASPC.Controllers
         // GET: Questions
         public ActionResult Index()
         {
-            return View(db.Questions.ToList());
+            return View(db.AllQuestions.ToList());
         }
         // GET: Questions/Details/5
         public ActionResult Details(int? id)
@@ -21,7 +21,7 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Questions questions = db.Questions.Find(id);
+            Questions questions = db.AllQuestions.Find(id);
             if (questions == null)
             {
                 return HttpNotFound();
@@ -41,7 +41,7 @@ namespace WhatPetASPC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Questions.Add(questions);
+                db.AllQuestions.Add(questions);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -54,7 +54,7 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Questions questions = db.Questions.Find(id);
+            Questions questions = db.AllQuestions.Find(id);
             if (questions == null)
             {
                 return HttpNotFound();
@@ -82,7 +82,7 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Questions questions = db.Questions.Find(id);
+            Questions questions = db.AllQuestions.Find(id);
             if (questions == null)
             {
                 return HttpNotFound();
@@ -94,8 +94,8 @@ namespace WhatPetASPC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Questions questions = db.Questions.Find(id);
-            db.Questions.Remove(questions);
+            Questions questions = db.AllQuestions.Find(id);
+            db.AllQuestions.Remove(questions);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

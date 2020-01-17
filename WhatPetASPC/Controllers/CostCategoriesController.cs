@@ -12,7 +12,7 @@ namespace WhatPetASPC.Controllers
         // GET: CostCategories
         public ActionResult Index()
         {
-            return View(db.CostCategories.ToList());
+            return View(db.AllCostCategories.ToList());
         }
         // GET: CostCategories/Details/5
         public ActionResult Details(int? id)
@@ -21,7 +21,7 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CostCategories costCategories = db.CostCategories.Find(id);
+            CostCategories costCategories = db.AllCostCategories.Find(id);
             if (costCategories == null)
             {
                 return HttpNotFound();
@@ -41,7 +41,7 @@ namespace WhatPetASPC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.CostCategories.Add(costCategories);
+                db.AllCostCategories.Add(costCategories);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -54,7 +54,7 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CostCategories costCategories = db.CostCategories.Find(id);
+            CostCategories costCategories = db.AllCostCategories.Find(id);
             if (costCategories == null)
             {
                 return HttpNotFound();
@@ -82,7 +82,7 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CostCategories costCategories = db.CostCategories.Find(id);
+            CostCategories costCategories = db.AllCostCategories.Find(id);
             if (costCategories == null)
             {
                 return HttpNotFound();
@@ -94,8 +94,8 @@ namespace WhatPetASPC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CostCategories costCategories = db.CostCategories.Find(id);
-            db.CostCategories.Remove(costCategories);
+            CostCategories costCategories = db.AllCostCategories.Find(id);
+            db.AllCostCategories.Remove(costCategories);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

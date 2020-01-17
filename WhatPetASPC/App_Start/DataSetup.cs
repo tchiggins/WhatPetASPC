@@ -101,7 +101,13 @@ namespace WhatPetASPC.App_Start
         }
         public class CostCategories
         {
-            //
+            // Clear the CostCategories table
+            public static void CostTable()
+            {
+                var db = new DAL.PetDB();
+                db.AllCostCategories.RemoveRange(db.AllCostCategories);
+                db.SaveChanges();
+            }
         }
         public class PetTypes
         {

@@ -8,12 +8,11 @@ namespace WhatPetASPC.DAL
         public DbSet<PetClass> AllPetClasses { get; set; }
         public DbSet<Species> AllSpecies { get; set; }
         public DbSet<PetType> AllPetTypes { get; set; }
+        public DbSet<CostCategories> AllCostCategories { get; set; }
+        public DbSet<Questions> AllQuestions { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
-        public System.Data.Entity.DbSet<WhatPetASPC.Models.CostCategories> CostCategories { get; set; }
-
-        public System.Data.Entity.DbSet<WhatPetASPC.Models.Questions> Questions { get; set; }
     }
 }
