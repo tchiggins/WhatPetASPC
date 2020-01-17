@@ -5,7 +5,6 @@ using System.Web.Mvc;
 using WhatPetASPC.DAL;
 using WhatPetASPC.Models;
 using System.Collections.Generic;
-
 namespace WhatPetASPC.Controllers
 {
     public class SpeciesController : Controller
@@ -24,13 +23,10 @@ namespace WhatPetASPC.Controllers
             {
                 AllClasses
             };
-
             var MyPetClasses = db.AllPetClasses.OrderBy(q => q.ClassName).ToList();
             MyList.AddRange(MyPetClasses);
-
             ViewBag.SelectedClasses = new SelectList(MyList, "PetClassID", "ClassName", SelectedClasses);
             int PetClassID = SelectedClasses.GetValueOrDefault();
-
             // Select the list of items that match the pulldown or all if All is selected
             IQueryable<Species> speciesList = db.AllSpecies
                 .Where(c => !SelectedClasses.HasValue || c.PetClassID == PetClassID || PetClassID == 0)
@@ -59,8 +55,7 @@ namespace WhatPetASPC.Controllers
             return View();
         }
         // POST: Species/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "SpeciesID,SpeciesName,PetClassID")] Species species)
@@ -90,8 +85,7 @@ namespace WhatPetASPC.Controllers
             return View(species);
         }
         // POST: Species/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "SpeciesID,SpeciesName,PetClassID")] Species species)

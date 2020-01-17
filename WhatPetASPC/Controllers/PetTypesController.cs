@@ -6,13 +6,11 @@ using System.Web.Mvc;
 using WhatPetASPC.DAL;
 using WhatPetASPC.Models;
 using System.Collections.Generic;
-
 namespace WhatPetASPC.Controllers
 {
     public class PetTypesController : Controller
     {
         private PetDB db = new PetDB();
-
         // Show single image
         public ActionResult ShowImage(int? id)
         {
@@ -27,7 +25,6 @@ namespace WhatPetASPC.Controllers
             }
             return View(petType);
         }
-
         // GET: PetTypes
         public ActionResult Index(int? SelectedSpecies)
         {
@@ -41,14 +38,10 @@ namespace WhatPetASPC.Controllers
             {
                 AllSpecies
             };
-
             var MySpecies = db.AllSpecies.OrderBy(q => q.SpeciesName).ToList();
             MyList.AddRange(MySpecies);
-
             ViewBag.SelectedSpecies = new SelectList(MyList, "SpeciesID", "SpeciesName", SelectedSpecies);
-
             int speciesID = SelectedSpecies.GetValueOrDefault();
-
             // Select the list of items that match the pulldown or all if All is selected
             IQueryable<PetType> petTypeList = db.AllPetTypes
                 .Where(c => !SelectedSpecies.HasValue || c.SpeciesID == speciesID || speciesID == 0)
@@ -56,7 +49,6 @@ namespace WhatPetASPC.Controllers
             var sql = petTypeList.ToString();
             return View(petTypeList.ToList());
         }
-
         // GET: PetTypes/Details/5
         public ActionResult Details(int? id)
         {
@@ -78,8 +70,7 @@ namespace WhatPetASPC.Controllers
             return View();
         }
         // POST: PetTypes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PetTypeID,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage,SpeciesID")] PetType petType)
@@ -109,8 +100,7 @@ namespace WhatPetASPC.Controllers
             return View(petType);
         }
         // POST: PetTypes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PetTypeID,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage,SpeciesID")] PetType petType)
