@@ -4,6 +4,17 @@
         <name>Microsoft.Extensions.Configuration.Binder</name>
     </assembly>
     <members>
+        <member name="T:Microsoft.Extensions.Configuration.BinderOptions">
+            <summary>
+            Options class used by the <see cref="T:Microsoft.Extensions.Configuration.ConfigurationBinder"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Configuration.BinderOptions.BindNonPublicProperties">
+            <summary>
+            When false (the default), the binder will only attempt to set public properties.
+            If true, the binder will attempt to set all non read-only properties.
+            </summary>
+        </member>
         <member name="T:Microsoft.Extensions.Configuration.ConfigurationBinder">
             <summary>
             Static helper class that allows binding strongly typed objects to configuration values.
@@ -19,6 +30,17 @@
             <param name="configuration">The configuration instance to bind.</param>
             <returns>The new instance of T if successful, default(T) otherwise.</returns>
         </member>
+        <member name="M:Microsoft.Extensions.Configuration.ConfigurationBinder.Get``1(Microsoft.Extensions.Configuration.IConfiguration,System.Action{Microsoft.Extensions.Configuration.BinderOptions})">
+            <summary>
+            Attempts to bind the configuration instance to a new instance of type T.
+            If this configuration section has a value, that will be used.
+            Otherwise binding by matching property names against configuration keys recursively.
+            </summary>
+            <typeparam name="T">The type of the new instance to bind.</typeparam>
+            <param name="configuration">The configuration instance to bind.</param>
+            <param name="configureOptions">Configures the binder options.</param>
+            <returns>The new instance of T if successful, default(T) otherwise.</returns>
+        </member>
         <member name="M:Microsoft.Extensions.Configuration.ConfigurationBinder.Get(Microsoft.Extensions.Configuration.IConfiguration,System.Type)">
             <summary>
             Attempts to bind the configuration instance to a new instance of type T.
@@ -27,6 +49,17 @@
             </summary>
             <param name="configuration">The configuration instance to bind.</param>
             <param name="type">The type of the new instance to bind.</param>
+            <returns>The new instance if successful, null otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.ConfigurationBinder.Get(Microsoft.Extensions.Configuration.IConfiguration,System.Type,System.Action{Microsoft.Extensions.Configuration.BinderOptions})">
+            <summary>
+            Attempts to bind the configuration instance to a new instance of type T.
+            If this configuration section has a value, that will be used.
+            Otherwise binding by matching property names against configuration keys recursively.
+            </summary>
+            <param name="configuration">The configuration instance to bind.</param>
+            <param name="type">The type of the new instance to bind.</param>
+            <param name="configureOptions">Configures the binder options.</param>
             <returns>The new instance if successful, null otherwise.</returns>
         </member>
         <member name="M:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind(Microsoft.Extensions.Configuration.IConfiguration,System.String,System.Object)">
@@ -43,6 +76,14 @@
             </summary>
             <param name="configuration">The configuration instance to bind.</param>
             <param name="instance">The object to bind.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind(Microsoft.Extensions.Configuration.IConfiguration,System.Object,System.Action{Microsoft.Extensions.Configuration.BinderOptions})">
+            <summary>
+            Attempts to bind the given object instance to configuration values by matching property names against configuration keys recursively.
+            </summary>
+            <param name="configuration">The configuration instance to bind.</param>
+            <param name="instance">The object to bind.</param>
+            <param name="configureOptions">Configures the binder options.</param>
         </member>
         <member name="M:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue``1(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
             <summary>
@@ -83,54 +124,34 @@
             <returns>The converted value.</returns>
         </member>
         <member name="P:Microsoft.Extensions.Configuration.Binder.Resources.Error_CannotActivateAbstractOrInterface">
-            <summary>
-            Cannot create instance of type '{0}' because it is either abstract or an interface.
-            </summary>
+            <summary>Cannot create instance of type '{0}' because it is either abstract or an interface.</summary>
         </member>
         <member name="M:Microsoft.Extensions.Configuration.Binder.Resources.FormatError_CannotActivateAbstractOrInterface(System.Object)">
-            <summary>
-            Cannot create instance of type '{0}' because it is either abstract or an interface.
-            </summary>
+            <summary>Cannot create instance of type '{0}' because it is either abstract or an interface.</summary>
         </member>
         <member name="P:Microsoft.Extensions.Configuration.Binder.Resources.Error_FailedBinding">
-            <summary>
-            Failed to convert '{0}' to type '{1}'.
-            </summary>
+            <summary>Failed to convert configuration value at '{0}' to type '{1}'.</summary>
         </member>
         <member name="M:Microsoft.Extensions.Configuration.Binder.Resources.FormatError_FailedBinding(System.Object,System.Object)">
-            <summary>
-            Failed to convert '{0}' to type '{1}'.
-            </summary>
+            <summary>Failed to convert configuration value at '{0}' to type '{1}'.</summary>
         </member>
         <member name="P:Microsoft.Extensions.Configuration.Binder.Resources.Error_FailedToActivate">
-            <summary>
-            Failed to create instance of type '{0}'.
-            </summary>
+            <summary>Failed to create instance of type '{0}'.</summary>
         </member>
         <member name="M:Microsoft.Extensions.Configuration.Binder.Resources.FormatError_FailedToActivate(System.Object)">
-            <summary>
-            Failed to create instance of type '{0}'.
-            </summary>
+            <summary>Failed to create instance of type '{0}'.</summary>
         </member>
         <member name="P:Microsoft.Extensions.Configuration.Binder.Resources.Error_MissingParameterlessConstructor">
-            <summary>
-            Cannot create instance of type '{0}' because it is missing a public parameterless constructor.
-            </summary>
+            <summary>Cannot create instance of type '{0}' because it is missing a public parameterless constructor.</summary>
         </member>
         <member name="M:Microsoft.Extensions.Configuration.Binder.Resources.FormatError_MissingParameterlessConstructor(System.Object)">
-            <summary>
-            Cannot create instance of type '{0}' because it is missing a public parameterless constructor.
-            </summary>
+            <summary>Cannot create instance of type '{0}' because it is missing a public parameterless constructor.</summary>
         </member>
         <member name="P:Microsoft.Extensions.Configuration.Binder.Resources.Error_UnsupportedMultidimensionalArray">
-            <summary>
-            Cannot create instance of type '{0}' because multidimensional arrays are not supported.
-            </summary>
+            <summary>Cannot create instance of type '{0}' because multidimensional arrays are not supported.</summary>
         </member>
         <member name="M:Microsoft.Extensions.Configuration.Binder.Resources.FormatError_UnsupportedMultidimensionalArray(System.Object)">
-            <summary>
-            Cannot create instance of type '{0}' because multidimensional arrays are not supported.
-            </summary>
+            <summary>Cannot create instance of type '{0}' because multidimensional arrays are not supported.</summary>
         </member>
     </members>
 </doc>
