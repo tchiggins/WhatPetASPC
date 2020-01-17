@@ -1,10 +1,5 @@
 ﻿# Copyright (c)  Microsoft.  All Rights Reserved.  Licensed under the Apache License, Version 2.0.  See License.txt in the project root for license information.
-
-# This file contains command-line options that the VB
-# command line compiler (VBC) will process as part
-# of every compilation, unless the "/noconfig" option
-# is specified. 
-
+# This file contains command-line options that the VB command line compiler (VBC) will process as part of every compilation, unless the "/noconfig" option is specified.
 # Reference the common Framework libraries
 /r:Accessibility.dll
 /r:System.Configuration.dll
@@ -31,13 +26,11 @@
 /r:System.Web.Services.dll
 /r:System.Windows.Forms.dll
 /r:System.XML.dll
-
 /r:System.Workflow.Activities.dll
 /r:System.Workflow.ComponentModel.dll
 /r:System.Workflow.Runtime.dll
 /r:System.Runtime.Serialization.dll
 /r:System.ServiceModel.dll
-
 /r:System.Core.dll
 /r:System.Xml.Linq.dll
 /r:System.Data.Linq.dll
@@ -45,11 +38,9 @@
 /r:System.Web.Extensions.dll
 /r:System.Web.Extensions.Design.dll
 /r:System.ServiceModel.Web.dll
-
 # Import System and Microsoft.VisualBasic
 /imports:System
 /imports:Microsoft.VisualBasic
 /imports:System.Linq
 /imports:System.Xml.Linq
-
 /optioninfer+

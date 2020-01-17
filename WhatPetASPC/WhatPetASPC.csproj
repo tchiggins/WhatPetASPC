@@ -242,6 +242,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PetClassesController.cs" />
     <Compile Include="Controllers\PetTypesController.cs" />
+    <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\SpeciesController.cs" />
     <Compile Include="DAL\PetDB.cs" />
     <Compile Include="Global.asax.cs">
@@ -250,6 +251,7 @@
     <Compile Include="Models\CostCategories.cs" />
     <Compile Include="Models\PetClass.cs" />
     <Compile Include="Models\PetType.cs" />
+    <Compile Include="Models\Questions.cs" />
     <Compile Include="Models\Species.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -590,6 +592,16 @@
     <Content Include="Views\CostCategories\Details.cshtml" />
     <Content Include="Views\CostCategories\Edit.cshtml" />
     <Content Include="Views\CostCategories\Index.cshtml" />
+    <Content Include="Views\Create.cshtml" />
+    <Content Include="Views\Delete.cshtml" />
+    <Content Include="Views\Details.cshtml" />
+    <Content Include="Views\Edit.cshtml" />
+    <Content Include="Views\Index.cshtml" />
+    <Content Include="Views\Questions\Create.cshtml" />
+    <Content Include="Views\Questions\Delete.cshtml" />
+    <Content Include="Views\Questions\Details.cshtml" />
+    <Content Include="Views\Questions\Edit.cshtml" />
+    <Content Include="Views\Questions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />

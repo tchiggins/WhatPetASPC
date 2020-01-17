@@ -1,10 +1,5 @@
 ﻿# Copyright (c)  Microsoft.  All Rights Reserved.  Licensed under the Apache License, Version 2.0.  See License.txt in the project root for license information.
-
-# This file contains command-line options that the C#
-# command line compiler (CSC) will process as part
-# of every compilation, unless the "/noconfig" option
-# is specified. 
-
+# This file contains command-line options that the C# command line compiler (CSC) will process as part of every compilation, unless the "/noconfig" option is specified.
 # Reference the common Framework libraries
 /r:Accessibility.dll
 /r:Microsoft.CSharp.dll

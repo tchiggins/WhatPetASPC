@@ -85,7 +85,6 @@ C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.dll
 C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.pdb
 C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\bin\Serilog.dll
 C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\bin\Serilog.xml
-C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.csprojAssemblyReference.cache
 C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\bin\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\bin\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\bin\Microsoft.Extensions.Configuration.Abstractions.dll
