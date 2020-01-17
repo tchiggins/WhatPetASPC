@@ -465,6 +465,8 @@
     <Content Include="obj\Debug\Tsc.out" />
     <Content Include="obj\Debug\WhatPetASPC.csproj.CopyComplete" />
     <Content Include="obj\Debug\WhatPetASPC.csprojAssemblyReference.cache" />
+    <Content Include="Files\CostCategories.csv" />
+    <Content Include="Files\Questions.csv" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

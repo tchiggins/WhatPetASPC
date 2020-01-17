@@ -50,5 +50,12 @@
             public const int CostIDPos      = 0;
             public const int CostBracketPos = 1;
         }
+        public static class Questions
+        {
+            // QuestionID,QuestionText
+            public const string Q_FileName      = "~/Files/Questions.csv";
+            public const int QuestionIDPos      = 0;
+            public const int QuestionTextPos    = 1;
+        }
     }
 }
