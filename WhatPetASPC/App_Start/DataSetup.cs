@@ -12,7 +12,7 @@ namespace WhatPetASPC.App_Start
         static DataTable LoadDataTable(string FileName)
         {
             var dt = new DataTable();
-            using (var reader = new StreamReader(FileName))
+            using (var reader = new StreamReader(FileName as String))
             using (var csv = new CsvReader(reader))
             {
                 // Do any configuration to `CsvReader` before creating CsvDataReader.
