@@ -80,6 +80,7 @@ namespace WhatPetASPC.App_Start
         public class Species
         {
             // Get PetClassID from the chosen ClassName
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "Error prevention")]
             static int getPetClassID(string ClassName)
             {
                 var db = new DAL.PetDB();
@@ -87,7 +88,6 @@ namespace WhatPetASPC.App_Start
                                  where PetClass.ClassName == ClassName
                                  select PetClass.PetClassID;
                 db.SaveChanges();
-                db.Dispose();
                 return MyPetClass.FirstOrDefault();
             }
             // Clear the Species Table
@@ -163,6 +163,7 @@ namespace WhatPetASPC.App_Start
         public class PetTypes
         {
             // Get SpeciesID from the chosen SpeciesName
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "Error prevention")]
             static int getSpeciesID(string SpeciesName)
             {
                 var db = new DAL.PetDB();
@@ -170,7 +171,6 @@ namespace WhatPetASPC.App_Start
                                 where Species.SpeciesName == SpeciesName
                                 select Species.SpeciesID;
                 db.SaveChanges();
-                db.Dispose();
                 return MySpecies.FirstOrDefault();
             }
             // Clear the PetType Table
