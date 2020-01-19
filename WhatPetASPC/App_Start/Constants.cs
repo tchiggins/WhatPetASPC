@@ -1,6 +1,6 @@
 ﻿namespace WhatPetASPC.App_Start
 {
-    static class Constants
+    internal static class Constants
     {
         public static class PetClass
         {
