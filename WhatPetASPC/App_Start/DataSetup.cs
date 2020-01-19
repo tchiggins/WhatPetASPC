@@ -20,15 +20,21 @@ namespace WhatPetASPC.App_Start
                 // Do any configuration to `CsvReader` before creating CsvDataReader.
                 InfoLog = "Attempting to load DataTable from ";
                 InfoLog += FileName;
+                InfoLog += "...";
                 Log.Information(InfoLog);
                 try
                 {
                     using (var dr = new CsvDataReader(csv))
                     { dt.Load(dr); }
-                    Log.Information("DataTable loaded successfully");
+                    InfoLog = "DataTable loaded successfully from ";
+                    InfoLog += FileName;
+                    Log.Information(InfoLog);
                 }
                 catch(Exception e)
                 {
+                    InfoLog = "DataTable load failed from ";
+                    InfoLog += FileName;
+                    Log.Error(InfoLog);
                     Log.Error(e.Message);
                 }
             }
