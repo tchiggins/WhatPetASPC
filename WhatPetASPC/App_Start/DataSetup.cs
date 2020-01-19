@@ -13,14 +13,19 @@ namespace WhatPetASPC.App_Start
         static DataTable LoadDataTable(string FileName)
         {
             var dt = new DataTable();
+            string InfoLog;
             using (var reader = new StreamReader(FileName as String))
             using (var csv = new CsvReader(reader))
             {
                 // Do any configuration to `CsvReader` before creating CsvDataReader.
+                InfoLog = "Attempting to load DataTable from ";
+                InfoLog += FileName;
+                Log.Information(InfoLog);
                 try
                 {
                     using (var dr = new CsvDataReader(csv))
                     { dt.Load(dr); }
+                    Log.Information("DataTable loaded successfully");
                 }
                 catch(Exception e)
                 {
