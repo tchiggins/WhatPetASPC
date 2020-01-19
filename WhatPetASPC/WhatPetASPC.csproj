@@ -248,6 +248,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Answers.cs" />
     <Compile Include="Models\CostCategories.cs" />
     <Compile Include="Models\PetClass.cs" />
     <Compile Include="Models\PetType.cs" />
@@ -413,6 +414,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Logs\log.txt" />
     <Content Include="obj\Debug\Before-PostSharp\WhatPetASPC.dll" />
     <Content Include="obj\Debug\Before-PostSharp\WhatPetASPC.pdb" />
     <Content Include="obj\Debug\WhatPetASPC.csproj.FileListAbsolute.txt" />

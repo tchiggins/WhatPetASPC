@@ -4,6 +4,7 @@ using System.Web;
 using CsvHelper;
 using System.IO;
 using System.Data;
+using Serilog;
 namespace WhatPetASPC.App_Start
 {
     public class DataSetup
@@ -16,9 +17,14 @@ namespace WhatPetASPC.App_Start
             using (var csv = new CsvReader(reader))
             {
                 // Do any configuration to `CsvReader` before creating CsvDataReader.
-                using (var dr = new CsvDataReader(csv))
+                try
                 {
-                    dt.Load(dr);
+                    using (var dr = new CsvDataReader(csv))
+                    { dt.Load(dr); }
+                }
+                catch(Exception e)
+                {
+                    Log.Error(e.Message);
                 }
             }
             return dt;
@@ -38,9 +44,8 @@ namespace WhatPetASPC.App_Start
                 // Upload and save the file
                 // PetClassID,ClassName
                 string CSVPath = HttpContext.Current.Server.MapPath(Constants.PetClass.CSV_FileName);
-                int rows;
                 DataTable dt = LoadDataTable(CSVPath);
-                rows = dt.Rows.Count;
+                int rows = dt.Rows.Count;
                 // Load all the data
                 var db = new DAL.PetDB();
 
@@ -80,9 +85,8 @@ namespace WhatPetASPC.App_Start
                 // Upload and save the file
                 // SpeciesID,ClassName,SpeciesName
                 string CSVPath = HttpContext.Current.Server.MapPath(Constants.Species.CSV_FileName);
-                int rows;
                 DataTable dt = LoadDataTable(CSVPath);
-                rows = dt.Rows.Count;
+                int rows = dt.Rows.Count;
                 // Load all the data
                 var db = new DAL.PetDB();
                 for (int r = 0; r < rows; r++)
@@ -102,11 +106,29 @@ namespace WhatPetASPC.App_Start
         public class CostCategories
         {
             // Clear the CostCategories table
-            public static void CostTable()
+            public static void ClearTable()
             {
                 var db = new DAL.PetDB();
                 db.AllCostCategories.RemoveRange(db.AllCostCategories);
                 db.SaveChanges();
+            }
+            // Load the CostCategories CSV file
+            public static void CSVImport()
+            {
+                // Upload and save the file
+                // QuestionID,QuestionText
+                string CSVPath = HttpContext.Current.Server.MapPath(Constants.CostCategories.CC_FileName);
+                DataTable dt = LoadDataTable(CSVPath);
+                int rows = dt.Rows.Count;
+                // Load all the data
+                var db = new DAL.PetDB();
+                for (int r = 0; r < rows; r++)
+                {
+                    var cc = new Models.CostCategories()
+                    {
+
+                    };
+                }
             }
         }
         public class PetTypes
@@ -133,9 +155,8 @@ namespace WhatPetASPC.App_Start
                 // Upload and save the file
                 // PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetImage
                 string CSVPath = HttpContext.Current.Server.MapPath(Constants.PetTypes.CSV_FileName);
-                int rows;
                 DataTable dt = LoadDataTable(CSVPath);
-                rows = dt.Rows.Count;
+                int rows = dt.Rows.Count;
                 // Load all the data
                 var db = new DAL.PetDB();
                 for (int r = 0; r < rows; r++)

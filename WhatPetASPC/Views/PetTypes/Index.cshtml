@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "Index";
 }
-
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
     $("body").on("change", "#ddlSpecies", function () {
@@ -10,7 +9,6 @@
         document.forms["SpeciesForm"].submit();
     });
 </script>
-
 @using (Html.BeginForm("Index", "PetTypes", FormMethod.Post, new { @name = "SpeciesForm" }))
 {
     <p>
@@ -18,7 +16,6 @@
         @Html.Hidden("SpeciesName", null, new { @id = "hfSpeciesName" })
    </p>
 }
-
 <h2>Index</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
