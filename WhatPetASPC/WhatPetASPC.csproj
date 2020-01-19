@@ -468,7 +468,6 @@
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="bin\WhatPetASPC.dll.config" />
     <Content Include="bin\WhatPetASPC.pssym" />
-    <Content Include="obj\Debug\build.force" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\PostSharp\postsharp.config" />
