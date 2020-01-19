@@ -12,7 +12,7 @@ namespace WhatPetASPC.Controllers
         // GET: Questions
         public ActionResult Index()
         {
-            return View(db.AllQuestions.ToList());
+            return this.View(this.db.AllQuestions.ToList());
         }
         // GET: Questions/Details/5
         public ActionResult Details(int? id)
@@ -21,17 +21,17 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Questions questions = db.AllQuestions.Find(id);
+            Questions questions = this.db.AllQuestions.Find(id);
             if (questions == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(questions);
+            return this.View(questions);
         }
         // GET: Questions/Create
         public ActionResult Create()
         {
-            return View();
+            return this.View();
         }
         // POST: Questions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -39,13 +39,13 @@ namespace WhatPetASPC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "QuestionID,QuestionText")] Questions questions)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.AllQuestions.Add(questions);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.AllQuestions.Add(questions);
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-            return View(questions);
+            return this.View(questions);
         }
         // GET: Questions/Edit/5
         public ActionResult Edit(int? id)
@@ -54,12 +54,12 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Questions questions = db.AllQuestions.Find(id);
+            Questions questions = this.db.AllQuestions.Find(id);
             if (questions == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(questions);
+            return this.View(questions);
         }
         // POST: Questions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -67,13 +67,13 @@ namespace WhatPetASPC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "QuestionID,QuestionText")] Questions questions)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.Entry(questions).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.Entry(questions).State = EntityState.Modified;
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-            return View(questions);
+            return this.View(questions);
         }
         // GET: Questions/Delete/5
         public ActionResult Delete(int? id)
@@ -82,28 +82,29 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Questions questions = db.AllQuestions.Find(id);
+            Questions questions = this.db.AllQuestions.Find(id);
             if (questions == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(questions);
+            return this.View(questions);
         }
         // POST: Questions/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Questions questions = db.AllQuestions.Find(id);
-            db.AllQuestions.Remove(questions);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Questions questions = this.db.AllQuestions.Find(id);
+            this.db.AllQuestions.Remove(questions);
+            this.db.SaveChanges();
+            return this.RedirectToAction("Index");
         }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                this.db.Dispose();
             }
             base.Dispose(disposing);
         }

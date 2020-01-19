@@ -12,7 +12,7 @@ namespace WhatPetASPC.Controllers
         // GET: PetClasses
         public ActionResult Index()
         {
-            return View(db.AllPetClasses.ToList());
+            return this.View(this.db.AllPetClasses.ToList());
         }
         // GET: PetClasses/Details/5
         public ActionResult Details(int? id)
@@ -21,17 +21,17 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetClass petClass = db.AllPetClasses.Find(id);
+            PetClass petClass = this.db.AllPetClasses.Find(id);
             if (petClass == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(petClass);
+            return this.View(petClass);
         }
         // GET: PetClasses/Create
         public ActionResult Create()
         {
-            return View();
+            return this.View();
         }
         // POST: PetClasses/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -39,13 +39,13 @@ namespace WhatPetASPC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PetClassID,ClassName")] PetClass petClass)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.AllPetClasses.Add(petClass);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.AllPetClasses.Add(petClass);
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-            return View(petClass);
+            return this.View(petClass);
         }
         // GET: PetClasses/Edit/5
         public ActionResult Edit(int? id)
@@ -54,12 +54,12 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetClass petClass = db.AllPetClasses.Find(id);
+            PetClass petClass = this.db.AllPetClasses.Find(id);
             if (petClass == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(petClass);
+            return this.View(petClass);
         }
         // POST: PetClasses/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -67,13 +67,13 @@ namespace WhatPetASPC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PetClassID,ClassName")] PetClass petClass)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.Entry(petClass).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.Entry(petClass).State = EntityState.Modified;
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-            return View(petClass);
+            return this.View(petClass);
         }
         // GET: PetClasses/Delete/5
         public ActionResult Delete(int? id)
@@ -82,28 +82,29 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetClass petClass = db.AllPetClasses.Find(id);
+            PetClass petClass = this.db.AllPetClasses.Find(id);
             if (petClass == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(petClass);
+            return this.View(petClass);
         }
         // POST: PetClasses/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            PetClass petClass = db.AllPetClasses.Find(id);
-            db.AllPetClasses.Remove(petClass);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            PetClass petClass = this.db.AllPetClasses.Find(id);
+            this.db.AllPetClasses.Remove(petClass);
+            this.db.SaveChanges();
+            return this.RedirectToAction("Index");
         }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                this.db.Dispose();
             }
             base.Dispose(disposing);
         }

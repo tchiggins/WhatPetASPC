@@ -18,12 +18,12 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetType petType = db.AllPetTypes.Find(id);
+            PetType petType = this.db.AllPetTypes.Find(id);
             if (petType == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(petType);
+            return this.View(petType);
         }
         // GET: PetTypes
         public ActionResult Index(int? SelectedSpecies)
@@ -38,16 +38,16 @@ namespace WhatPetASPC.Controllers
             {
                 AllSpecies
             };
-            var MySpecies = db.AllSpecies.OrderBy(q => q.SpeciesName).ToList();
+            var MySpecies = this.db.AllSpecies.OrderBy(q => q.SpeciesName).ToList();
             MyList.AddRange(MySpecies);
-            ViewBag.SelectedSpecies = new SelectList(MyList, "SpeciesID", "SpeciesName", SelectedSpecies);
+            this.ViewBag.SelectedSpecies = new SelectList(MyList, "SpeciesID", "SpeciesName", SelectedSpecies);
             int speciesID = SelectedSpecies.GetValueOrDefault();
             // Select the list of items that match the pulldown or all if All is selected
-            IQueryable<PetType> petTypeList = db.AllPetTypes
+            IQueryable<PetType> petTypeList = this.db.AllPetTypes
                 .Where(c => !SelectedSpecies.HasValue || c.SpeciesID == speciesID || speciesID == 0)
                 .OrderBy(d => d.SpeciesID);
             var sql = petTypeList.ToString();
-            return View(petTypeList.ToList());
+            return this.View(petTypeList.ToList());
         }
         // GET: PetTypes/Details/5
         public ActionResult Details(int? id)
@@ -56,18 +56,18 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetType petType = db.AllPetTypes.Find(id);
+            PetType petType = this.db.AllPetTypes.Find(id);
             if (petType == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(petType);
+            return this.View(petType);
         }
         // GET: PetTypes/Create
         public ActionResult Create()
         {
-            ViewBag.SpeciesID = new SelectList(db.AllSpecies, "SpeciesID", "SpeciesName");
-            return View();
+            this.ViewBag.SpeciesID = new SelectList(this.db.AllSpecies, "SpeciesID", "SpeciesName");
+            return this.View();
         }
         // POST: PetTypes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -75,14 +75,14 @@ namespace WhatPetASPC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PetTypeID,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage,SpeciesID")] PetType petType)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.AllPetTypes.Add(petType);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.AllPetTypes.Add(petType);
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-            ViewBag.SpeciesID = new SelectList(db.AllSpecies, "SpeciesID", "SpeciesName", petType.SpeciesID);
-            return View(petType);
+            this.ViewBag.SpeciesID = new SelectList(this.db.AllSpecies, "SpeciesID", "SpeciesName", petType.SpeciesID);
+            return this.View(petType);
         }
         // GET: PetTypes/Edit/5
         public ActionResult Edit(int? id)
@@ -91,13 +91,13 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetType petType = db.AllPetTypes.Find(id);
+            PetType petType = this.db.AllPetTypes.Find(id);
             if (petType == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            ViewBag.SpeciesID = new SelectList(db.AllSpecies, "SpeciesID", "SpeciesName", petType.SpeciesID);
-            return View(petType);
+            this.ViewBag.SpeciesID = new SelectList(this.db.AllSpecies, "SpeciesID", "SpeciesName", petType.SpeciesID);
+            return this.View(petType);
         }
         // POST: PetTypes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -105,14 +105,14 @@ namespace WhatPetASPC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PetTypeID,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage,SpeciesID")] PetType petType)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.Entry(petType).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.Entry(petType).State = EntityState.Modified;
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-            ViewBag.SpeciesID = new SelectList(db.AllSpecies, "SpeciesID", "SpeciesName", petType.SpeciesID);
-            return View(petType);
+            this.ViewBag.SpeciesID = new SelectList(this.db.AllSpecies, "SpeciesID", "SpeciesName", petType.SpeciesID);
+            return this.View(petType);
         }
         // GET: PetTypes/Delete/5
         public ActionResult Delete(int? id)
@@ -121,28 +121,29 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetType petType = db.AllPetTypes.Find(id);
+            PetType petType = this.db.AllPetTypes.Find(id);
             if (petType == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(petType);
+            return this.View(petType);
         }
         // POST: PetTypes/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            PetType petType = db.AllPetTypes.Find(id);
-            db.AllPetTypes.Remove(petType);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            PetType petType = this.db.AllPetTypes.Find(id);
+            this.db.AllPetTypes.Remove(petType);
+            this.db.SaveChanges();
+            return this.RedirectToAction("Index");
         }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                this.db.Dispose();
             }
             base.Dispose(disposing);
         }

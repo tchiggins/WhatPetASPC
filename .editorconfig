@@ -55,3 +55,15 @@ dotnet_diagnostic.SA1649.severity = none
 dotnet_diagnostic.SA1505.severity = none
 # SA1508: Closing braces should not be preceded by blank line
 dotnet_diagnostic.SA1508.severity = none
+
+# IDE0003: Remove qualification
+dotnet_style_qualification_for_property = false:none
+
+# IDE0003: Remove qualification
+dotnet_style_qualification_for_field = false:none
+
+# IDE0003: Remove qualification
+dotnet_style_qualification_for_event = false:none
+
+# IDE0003: Remove qualification
+dotnet_style_qualification_for_method = false:none

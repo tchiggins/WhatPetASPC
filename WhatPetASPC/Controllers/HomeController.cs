@@ -5,17 +5,17 @@ namespace WhatPetASPC.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
         public ActionResult About()
         {
-            ViewBag.Message = "WhatPet - Select your ideal pet friend.";
-            return View();
+            this.ViewBag.Message = "WhatPet - Select your ideal pet friend.";
+            return this.View();
         }
         public ActionResult Contact()
         {
-            ViewBag.Message = "Contact Us";
-            return View();
+            this.ViewBag.Message = "Contact Us";
+            return this.View();
         }
     }
 }

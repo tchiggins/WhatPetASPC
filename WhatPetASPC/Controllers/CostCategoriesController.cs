@@ -12,7 +12,7 @@ namespace WhatPetASPC.Controllers
         // GET: CostCategories
         public ActionResult Index()
         {
-            return View(db.AllCostCategories.ToList());
+            return this.View(this.db.AllCostCategories.ToList());
         }
         // GET: CostCategories/Details/5
         public ActionResult Details(int? id)
@@ -21,17 +21,17 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CostCategories costCategories = db.AllCostCategories.Find(id);
+            CostCategories costCategories = this.db.AllCostCategories.Find(id);
             if (costCategories == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(costCategories);
+            return this.View(costCategories);
         }
         // GET: CostCategories/Create
         public ActionResult Create()
         {
-            return View();
+            return this.View();
         }
         // POST: CostCategories/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -39,13 +39,13 @@ namespace WhatPetASPC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CostID,CostBracket")] CostCategories costCategories)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.AllCostCategories.Add(costCategories);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.AllCostCategories.Add(costCategories);
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-            return View(costCategories);
+            return this.View(costCategories);
         }
         // GET: CostCategories/Edit/5
         public ActionResult Edit(int? id)
@@ -54,12 +54,12 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CostCategories costCategories = db.AllCostCategories.Find(id);
+            CostCategories costCategories = this.db.AllCostCategories.Find(id);
             if (costCategories == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(costCategories);
+            return this.View(costCategories);
         }
         // POST: CostCategories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -67,13 +67,13 @@ namespace WhatPetASPC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CostID,CostBracket")] CostCategories costCategories)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.Entry(costCategories).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.Entry(costCategories).State = EntityState.Modified;
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-            return View(costCategories);
+            return this.View(costCategories);
         }
         // GET: CostCategories/Delete/5
         public ActionResult Delete(int? id)
@@ -82,28 +82,29 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CostCategories costCategories = db.AllCostCategories.Find(id);
+            CostCategories costCategories = this.db.AllCostCategories.Find(id);
             if (costCategories == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(costCategories);
+            return this.View(costCategories);
         }
         // POST: CostCategories/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CostCategories costCategories = db.AllCostCategories.Find(id);
-            db.AllCostCategories.Remove(costCategories);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            CostCategories costCategories = this.db.AllCostCategories.Find(id);
+            this.db.AllCostCategories.Remove(costCategories);
+            this.db.SaveChanges();
+            return this.RedirectToAction("Index");
         }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                this.db.Dispose();
             }
             base.Dispose(disposing);
         }

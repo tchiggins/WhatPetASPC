@@ -23,16 +23,16 @@ namespace WhatPetASPC.Controllers
             {
                 AllClasses
             };
-            var MyPetClasses = db.AllPetClasses.OrderBy(q => q.ClassName).ToList();
+            var MyPetClasses = this.db.AllPetClasses.OrderBy(q => q.ClassName).ToList();
             MyList.AddRange(MyPetClasses);
-            ViewBag.SelectedClasses = new SelectList(MyList, "PetClassID", "ClassName", SelectedClasses);
+            this.ViewBag.SelectedClasses = new SelectList(MyList, "PetClassID", "ClassName", SelectedClasses);
             int PetClassID = SelectedClasses.GetValueOrDefault();
             // Select the list of items that match the pulldown or all if All is selected
-            IQueryable<Species> speciesList = db.AllSpecies
+            IQueryable<Species> speciesList = this.db.AllSpecies
                 .Where(c => !SelectedClasses.HasValue || c.PetClassID == PetClassID || PetClassID == 0)
                 .OrderBy(d => d.SpeciesID);
             var sql = speciesList.ToString();
-            return View(speciesList.ToList());
+            return this.View(speciesList.ToList());
         }
         // GET: Species/Details/5
         public ActionResult Details(int? id)
@@ -41,18 +41,18 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Species species = db.AllSpecies.Find(id);
+            Species species = this.db.AllSpecies.Find(id);
             if (species == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(species);
+            return this.View(species);
         }
         // GET: Species/Create
         public ActionResult Create()
         {
-            ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClassName");
-            return View();
+            this.ViewBag.PetClassID = new SelectList(this.db.AllPetClasses, "PetClassID", "ClassName");
+            return this.View();
         }
         // POST: Species/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -60,14 +60,14 @@ namespace WhatPetASPC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "SpeciesID,SpeciesName,PetClassID")] Species species)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.AllSpecies.Add(species);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.AllSpecies.Add(species);
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-            ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClassName", species.PetClassID);
-            return View(species);
+            this.ViewBag.PetClassID = new SelectList(this.db.AllPetClasses, "PetClassID", "ClassName", species.PetClassID);
+            return this.View(species);
         }
         // GET: Species/Edit/5
         public ActionResult Edit(int? id)
@@ -76,13 +76,13 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Species species = db.AllSpecies.Find(id);
+            Species species = this.db.AllSpecies.Find(id);
             if (species == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClassName", species.PetClassID);
-            return View(species);
+            this.ViewBag.PetClassID = new SelectList(this.db.AllPetClasses, "PetClassID", "ClassName", species.PetClassID);
+            return this.View(species);
         }
         // POST: Species/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -90,14 +90,14 @@ namespace WhatPetASPC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "SpeciesID,SpeciesName,PetClassID")] Species species)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                db.Entry(species).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.Entry(species).State = EntityState.Modified;
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-            ViewBag.PetClassID = new SelectList(db.AllPetClasses, "PetClassID", "ClassName", species.PetClassID);
-            return View(species);
+            this.ViewBag.PetClassID = new SelectList(this.db.AllPetClasses, "PetClassID", "ClassName", species.PetClassID);
+            return this.View(species);
         }
         // GET: Species/Delete/5
         public ActionResult Delete(int? id)
@@ -106,28 +106,29 @@ namespace WhatPetASPC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Species species = db.AllSpecies.Find(id);
+            Species species = this.db.AllSpecies.Find(id);
             if (species == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(species);
+            return this.View(species);
         }
         // POST: Species/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Species species = db.AllSpecies.Find(id);
-            db.AllSpecies.Remove(species);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Species species = this.db.AllSpecies.Find(id);
+            this.db.AllSpecies.Remove(species);
+            this.db.SaveChanges();
+            return this.RedirectToAction("Index");
         }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                this.db.Dispose();
             }
             base.Dispose(disposing);
         }
