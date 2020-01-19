@@ -51,3 +51,4 @@ C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\bin\roslyn\VBCSCompiler.exe
 C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.csproj.CopyComplete
 C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.dll
 C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.pdb
+C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.csprojAssemblyReference.cache

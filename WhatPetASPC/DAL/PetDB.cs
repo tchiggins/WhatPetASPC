@@ -1,6 +1,6 @@
-﻿using WhatPetASPC.Models;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using WhatPetASPC.Models;
 namespace WhatPetASPC.DAL
 {
     public class PetDB : DbContext

@@ -1,8 +1,8 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using WhatPetASPC.App_Start;
 using Serilog;
+using WhatPetASPC.App_Start;
 namespace WhatPetASPC
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -11,8 +11,7 @@ namespace WhatPetASPC
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
-                .WriteTo.File("C:/Logs/log.txt",
-                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}")
+                .WriteTo.File("C:/Logs/log.txt", outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}")
                 .CreateLogger();
             Log.Information("Starting application");
             AreaRegistration.RegisterAllAreas();

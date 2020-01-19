@@ -1,0 +1,57 @@
+﻿[*.cs]
+# CA1031: Do not catch general exception types
+dotnet_diagnostic.CA1031.severity = none
+# IDE1006: Naming Styles
+dotnet_diagnostic.IDE1006.severity = none
+# IDE0044: Add readonly modifier
+dotnet_style_readonly_field = true:none
+# IDE0059: Unnecessary assignment of a value
+csharp_style_unused_value_assignment_preference = discard_variable:none
+# CA1707: Identifiers should not contain underscores
+dotnet_diagnostic.CA1707.severity = none
+# SA1513: Closing brace should be followed by blank line
+dotnet_diagnostic.SA1513.severity = none
+# SA1515: Single-line comment should be preceded by blank line
+dotnet_diagnostic.SA1515.severity = none
+# SA1516: Elements should be separated by blank line
+dotnet_diagnostic.SA1516.severity = none
+# SA1600: Elements should be documented
+dotnet_diagnostic.SA1600.severity = none
+# SA1312: Variable names should begin with lower-case letter
+dotnet_diagnostic.SA1312.severity = none
+# SA1300: Element should begin with upper-case letter
+dotnet_diagnostic.SA1300.severity = none
+# SA1313: Parameter names should begin with lower-case letter
+dotnet_diagnostic.SA1313.severity = none
+# IDE0049: Simplify Names
+dotnet_style_predefined_type_for_member_access = true:none
+# IDE0049: Simplify Names
+dotnet_style_predefined_type_for_locals_parameters_members = true:none
+# SA1413: Use trailing comma in multi-line initializers
+dotnet_diagnostic.SA1413.severity = none
+# CA1305: Specify IFormatProvider
+dotnet_diagnostic.CA1305.severity = none
+# SA1310: Field names should not contain underscore
+dotnet_diagnostic.SA1310.severity = none
+# IDE0055: Fix formatting
+dotnet_diagnostic.IDE0055.severity = none
+# SA1025: Code should not contain multiple whitespace in a row
+dotnet_diagnostic.SA1025.severity = none
+# SA1200: Using directives should be placed correctly
+dotnet_diagnostic.SA1200.severity = none
+# SA1121: Use built-in type alias
+dotnet_diagnostic.SA1121.severity = none
+# IDE0058: Expression value is never used
+csharp_style_unused_value_expression_statement_preference = discard_variable:none
+# SA1111: Closing parenthesis should be on line of last parameter
+dotnet_diagnostic.SA1111.severity = none
+# SA1009: Closing parenthesis should be spaced correctly
+dotnet_diagnostic.SA1009.severity = none
+# SA1633: File should have header
+dotnet_diagnostic.SA1633.severity = none
+# SA1649: File name should match first type name
+dotnet_diagnostic.SA1649.severity = none
+# SA1505: Opening braces should not be followed by blank line
+dotnet_diagnostic.SA1505.severity = none
+# SA1508: Closing braces should not be preceded by blank line
+dotnet_diagnostic.SA1508.severity = none
