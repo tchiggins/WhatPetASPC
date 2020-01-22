@@ -7,10 +7,10 @@ using CsvHelper;
 using Serilog;
 namespace WhatPetASPC.App_Start
 {
-    public class DataSetup
+    public static class DataSetup
     {
         // Load the DataTable
-        static DataTable LoadDataTable(string FileName, ref DataTable dt)
+        private static DataTable LoadDataTable(string FileName, ref DataTable dt)
         {
             string InfoLog;
             using (var reader = new StreamReader(FileName as String))
@@ -41,7 +41,8 @@ namespace WhatPetASPC.App_Start
             }
             return dt;
         }
-        public class PetClass
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Error prevention")]
+        public static class PetClass
         {
             // Clear the PetClass Table
             public static void ClassTable()
@@ -77,11 +78,12 @@ namespace WhatPetASPC.App_Start
                 dt.Dispose();
             }
         }
-        public class Species
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Error prevention")]
+        public static class Species
         {
             // Get PetClassID from the chosen ClassName
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "Error prevention")]
-            static int getPetClassID(string ClassName)
+            public static int getPetClassID(string ClassName)
             {
                 var db = new DAL.PetDB();
                 var MyPetClass = from PetClass in db.AllPetClasses
@@ -91,6 +93,7 @@ namespace WhatPetASPC.App_Start
                 return MyPetClass.FirstOrDefault();
             }
             // Clear the Species Table
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1202:Elements should be ordered by access", Justification = "Warning reason unclear")]
             public static void ClearTable()
             {
                 var db = new DAL.PetDB();
@@ -127,7 +130,8 @@ namespace WhatPetASPC.App_Start
                 dt.Dispose();
             }
         }
-        public class CostCategories
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Error prevention")]
+        public static class CostCategories
         {
             // Clear the CostCategories table
             public static void ClearTable()
@@ -160,11 +164,12 @@ namespace WhatPetASPC.App_Start
                 dt.Dispose();
             }
         }
-        public class PetTypes
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Error prevention")]
+        public static class PetTypes
         {
             // Get SpeciesID from the chosen SpeciesName
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "Error prevention")]
-            static int getSpeciesID(string SpeciesName)
+            public static int getSpeciesID(string SpeciesName)
             {
                 var db = new DAL.PetDB();
                 var MySpecies = from Species in db.AllSpecies
@@ -174,6 +179,7 @@ namespace WhatPetASPC.App_Start
                 return MySpecies.FirstOrDefault();
             }
             // Clear the PetType Table
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1202:Elements should be ordered by access", Justification = "Warning reason unclear")]
             public static void ClearTable()
             {
                 var db = new DAL.PetDB();

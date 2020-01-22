@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -10,7 +11,6 @@ namespace WhatPetASPC.Controllers
     public class SpeciesController : Controller
     {
         private PetDB db = new PetDB();
-
         public ActionResult Index(int? SelectedClasses)
         {
             // Add the All type to the species list for the pulldown menu
@@ -56,8 +56,6 @@ namespace WhatPetASPC.Controllers
         }
         // POST: Species/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "SpeciesID,SpeciesName,PetClassID")] Species species)
         {
             if (this.ModelState.IsValid)
@@ -66,6 +64,7 @@ namespace WhatPetASPC.Controllers
                 this.db.SaveChanges();
                 return this.RedirectToAction("Index");
             }
+            Contract.Requires(species != null);
             this.ViewBag.PetClassID = new SelectList(this.db.AllPetClasses, "PetClassID", "ClassName", species.PetClassID);
             return this.View(species);
         }
@@ -86,8 +85,6 @@ namespace WhatPetASPC.Controllers
         }
         // POST: Species/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "SpeciesID,SpeciesName,PetClassID")] Species species)
         {
             if (this.ModelState.IsValid)
@@ -96,6 +93,7 @@ namespace WhatPetASPC.Controllers
                 this.db.SaveChanges();
                 return this.RedirectToAction("Index");
             }
+            Contract.Requires(species != null);
             this.ViewBag.PetClassID = new SelectList(this.db.AllPetClasses, "PetClassID", "ClassName", species.PetClassID);
             return this.View(species);
         }
@@ -114,9 +112,7 @@ namespace WhatPetASPC.Controllers
             return this.View(species);
         }
         // POST: Species/Delete/5
-        [HttpPost]
         [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Species species = this.db.AllSpecies.Find(id);

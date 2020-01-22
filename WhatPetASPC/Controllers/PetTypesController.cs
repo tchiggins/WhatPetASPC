@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -71,8 +72,6 @@ namespace WhatPetASPC.Controllers
         }
         // POST: PetTypes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PetTypeID,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage,SpeciesID")] PetType petType)
         {
             if (this.ModelState.IsValid)
@@ -81,6 +80,7 @@ namespace WhatPetASPC.Controllers
                 this.db.SaveChanges();
                 return this.RedirectToAction("Index");
             }
+            Contract.Requires(petType != null);
             this.ViewBag.SpeciesID = new SelectList(this.db.AllSpecies, "SpeciesID", "SpeciesName", petType.SpeciesID);
             return this.View(petType);
         }
@@ -101,8 +101,6 @@ namespace WhatPetASPC.Controllers
         }
         // POST: PetTypes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PetTypeID,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage,SpeciesID")] PetType petType)
         {
             if (this.ModelState.IsValid)
@@ -111,6 +109,7 @@ namespace WhatPetASPC.Controllers
                 this.db.SaveChanges();
                 return this.RedirectToAction("Index");
             }
+            Contract.Requires(petType != null);
             this.ViewBag.SpeciesID = new SelectList(this.db.AllSpecies, "SpeciesID", "SpeciesName", petType.SpeciesID);
             return this.View(petType);
         }
@@ -129,9 +128,7 @@ namespace WhatPetASPC.Controllers
             return this.View(petType);
         }
         // POST: PetTypes/Delete/5
-        [HttpPost]
         [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             PetType petType = this.db.AllPetTypes.Find(id);

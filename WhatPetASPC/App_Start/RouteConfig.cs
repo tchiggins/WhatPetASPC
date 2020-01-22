@@ -2,7 +2,7 @@
 using System.Web.Routing;
 namespace WhatPetASPC
 {
-    public class RouteConfig
+    public static class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
         {

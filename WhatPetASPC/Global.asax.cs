@@ -7,7 +7,7 @@ namespace WhatPetASPC
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        protected void Application_Start()
+        protected static void Application_Start()
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()

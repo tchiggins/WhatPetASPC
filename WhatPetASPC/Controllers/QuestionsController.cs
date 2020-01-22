@@ -35,8 +35,6 @@ namespace WhatPetASPC.Controllers
         }
         // POST: Questions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "QuestionID,QuestionText")] Questions questions)
         {
             if (this.ModelState.IsValid)
@@ -63,8 +61,6 @@ namespace WhatPetASPC.Controllers
         }
         // POST: Questions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "QuestionID,QuestionText")] Questions questions)
         {
             if (this.ModelState.IsValid)
@@ -90,9 +86,7 @@ namespace WhatPetASPC.Controllers
             return this.View(questions);
         }
         // POST: Questions/Delete/5
-        [HttpPost]
         [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Questions questions = this.db.AllQuestions.Find(id);
