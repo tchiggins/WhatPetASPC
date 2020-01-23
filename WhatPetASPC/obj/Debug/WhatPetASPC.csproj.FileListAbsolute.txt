@@ -51,10 +51,6 @@ C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\bin\roslyn\VBCSCompiler.exe
 C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.csproj.CopyComplete
 C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.dll
 C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.pdb
-C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\bin\WhatPetASPC.pssym
-C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\obj\Debug\PostSharp\touch
-C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\obj\Debug\PostSharp\dependencies.txt
-C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\obj\Debug\PostSharp\postsharp.app.config
 C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\bin\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\bin\Microsoft.Extensions.Logging.dll
 C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\bin\Serilog.Extensions.Logging.dll
@@ -141,3 +137,4 @@ C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASP
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.csproj.CopyComplete
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.dll
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.pdb
+C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.csprojAssemblyReference.cache

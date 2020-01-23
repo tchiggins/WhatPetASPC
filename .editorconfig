@@ -67,6 +67,5 @@ dotnet_style_qualification_for_method = false:none
 dotnet_code_quality_unused_parameters = all:none
 # SA0001: XML comment analysis is disabled due to project configuration
 dotnet_diagnostic.SA0001.severity = none
-
 # CA3147: Mark Verb Handlers With Validate Antiforgery Token
 dotnet_diagnostic.CA3147.severity = none
