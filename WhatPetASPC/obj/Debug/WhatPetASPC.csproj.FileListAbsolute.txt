@@ -72,10 +72,8 @@ C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\WhatPetASPC.dll
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\WhatPetASPC.pdb
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\csc.exe
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\csc.exe.config
-C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\csc.rsp
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\csi.exe
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\csi.exe.config
-C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\csi.rsp
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
@@ -114,7 +112,6 @@ C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\System.Xm
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\System.Xml.XPath.XDocument.dll
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\vbc.exe
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\vbc.exe.config
-C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\vbc.rsp
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\VBCSCompiler.exe
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\Microsoft.Extensions.Logging.Abstractions.dll
@@ -138,3 +135,8 @@ C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASP
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.dll
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.pdb
 C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.csprojAssemblyReference.cache
+C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\csc.rsp
+C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\csi.rsp
+C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\vbc.rsp
