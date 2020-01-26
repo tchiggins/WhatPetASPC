@@ -69,3 +69,5 @@ dotnet_code_quality_unused_parameters = all:none
 dotnet_diagnostic.SA0001.severity = none
 # CA3147: Mark Verb Handlers With Validate Antiforgery Token
 dotnet_diagnostic.CA3147.severity = none
+# CA1822: Mark members as static
+dotnet_diagnostic.CA1822.severity = none
