@@ -48,13 +48,34 @@ namespace WhatPetASPC.App_Start
             public static void ClassTable()
             {
                 var db = new DAL.PetDB();
-                db.AllPetClasses.RemoveRange(db.AllPetClasses);
-                db.SaveChanges();
+                Log.Information("Attempting to clear PetClass table...");
+                try
+                {
+                    db.AllPetClasses.RemoveRange(db.AllPetClasses);
+                    Log.Information("PetClass table cleared successfully");
+                    Log.Information("Attempting to save changes to PetClass table...");
+                    try
+                    {
+                        db.SaveChanges();
+                        Log.Information("Successfully saved changes to PetClass table");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Failed to save changes to PetClass table");
+                        Log.Error(e.Message);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Error("Failed to clear PetClass table");
+                    Log.Error(e.Message);
+                }
                 db.Dispose();
             }
             // Load the PetClass CSV file
             public static void CSVImport()
             {
+                bool LoadFailed = false;
                 // Upload and save the file
                 // PetClassID,ClassName
                 string CSVPath = HttpContext.Current.Server.MapPath(Constants.PetClass.CSV_FileName);
@@ -63,7 +84,8 @@ namespace WhatPetASPC.App_Start
                 int rows = dt.Rows.Count;
                 // Load all the data
                 var db = new DAL.PetDB();
-
+                string InfoLog;
+                string FClasses = null;
                 for (int r = 0; r < rows; r++)
                 {
                     var pc = new Models.PetClass
@@ -71,9 +93,51 @@ namespace WhatPetASPC.App_Start
                         PetClassID = Int32.Parse(dt.Rows[r].ItemArray[Constants.PetClass.PetClassIDPos].ToString()),
                         ClassName = dt.Rows[r].ItemArray[Constants.PetClass.ClassNamePos].ToString()
                     };
-                    db.AllPetClasses.Add(pc);
+                    InfoLog = "Attempting to load ";
+                    InfoLog += pc.ClassName;
+                    InfoLog += " class into PetClass table...";
+                    Log.Information(InfoLog);
+                    try
+                    {
+                        db.AllPetClasses.Add(pc);
+                        LoadFailed = false;
+                    }
+                    catch (Exception e)
+                    {
+                        LoadFailed = true;
+                        if (r >= 1)
+                        {
+                            FClasses += ", ";
+                        }
+                        FClasses += pc.ClassName;
+                        InfoLog = "Failed to load ";
+                        InfoLog += pc.ClassName;
+                        InfoLog += " class into PetClass table";
+                        Log.Error(InfoLog);
+                        Log.Error(e.Message);
+                    }
                 }
-                db.SaveChanges();
+                Log.Information("Attempting to save changes to PetClass table...");
+                try
+                {
+                    if (LoadFailed == true)
+                    {
+                        Log.Error("Failed to save changes to PetClass table");
+                        InfoLog = "Could not load classes ";
+                        InfoLog += FClasses;
+                        Log.Error(InfoLog);
+                    }
+                    else
+                    {
+                        db.SaveChanges();
+                        Log.Information("Successfully saved changes to PetClass table");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Error("Failed to save changes to PetClass table");
+                    Log.Error(e.Message);
+                }
                 db.Dispose();
                 dt.Dispose();
             }
@@ -85,10 +149,24 @@ namespace WhatPetASPC.App_Start
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "Error prevention")]
             public static int getPetClassID(string ClassName)
             {
+                string InfoLog = null;
+                IQueryable<int> MyPetClass = null;
                 var db = new DAL.PetDB();
-                var MyPetClass = from PetClass in db.AllPetClasses
+                Log.Information("Attempting to get PetClassID foreign table key...");
+                try
+                {
+                    MyPetClass = from PetClass in db.AllPetClasses
                                  where PetClass.ClassName == ClassName
                                  select PetClass.PetClassID;
+                    Log.Information("Successfully got PetClassID foreign table key");
+                }
+                catch (Exception e)
+                {
+                    InfoLog = "Failed to get PetClassID foreign table key for class ";
+                    InfoLog += ClassName;
+                    Log.Error(InfoLog);
+                    Log.Error(e.Message);
+                }
                 db.SaveChanges();
                 return MyPetClass.FirstOrDefault();
             }
@@ -97,8 +175,18 @@ namespace WhatPetASPC.App_Start
             public static void ClearTable()
             {
                 var db = new DAL.PetDB();
-                db.AllSpecies.RemoveRange(db.AllSpecies);
-                db.SaveChanges();
+                try
+                {
+                    Log.Information("Attempting to clear Species table...");
+                    db.AllSpecies.RemoveRange(db.AllSpecies);
+                    db.SaveChanges();
+                    Log.Information("Species table cleared successfully");
+                }
+                catch (InvalidOperationException e)
+                {
+                    Log.Error("Failed to clear Species table");
+                    Log.Error(e.Message);
+                }
                 db.Dispose();
             }
             // Load the Species CSV file
@@ -178,6 +266,17 @@ namespace WhatPetASPC.App_Start
                 db.SaveChanges();
                 return MySpecies.FirstOrDefault();
             }
+
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "Error prevention")]
+            public static string getCostID(string CostID)
+            {
+                var db = new DAL.PetDB();
+                var MyCost = from CostCategories in db.AllCostCategories
+                             where CostCategories.CostID == CostID
+                             select CostCategories.CostID;
+                db.SaveChanges();
+                return MyCost.FirstOrDefault();
+            }
             // Clear the PetType Table
             [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1202:Elements should be ordered by access", Justification = "Warning reason unclear")]
             public static void ClearTable()
@@ -191,7 +290,7 @@ namespace WhatPetASPC.App_Start
             public static void CSVImport()
             {
                 // Upload and save the file
-                // PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetImage
+                // PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,CostID,PetImage
                 string CSVPath = HttpContext.Current.Server.MapPath(Constants.PetTypes.CSV_FileName);
                 var dt = new DataTable();
                 LoadDataTable(CSVPath, ref dt);
@@ -212,7 +311,7 @@ namespace WhatPetASPC.App_Start
                         PetOutdoors = dt.Rows[r].ItemArray[Constants.PetTypes.PetOutdoorsPos].ToString(),
                         PetWalk = dt.Rows[r].ItemArray[Constants.PetTypes.PetWalkPos].ToString(),
                         PetDiet = dt.Rows[r].ItemArray[Constants.PetTypes.PetDietPos].ToString(),
-                        PetDietCost = dt.Rows[r].ItemArray[Constants.PetTypes.PetDietCostPos].ToString(),
+                        CostID = Int32.Parse(getCostID(dt.Rows[r].ItemArray[Constants.PetTypes.CostIDPos].ToString())),
                         PetImage = dt.Rows[r].ItemArray[Constants.PetTypes.PetImagePos].ToString()
                     };
                     if (pt.SpeciesID != 0)

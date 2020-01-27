@@ -131,7 +131,6 @@ C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASP
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.csproj.CopyComplete
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.dll
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.pdb
-C:\Users\Oliver\Source\Repos\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.csprojAssemblyReference.cache
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\Microsoft.Extensions.DependencyInjection.xml
 C:\Users\tom\source\repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\roslyn\csc.rsp

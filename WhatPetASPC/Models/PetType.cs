@@ -10,7 +10,7 @@
         public string PetOutdoors { get; set; }
         public string PetWalk { get; set; }
         public string PetDiet { get; set; }
-        public string PetDietCost { get; set; }
+        public int CostID { get; set; }
         public string PetImage { get; set; }
         public int SpeciesID { get; set; }
         public virtual Species Species { get; set; }

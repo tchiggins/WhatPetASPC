@@ -1,8 +1,8 @@
 PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage
-1,Cat,Abyssinian,Average,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/abyssinian.jpg
-2,Cat,Aegean,Average,FALSE,TRUE,TRUE,FALSE,Carnivore,,cat/aegean.jfif
+1,Cat,Abyssinian,Small,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/abyssinian.jpg
+2,Cat,Aegean,Small,FALSE,TRUE,TRUE,FALSE,Carnivore,,cat/aegean.jfif
 3,Cat,American Bobtail,Large,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/american_bobtail.jfif
-4,Cat,American Curl,Average,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/american_curl.jpg
+4,Cat,American Curl,Small,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/american_curl.jpg
 5,Cat,American Shorthair,Large,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/american_shorthair.jpg
 6,Cat,American Wirehair,Large,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/american_wirehair.jpg
 7,Cat,Aphrodite Giant,Large,FALSE,TRUE,TRUE,FALSE,Carnivore,,cat/aphrodite_giant.jpg
@@ -10,5 +10,5 @@ PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWal
 9,Cat,Asian,Average,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/asian.jfif
 10,Cat,Asian Semi-Longhair,Average,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/asian_semi_longhair.jpg
 11,Cat,Australian Mist,Average,FALSE,TRUE,TRUE,FALSE,Carnivore,,cat/australian_mist.jpg
-12,Cat,Balinese,Average,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/balinese.png
-13,Cat,Bambino,
+12,Cat,Balinese,Small,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/balinese.png
+13,Cat,Bambino,Small,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/bambino.jpg
