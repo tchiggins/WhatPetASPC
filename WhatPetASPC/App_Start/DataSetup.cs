@@ -312,8 +312,27 @@ namespace WhatPetASPC.App_Start
             public static void ClearTable()
             {
                 var db = new DAL.PetDB();
-                db.AllPetTypes.RemoveRange(db.AllPetTypes);
-                db.SaveChanges();
+                Log.Information("Attempting to clear PetType table...");
+                try
+                {
+                    db.AllPetTypes.RemoveRange(db.AllPetTypes);
+                    Log.Information("Successfully cleared PetType table");
+                    Log.Information("Attempting to save changes to PetType table...");
+                    try
+                    {
+                        db.SaveChanges();
+                        Log.Information("Successfully saved changes to PetType table");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Failed to save changes to PetType table");
+                        Log.Error(e.Message);
+                    }
+                }
+                catch (Exception e)
+                {
+
+                }
                 db.Dispose();
             }
             // Load the PetTypes CSV file
