@@ -167,8 +167,28 @@ namespace WhatPetASPC.App_Start
                     Log.Error(InfoLog);
                     Log.Error(e.Message);
                 }
-                db.SaveChanges();
-                return MyPetClass.FirstOrDefault();
+                Log.Information("Attempting to save changes to Species table...");
+                try
+                {
+                    db.SaveChanges();
+                    Log.Information("Successfully saved changes to Species table");
+                }
+                catch (Exception e)
+                {
+                    Log.Error("Failed to save changes to Species table");
+                    Log.Error(e.Message);
+                }
+                Log.Information("Attempting to return PetClassID foreign key...");
+                try
+                {
+                    return MyPetClass.FirstOrDefault();
+                }
+                catch (Exception e)
+                {
+                    Log.Error("Failed to return PetClassID foreign key");
+                    Log.Error(e.Message);
+                    return 0;
+                }
             }
             // Clear the Species Table
             [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1202:Elements should be ordered by access", Justification = "Warning reason unclear")]
@@ -179,8 +199,18 @@ namespace WhatPetASPC.App_Start
                 {
                     Log.Information("Attempting to clear Species table...");
                     db.AllSpecies.RemoveRange(db.AllSpecies);
-                    db.SaveChanges();
                     Log.Information("Species table cleared successfully");
+                    Log.Information("Attempting to save changes to Species table...");
+                    try
+                    {
+                        db.SaveChanges();
+                        Log.Information("Successfully saved changes to Species table");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Failed to save changes to Species table");
+                        Log.Error(e.Message);
+                    }
                 }
                 catch (InvalidOperationException e)
                 {
