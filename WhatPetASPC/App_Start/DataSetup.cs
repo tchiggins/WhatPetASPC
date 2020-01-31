@@ -152,13 +152,13 @@ namespace WhatPetASPC.App_Start
                 string InfoLog = null;
                 IQueryable<int> MyPetClass = null;
                 var db = new DAL.PetDB();
-                Log.Information("Attempting to get PetClassID foreign table key...");
+                Log.Information("Attempting to get PetClassID foreign key...");
                 try
                 {
                     MyPetClass = from PetClass in db.AllPetClasses
                                  where PetClass.ClassName == ClassName
                                  select PetClass.PetClassID;
-                    Log.Information("Successfully got PetClassID foreign table key");
+                    Log.Information("Successfully got PetClassID foreign key");
                 }
                 catch (Exception e)
                 {
@@ -212,7 +212,7 @@ namespace WhatPetASPC.App_Start
                         Log.Error(e.Message);
                     }
                 }
-                catch (InvalidOperationException e)
+                catch (Exception e)
                 {
                     Log.Error("Failed to clear Species table");
                     Log.Error(e.Message);
@@ -277,7 +277,17 @@ namespace WhatPetASPC.App_Start
 
                     };
                 }
-                db.SaveChanges();
+                Log.Information("Attempting to save changes to CostCategories table...");
+                try
+                {
+                    db.SaveChanges();
+                    Log.Information("Successfully saved changes to CostCategories table");
+                }
+                catch (Exception e)
+                {
+                    Log.Error("Failed to save changes to CostCategories table");
+                    Log.Error(e.Message);
+                }
                 db.Dispose();
                 dt.Dispose();
             }
@@ -289,22 +299,82 @@ namespace WhatPetASPC.App_Start
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "Error prevention")]
             public static int getSpeciesID(string SpeciesName)
             {
+                IQueryable<int> MySpecies = null;
                 var db = new DAL.PetDB();
-                var MySpecies = from Species in db.AllSpecies
+                Log.Information("Attempting to get SpeciesID foreign key...");
+                try
+                {
+                    MySpecies = from Species in db.AllSpecies
                                 where Species.SpeciesName == SpeciesName
                                 select Species.SpeciesID;
-                db.SaveChanges();
-                return MySpecies.FirstOrDefault();
+                    Log.Information("Successfully got SpeciesID foreign key");
+                    Log.Information("Attempting to save changes to PetType table...");
+                    try
+                    {
+                        db.SaveChanges();
+                        Log.Information("Successfully saved changes to PetType table");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e.Message);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e.Message);
+                }
+                Log.Information("Attempting to return SpeciesID foreign key...");
+                try
+                {
+                    return MySpecies.FirstOrDefault();
+                }
+                catch (Exception e)
+                {
+                    Log.Error("Failed to return SpeciesID foreign key");
+                    Log.Error(e.Message);
+                    return 0;
+                }
             }
 
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "Error prevention")]
             public static string getCostID(string CostID)
             {
+                IQueryable<string> MyCost = null;
                 var db = new DAL.PetDB();
-                var MyCost = from CostCategories in db.AllCostCategories
+                string InfoLog;
+                bool? GetFailed = null;
+                Log.Information("Attempting to get CostID foreign key...");
+                try
+                {
+                    MyCost = from CostCategories in db.AllCostCategories
                              where CostCategories.CostID == CostID
                              select CostCategories.CostID;
-                db.SaveChanges();
+                    Log.Information("Successfully got CostID foreign key");
+                }
+                catch (Exception e)
+                {
+                    InfoLog = "Failed to get CostID foreign key for CostID ";
+                    InfoLog += CostID;
+                    Log.Error(InfoLog);
+                    Log.Error(e.Message);
+                }
+                Log.Information("Attempting to save changes to PetType table...");
+                if (GetFailed == true)
+                {
+                    InfoLog = "Failed to save changes to PetType table due to failure to get ";
+                    InfoLog += CostID;
+                    InfoLog += " CostID";
+                }
+                try
+                {
+                    db.SaveChanges();
+                    Log.Information("Successfully saved changes to PetType table");
+                }
+                catch (Exception e)
+                {
+                    Log.Error("Failed to save changes to PetClass table");
+                    Log.Error(e.Message);
+                }
                 return MyCost.FirstOrDefault();
             }
             // Clear the PetType Table
@@ -331,7 +401,8 @@ namespace WhatPetASPC.App_Start
                 }
                 catch (Exception e)
                 {
-
+                    Log.Error("Failed to clear PetType table");
+                    Log.Error(e.Message);
                 }
                 db.Dispose();
             }
