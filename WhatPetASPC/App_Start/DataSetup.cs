@@ -350,6 +350,24 @@ namespace WhatPetASPC.App_Start
                              where CostCategories.CostID == CostID
                              select CostCategories.CostID;
                     Log.Information("Successfully got CostID foreign key");
+                    Log.Information("Attempting to save changes to PetType table...");
+                    if (GetFailed == true)
+                    {
+                        InfoLog = "Failed to save changes to PetType table due to failure to get ";
+                        InfoLog += CostID;
+                        InfoLog += " CostID";
+                        Log.Error("InfoLog");
+                    }
+                    try
+                    {
+                        db.SaveChanges();
+                        Log.Information("Successfully saved changes to PetType table");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Failed to save changes to PetClass table");
+                        Log.Error(e.Message);
+                    }
                 }
                 catch (Exception e)
                 {
@@ -358,24 +376,16 @@ namespace WhatPetASPC.App_Start
                     Log.Error(InfoLog);
                     Log.Error(e.Message);
                 }
-                Log.Information("Attempting to save changes to PetType table...");
-                if (GetFailed == true)
+                Log.Information("Attempting to return CostID foreign key...");
+                if (GetFailed == false)
                 {
-                    InfoLog = "Failed to save changes to PetType table due to failure to get ";
-                    InfoLog += CostID;
-                    InfoLog += " CostID";
+                    return MyCost.FirstOrDefault();
                 }
-                try
+                else
                 {
-                    db.SaveChanges();
-                    Log.Information("Successfully saved changes to PetType table");
+                    Log.Error("Failed to return CostID foreign key");
+                    return string.Empty;
                 }
-                catch (Exception e)
-                {
-                    Log.Error("Failed to save changes to PetClass table");
-                    Log.Error(e.Message);
-                }
-                return MyCost.FirstOrDefault();
             }
             // Clear the PetType Table
             [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1202:Elements should be ordered by access", Justification = "Warning reason unclear")]
@@ -422,7 +432,7 @@ namespace WhatPetASPC.App_Start
                     var pt = new Models.PetType()
                     {
                         // PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage
-                        PetTypeID = Int32.Parse(dt.Rows[r].ItemArray[0].ToString()),
+                        PetTypeID = int.Parse(dt.Rows[r].ItemArray[0].ToString()),
                         SpeciesID = getSpeciesID(dt.Rows[r].ItemArray[Constants.PetTypes.SpeciesNamePos].ToString()),
                         TypeName = dt.Rows[r].ItemArray[Constants.PetTypes.TypeNamePos].ToString(),
                         PetSize = dt.Rows[r].ItemArray[Constants.PetTypes.PetSizePos].ToString(),
@@ -431,8 +441,8 @@ namespace WhatPetASPC.App_Start
                         PetOutdoors = dt.Rows[r].ItemArray[Constants.PetTypes.PetOutdoorsPos].ToString(),
                         PetWalk = dt.Rows[r].ItemArray[Constants.PetTypes.PetWalkPos].ToString(),
                         PetDiet = dt.Rows[r].ItemArray[Constants.PetTypes.PetDietPos].ToString(),
-                        CostID = Int32.Parse(getCostID(dt.Rows[r].ItemArray[Constants.PetTypes.CostIDPos].ToString())),
-                        PetImage = dt.Rows[r].ItemArray[Constants.PetTypes.PetImagePos].ToString()
+                        CostID = int.Parse(getCostID(dt.Rows[r].ItemArray[Constants.PetTypes.CostIDPos].ToString())),
+                        PetImage = dt.Rows[r].ItemArray[Constants.PetTypes.PetImagePos].ToString(),
                     };
                     if (pt.SpeciesID != 0)
                     {
