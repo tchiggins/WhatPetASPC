@@ -19,14 +19,14 @@ namespace WhatPetASPC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             // Load the static data
+            DataSetup.CostCategories.ClearTable();
+            DataSetup.CostCategories.CSVImport();
             DataSetup.PetClass.ClassTable();
             DataSetup.PetClass.CSVImport();
             DataSetup.Species.ClearTable();
             DataSetup.Species.CSVImport();
             DataSetup.PetTypes.ClearTable();
             DataSetup.PetTypes.CSVImport();
-            DataSetup.CostCategories.ClearTable();
-            DataSetup.CostCategories.CSVImport();
         }
     }
 }

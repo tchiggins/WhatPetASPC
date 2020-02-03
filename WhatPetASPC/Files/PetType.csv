@@ -1,14 +1,14 @@
 PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage
-1,Cat,Abyssinian,Small,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/abyssinian.jpg
-2,Cat,Aegean,Small,FALSE,TRUE,TRUE,FALSE,Carnivore,,cat/aegean.jfif
-3,Cat,American Bobtail,Large,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/american_bobtail.jfif
-4,Cat,American Curl,Small,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/american_curl.jpg
-5,Cat,American Shorthair,Large,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/american_shorthair.jpg
-6,Cat,American Wirehair,Large,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/american_wirehair.jpg
-7,Cat,Aphrodite Giant,Large,FALSE,TRUE,TRUE,FALSE,Carnivore,,cat/aphrodite_giant.jpg
-8,Cat,Arabian Mau,Average,FALSE,TRUE,TRUE,FALSE,Carnivore,,cat/arabian_mau.jpg
-9,Cat,Asian,Average,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/asian.jfif
-10,Cat,Asian Semi-Longhair,Average,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/asian_semi_longhair.jpg
-11,Cat,Australian Mist,Average,FALSE,TRUE,TRUE,FALSE,Carnivore,,cat/australian_mist.jpg
-12,Cat,Balinese,Small,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/balinese.png
-13,Cat,Bambino,Small,FALSE,TRUE,FALSE,FALSE,Carnivore,,cat/bambino.jpg
+1,Cat,Abyssinian,Small,FALSE,TRUE,FALSE,FALSE,Carnivore,None,cat/abyssinian.jpg
+2,Cat,Aegean,Small,FALSE,TRUE,TRUE,FALSE,Carnivore,None,cat/aegean.jfif
+3,Cat,American Bobtail,Large,FALSE,TRUE,FALSE,FALSE,Carnivore,None,cat/american_bobtail.jfif
+4,Cat,American Curl,Small,FALSE,TRUE,FALSE,FALSE,Carnivore,None,cat/american_curl.jpg
+5,Cat,American Shorthair,Large,FALSE,TRUE,FALSE,FALSE,Carnivore,None,cat/american_shorthair.jpg
+6,Cat,American Wirehair,Large,FALSE,TRUE,FALSE,FALSE,Carnivore,None,cat/american_wirehair.jpg
+7,Cat,Aphrodite Giant,Large,FALSE,TRUE,TRUE,FALSE,Carnivore,None,cat/aphrodite_giant.jpg
+8,Cat,Arabian Mau,Average,FALSE,TRUE,TRUE,FALSE,Carnivore,None,cat/arabian_mau.jpg
+9,Cat,Asian,Average,FALSE,TRUE,FALSE,FALSE,Carnivore,None,cat/asian.jfif
+10,Cat,Asian Semi-Longhair,Average,FALSE,TRUE,FALSE,FALSE,Carnivore,None,cat/asian_semi_longhair.jpg
+11,Cat,Australian Mist,Average,FALSE,TRUE,TRUE,FALSE,Carnivore,None,cat/australian_mist.jpg
+12,Cat,Balinese,Small,FALSE,TRUE,FALSE,FALSE,Carnivore,None,cat/balinese.png
+13,Cat,Bambino,Small,FALSE,TRUE,FALSE,FALSE,Carnivore,None,cat/bambino.jpg

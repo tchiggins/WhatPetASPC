@@ -167,17 +167,6 @@ namespace WhatPetASPC.App_Start
                     Log.Error(InfoLog);
                     Log.Error(e.Message);
                 }
-                Log.Information("Attempting to save changes to Species table...");
-                try
-                {
-                    db.SaveChanges();
-                    Log.Information("Successfully saved changes to Species table");
-                }
-                catch (Exception e)
-                {
-                    Log.Error("Failed to save changes to Species table");
-                    Log.Error(e.Message);
-                }
                 Log.Information("Attempting to return PetClassID foreign key...");
                 try
                 {
@@ -255,15 +244,34 @@ namespace WhatPetASPC.App_Start
             public static void ClearTable()
             {
                 var db = new DAL.PetDB();
-                db.AllCostCategories.RemoveRange(db.AllCostCategories);
-                db.SaveChanges();
+                try
+                {
+                    Log.Information("Attempting to clear Cost Categories table...");
+                    db.AllCostCategories.RemoveRange(db.AllCostCategories);
+                    Log.Information("Attempting to save changes to Cost Categories table...");
+                    try
+                    {
+                        db.SaveChanges();
+                        Log.Information("Successfully saved changes to Cost Categories table");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Failed to save changes to Cost Categories table");
+                        Log.Error(e.Message);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Error("Failed to clear Cost Categories table");
+                    Log.Error(e.Message);
+                }
                 db.Dispose();
             }
             // Load the CostCategories CSV file
             public static void CSVImport()
             {
                 // Upload and save the file
-                // QuestionID,QuestionText
+                // CostID, CostCategory
                 string CSVPath = HttpContext.Current.Server.MapPath(Constants.CostCategories.CC_FileName);
                 var dt = new DataTable();
                 LoadDataTable(CSVPath, ref dt);
@@ -274,8 +282,14 @@ namespace WhatPetASPC.App_Start
                 {
                     var cc = new Models.CostCategories()
                     {
-
+                        CostID = int.Parse(dt.Rows[r].ItemArray[0].ToString()),
+                        CostBracket = dt.Rows[r].ItemArray[Constants.CostCategories.CostBracketPos].ToString()
                     };
+                    if (cc.CostID != 0)
+                    {
+                        db.AllCostCategories.Add(cc);
+                    }
+
                 }
                 Log.Information("Attempting to save changes to CostCategories table...");
                 try
@@ -308,16 +322,6 @@ namespace WhatPetASPC.App_Start
                                 where Species.SpeciesName == SpeciesName
                                 select Species.SpeciesID;
                     Log.Information("Successfully got SpeciesID foreign key");
-                    Log.Information("Attempting to save changes to PetType table...");
-                    try
-                    {
-                        db.SaveChanges();
-                        Log.Information("Successfully saved changes to PetType table");
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error(e.Message);
-                    }
                 }
                 catch (Exception e)
                 {
@@ -337,54 +341,36 @@ namespace WhatPetASPC.App_Start
             }
 
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "Error prevention")]
-            public static string getCostID(string CostID)
+            public static int getCostID(string CostBracket)
             {
-                IQueryable<string> MyCost = null;
+                IQueryable<int> MyCost = null;
                 var db = new DAL.PetDB();
                 string InfoLog;
-                bool? GetFailed = null;
                 Log.Information("Attempting to get CostID foreign key...");
                 try
                 {
                     MyCost = from CostCategories in db.AllCostCategories
-                             where CostCategories.CostID == CostID
+                             where CostCategories.CostBracket == CostBracket
                              select CostCategories.CostID;
                     Log.Information("Successfully got CostID foreign key");
-                    Log.Information("Attempting to save changes to PetType table...");
-                    if (GetFailed == true)
-                    {
-                        InfoLog = "Failed to save changes to PetType table due to failure to get ";
-                        InfoLog += CostID;
-                        InfoLog += " CostID";
-                        Log.Error("InfoLog");
-                    }
-                    try
-                    {
-                        db.SaveChanges();
-                        Log.Information("Successfully saved changes to PetType table");
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error("Failed to save changes to PetClass table");
-                        Log.Error(e.Message);
-                    }
                 }
                 catch (Exception e)
                 {
-                    InfoLog = "Failed to get CostID foreign key for CostID ";
-                    InfoLog += CostID;
+                    InfoLog = "Failed to get CostID foreign key for CostBracket ";
+                    InfoLog += CostBracket;
                     Log.Error(InfoLog);
                     Log.Error(e.Message);
                 }
                 Log.Information("Attempting to return CostID foreign key...");
-                if (GetFailed == false)
+                try
                 {
                     return MyCost.FirstOrDefault();
                 }
-                else
+                catch (Exception e)
                 {
                     Log.Error("Failed to return CostID foreign key");
-                    return string.Empty;
+                    Log.Error(e.Message);
+                    return 0;
                 }
             }
             // Clear the PetType Table
@@ -429,11 +415,35 @@ namespace WhatPetASPC.App_Start
                 var db = new DAL.PetDB();
                 for (int r = 0; r < rows; r++)
                 {
+                    // Read the Pet Type ID
+                    var ReadPetTypeIDString = dt.Rows[r].ItemArray[0].ToString();
+                    var ReadPetTypeID = 0;
+                    if (ReadPetTypeIDString != null)
+                    {
+                        ReadPetTypeID = int.Parse(ReadPetTypeIDString);
+                    }
+
+                    // Read the Species ID
+                    var ReadSpeciesIDString = dt.Rows[r].ItemArray[Constants.PetTypes.SpeciesNamePos].ToString();
+                    var ReadSpeciesID = 0;
+                    if (ReadSpeciesIDString != null)
+                    {
+                        ReadSpeciesID = getSpeciesID(ReadSpeciesIDString);
+                    }
+
+                    // Read the Cost ID
+                    var ReadCostIDString = dt.Rows[r].ItemArray[Constants.PetTypes.CostIDPos].ToString();
+                    var ReadCostID = 0;
+                    if (ReadCostIDString != null)
+                    {
+                        ReadCostID = getCostID(ReadCostIDString);
+                    }
+
                     var pt = new Models.PetType()
                     {
                         // PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage
-                        PetTypeID = int.Parse(dt.Rows[r].ItemArray[0].ToString()),
-                        SpeciesID = getSpeciesID(dt.Rows[r].ItemArray[Constants.PetTypes.SpeciesNamePos].ToString()),
+                        PetTypeID = ReadPetTypeID,
+                        SpeciesID = ReadSpeciesID,
                         TypeName = dt.Rows[r].ItemArray[Constants.PetTypes.TypeNamePos].ToString(),
                         PetSize = dt.Rows[r].ItemArray[Constants.PetTypes.PetSizePos].ToString(),
                         PetSolitary = dt.Rows[r].ItemArray[Constants.PetTypes.PetSolitaryPos].ToString(),
@@ -441,7 +451,7 @@ namespace WhatPetASPC.App_Start
                         PetOutdoors = dt.Rows[r].ItemArray[Constants.PetTypes.PetOutdoorsPos].ToString(),
                         PetWalk = dt.Rows[r].ItemArray[Constants.PetTypes.PetWalkPos].ToString(),
                         PetDiet = dt.Rows[r].ItemArray[Constants.PetTypes.PetDietPos].ToString(),
-                        CostID = int.Parse(getCostID(dt.Rows[r].ItemArray[Constants.PetTypes.CostIDPos].ToString())),
+                        CostID = ReadCostID,
                         PetImage = dt.Rows[r].ItemArray[Constants.PetTypes.PetImagePos].ToString(),
                     };
                     if (pt.SpeciesID != 0)
