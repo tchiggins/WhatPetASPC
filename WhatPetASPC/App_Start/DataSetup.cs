@@ -71,6 +71,75 @@ namespace WhatPetASPC.App_Start
                 }
                 db.Dispose();
             }
+
+            public static void CSVImport()
+            {
+                bool LoadFailed = false;
+                // Upload and save the file
+                // QuestionID,QuestionText
+                string CSVPath = HttpContext.Current.Server.MapPath(Constants.Questions.Q_FileName);
+                var dt = new DataTable();
+                LoadDataTable(CSVPath, ref dt);
+                int rows = dt.Rows.Count;
+                // Load all the data
+                var db = new DAL.PetDB();
+                string InfoLog;
+                string FClasses = null;
+                for (int r = 0; r < rows; r++)
+                {
+                    var pc = new Models.Questions
+                    {
+                        QuestionID = Int32.Parse(dt.Rows[r].ItemArray[0].ToString()),
+                        QuestionText = dt.Rows[r].ItemArray[Constants.Questions.QuestionTextPos].ToString()
+                    };
+                    InfoLog = "Attempting to load ";
+                    InfoLog += pc.QuestionText;
+                    InfoLog += " class into Questions table...";
+                    Log.Information(InfoLog);
+                    try
+                    {
+                        db.AllQuestions.Add(pc);
+                        LoadFailed = false;
+                    }
+                    catch (Exception e)
+                    {
+                        LoadFailed = true;
+                        if (r >= 1)
+                        {
+                            FClasses += ", ";
+                        }
+                        FClasses += pc.QuestionText;
+                        InfoLog = "Failed to load ";
+                        InfoLog += pc.QuestionText;
+                        InfoLog += " class into Questions table";
+                        Log.Error(InfoLog);
+                        Log.Error(e.Message);
+                    }
+                }
+                Log.Information("Attempting to save changes to Questions table...");
+                try
+                {
+                    if (LoadFailed == true)
+                    {
+                        Log.Error("Failed to save changes to Questions table");
+                        InfoLog = "Could not load classes ";
+                        InfoLog += FClasses;
+                        Log.Error(InfoLog);
+                    }
+                    else
+                    {
+                        db.SaveChanges();
+                        Log.Information("Successfully saved changes to Questions table");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Error("Failed to save changes to Questions table");
+                    Log.Error(e.Message);
+                }
+                db.Dispose();
+                dt.Dispose();
+            }
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Error prevention")]

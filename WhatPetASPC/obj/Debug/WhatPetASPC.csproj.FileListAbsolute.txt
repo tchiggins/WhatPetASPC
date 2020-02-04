@@ -141,3 +141,4 @@ C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASP
 C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.csproj.CopyComplete
 C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.dll
 C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.pdb
+C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.csprojAssemblyReference.cache
