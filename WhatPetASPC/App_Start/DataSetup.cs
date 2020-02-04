@@ -41,11 +41,43 @@ namespace WhatPetASPC.App_Start
             }
             return dt;
         }
+        public static class Questions
+        {
+            // Clear the Questions Table
+            public static void ClearTable()
+            {
+                var db = new DAL.PetDB();
+                Log.Information("Attempting to clear Questions table...");
+                try
+                {
+                    db.AllQuestions.RemoveRange(db.AllQuestions);
+                    Log.Information("Questions table cleared successfully");
+                    Log.Information("Attempting to save changes to Questions table...");
+                    try
+                    {
+                        db.SaveChanges();
+                        Log.Information("Successfully saved changes to Questions table");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Failed to save changes to Questions table");
+                        Log.Error(e.Message);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Error("Failed to clear Questions table");
+                    Log.Error(e.Message);
+                }
+                db.Dispose();
+            }
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Error prevention")]
         public static class PetClass
         {
             // Clear the PetClass Table
-            public static void ClassTable()
+            public static void ClearTable()
             {
                 var db = new DAL.PetDB();
                 Log.Information("Attempting to clear PetClass table...");

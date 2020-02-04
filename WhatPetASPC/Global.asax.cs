@@ -21,12 +21,13 @@ namespace WhatPetASPC
             // Load the static data
             DataSetup.CostCategories.ClearTable();
             DataSetup.CostCategories.CSVImport();
-            DataSetup.PetClass.ClassTable();
+            DataSetup.PetClass.ClearTable();
             DataSetup.PetClass.CSVImport();
             DataSetup.Species.ClearTable();
             DataSetup.Species.CSVImport();
             DataSetup.PetTypes.ClearTable();
             DataSetup.PetTypes.CSVImport();
+            DataSetup.Questions.ClearTable();
         }
     }
 }
