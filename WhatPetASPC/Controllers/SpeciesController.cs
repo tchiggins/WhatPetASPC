@@ -49,6 +49,7 @@ namespace WhatPetASPC.Controllers
             return this.View(species);
         }
         // GET: Species/Create
+        [HttpGet]
         public ActionResult Create()
         {
             this.ViewBag.PetClassID = new SelectList(this.db.AllPetClasses, "PetClassID", "ClassName");
@@ -56,6 +57,7 @@ namespace WhatPetASPC.Controllers
         }
         // POST: Species/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
         public ActionResult Create([Bind(Include = "SpeciesID,SpeciesName,PetClassID")] Species species)
         {
             if (this.ModelState.IsValid)

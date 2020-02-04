@@ -65,6 +65,7 @@ namespace WhatPetASPC.Controllers
             return this.View(petType);
         }
         // GET: PetTypes/Create
+        [HttpGet]
         public ActionResult Create()
         {
             this.ViewBag.SpeciesID = new SelectList(this.db.AllSpecies, "SpeciesID", "SpeciesName");
@@ -72,6 +73,7 @@ namespace WhatPetASPC.Controllers
         }
         // POST: PetTypes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
         public ActionResult Create([Bind(Include = "PetTypeID,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage,SpeciesID")] PetType petType)
         {
             if (this.ModelState.IsValid)

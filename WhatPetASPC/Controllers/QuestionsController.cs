@@ -29,12 +29,14 @@ namespace WhatPetASPC.Controllers
             return this.View(questions);
         }
         // GET: Questions/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return this.View();
         }
         // POST: Questions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
         public ActionResult Create([Bind(Include = "QuestionID,QuestionText")] Questions questions)
         {
             if (this.ModelState.IsValid)
