@@ -14,6 +14,10 @@ namespace WhatPetASPC.Controllers
         {
             return this.View(this.db.AllQuestions.ToList());
         }
+        public ActionResult Selector()
+        {
+            return this.View(this.db.AllQuestions.ToList());
+        }
         // GET: Questions/Details/5
         public ActionResult Details(int? id)
         {
