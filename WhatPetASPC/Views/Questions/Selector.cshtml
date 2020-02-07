@@ -7,128 +7,195 @@
 
 <script type="text/javascript">
     function ShowQuestion(ElementID) {
-        document.getElementById(ElementID).style.visibility="visible";
+        document.getElementById(ElementID).style.visibility = "visible";
     };
 </script>
+
+<script type="text/javascript">
+    function HideQuestion(ElementID) {
+        document.getElementById(ElementID).style.visibility = "hidden";
+    };
+</script>
+
+<script type="text/javascript">
+    function checkQ10FieldResult() {
+        ShowQuestion("Q11Block");
+        var result = document.getElementById("Q10").value;
+        if (result == "Yes") {
+            ShowQuestion("Q10List");
+        }
+        else {
+            HideQuestion("Q10List");
+        }
+    };
+</script>
+
+<script type="text/javascript">
+    function checkQ11FieldResult() {
+        ShowQuestion("Submit");
+        var result = document.getElementById("Q11").value;
+        if (result == "Yes") {
+            ShowQuestion("Q11List");
+        }
+        else {
+            HideQuestion("Q11List");
+        }
+    };
+</script>
+
+<script type="text/javascript">$("body").on("change", "#Q0", function  () { ShowQuestion("Q1Block");  });</script>
+<script type="text/javascript">$("body").on("change", "#Q1", function  () { ShowQuestion("Q2Block");  });</script>
+<script type="text/javascript">$("body").on("change", "#Q2", function  () { ShowQuestion("Q3Block");  });</script>
+<script type="text/javascript">$("body").on("change", "#Q3", function  () { ShowQuestion("Q4Block");  });</script>
+<script type="text/javascript">$("body").on("change", "#Q4", function  () { ShowQuestion("Q5Block");  });</script>
+<script type="text/javascript">$("body").on("change", "#Q5", function  () { ShowQuestion("Q6Block");  });</script>
+<script type="text/javascript">$("body").on("change", "#Q6", function  () { ShowQuestion("Q7Block");  });</script>
+<script type="text/javascript">$("body").on("change", "#Q7", function  () { ShowQuestion("Q8Block");  });</script>
+<script type="text/javascript">$("body").on("change", "#Q8", function  () { ShowQuestion("Q9Block");  });</script>
+<script type="text/javascript">$("body").on("change", "#Q9", function  () { ShowQuestion("Q10Block");  });</script>
+<script type="text/javascript">$("body").on("change", "#Q10", function () { ShowQuestion("Q11Block"); checkQ10FieldResult(); });</script>
+<script type="text/javascript">$("body").on("change", "#Q11", function () { ShowQuestion("Submit");   checkQ11FieldResult(); });</script>
 
 <h2>Selector</h2>
 <table class="table">
     <tr>
         <td>@Model.ElementAt(0).QuestionText</td>
         <td>
-            <select id="Q0" style="width: 75px;" onChange='javascript:ShowQuestion("Q1Block");'>
-                <option value="" selected disabled hidden></option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
+            @Html.DropDownList("Q0List", new List<SelectListItem>
+            {
+                new SelectListItem{ Text="", Value = "" },
+                new SelectListItem{ Text="Yes", Value = "Yes" },
+                new SelectListItem{ Text="No", Value = "No" }
+            }, new { @id = "Q0", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Q1Block" style="visibility:hidden;" >
+
+    <tr id="Q1Block" style="visibility:hidden;">
         <td id="Q1Text">@Model.ElementAt(1).QuestionText</td>
         <td>
-            <select id="Q1" style="width: 75px;" onChange='javascript:ShowQuestion("Q2Block");'>
-                <option value="" selected disabled hidden></option>
-                <option value="House">House</option>
-                <option value="Flat">Flat</option>
-            </select>
+            @Html.DropDownList("Q1List", new List<SelectListItem>
+            {
+                new SelectListItem{ Text="", Value = "" },
+                new SelectListItem{ Text="House", Value = "House" },
+                new SelectListItem{ Text="Flat", Value = "Flat" }
+            }, new { @id = "Q1", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Q2Block" style="visibility:hidden;" >
+
+    <tr id="Q2Block" style="visibility:hidden;">
         <td>@Model.ElementAt(2).QuestionText</td>
         <td>
-            <select id="Q2" style="width: 75px;" onChange='javascript:ShowQuestion("Q3Block");'>
-                <option value="" selected disabled hidden></option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
+            @Html.DropDownList("Q2List", new List<SelectListItem>
+            {
+                new SelectListItem{ Text="", Value = "" },
+                new SelectListItem{ Text="Yes", Value = "Yes" },
+                new SelectListItem{ Text="No", Value = "No" }
+            }, new { @id = "Q2", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Q3Block" style="visibility:hidden;" >
+
+    <tr id="Q3Block" style="visibility:hidden;">
         <td>@Model.ElementAt(3).QuestionText</td>
         <td>
-            <input type="text" id="GardenSize" style="width: 75px;" >
-            <button type="button" onclick='javascript:ShowQuestion("Q4Block");'>Submit</button>
+             @Html.TextBox("GardenSize", null, new { @id = "Q3", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Q4Block" style="visibility:hidden;" >
+
+    <tr id="Q4Block" style="visibility:hidden;">
         <td>@Model.ElementAt(4).QuestionText</td>
         <td>
-            <select id="Q4" style="width: 75px;" onChange='javascript:ShowQuestion("Q5Block");'>
-                <option value="" selected disabled hidden></option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
+            @Html.DropDownList("Q4List", new List<SelectListItem>
+            {
+                new SelectListItem{ Text="", Value = "" },
+                new SelectListItem{ Text="Yes", Value = "Yes" },
+                new SelectListItem{ Text="No", Value = "No" }
+            }, new { @id = "Q4", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Q5Block" style="visibility:hidden;" >
+
+    <tr id="Q5Block" style="visibility:hidden;">
         <td>@Model.ElementAt(5).QuestionText</td>
         <td>
-            <input type="text" id="PetBudget" style="width: 75px;" >
-            <button type="button" onclick='javascript:ShowQuestion("Q6Block");'>Submit</button>
-
+            @Html.TextBox("PetBudget", null, new { @id = "Q5", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Q6Block" style="visibility:hidden;" >
+    <tr id="Q6Block" style="visibility:hidden;">
         <td>@Model.ElementAt(6).QuestionText</td>
         <td>
-            <input type="text" id="FoodBudget" style="width: 75px;" >
-            <button type="button" onclick='javascript:ShowQuestion("Q7Block");'>Submit</button>
+            @Html.TextBox("FoodBudget", null, new { @id = "Q6", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Q7Block" style="visibility:hidden;" >
+
+    <tr id="Q7Block" style="visibility:hidden;">
         <td>@Model.ElementAt(7).QuestionText</td>
         <td>
-            <select id="Q7" style="width: 75px;" onChange='javascript:ShowQuestion("Q8Block");'>
-                <option value="" selected disabled hidden></option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
+            @Html.DropDownList("Q7List", new List<SelectListItem>
+            {
+                new SelectListItem{ Text="", Value = "" },
+                new SelectListItem{ Text="Yes", Value = "Yes" },
+                new SelectListItem{ Text="No", Value = "No" }
+            }, new { @id = "Q7", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Q8Block" style="visibility:hidden;" >
+
+    <tr id="Q8Block" style="visibility:hidden;">
         <td>@Model.ElementAt(8).QuestionText</td>
         <td>
-            <select id="Q8" style="width: 75px;" onChange='javascript:ShowQuestion("Q9Block");'>
-                <option value="" selected disabled hidden></option>
-                <option value="Small">Small</option>
-                <option value="Medium">Medium</option>
-                <option value="Large">Large</option>
-            </select>
+            @Html.DropDownList("Q8List", new List<SelectListItem>
+            {
+                new SelectListItem{ Text="", Value = "" },
+                new SelectListItem{ Text="Small", Value = "Small" },
+                new SelectListItem{ Text="Medium", Value = "Medium" },
+                new SelectListItem{ Text="Large", Value = "Large" }
+            }, new { @id = "Q8", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Q9Block" style="visibility:hidden;" >
+
+    <tr id="Q9Block" style="visibility:hidden;">
         <td>@Model.ElementAt(9).QuestionText</td>
         <td>
-            <input type="text" id="Hours" style="width: 75px;" >
-            <button type="button" onclick='javascript:ShowQuestion("Q10Block");'>Submit</button>
+            @Html.TextBox("Hours", null, new { @id = "Q9", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Q10Block" style="visibility:hidden;" >
+
+    <tr id="Q10Block" style="visibility:hidden;">
         <td>@Model.ElementAt(10).QuestionText</td>
         <td>
-            <select id="Q10" style="width: 75px;" onChange='javascript:ShowQuestion("Q11Block");'>
-                <option value="" selected disabled hidden></option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
+            @Html.DropDownList("Q10List", new List<SelectListItem>
+            {
+                new SelectListItem{ Text="", Value = "" },
+                new SelectListItem{ Text="Yes", Value = "Yes" },
+                new SelectListItem{ Text="No", Value = "No" }
+            }, new { @id = "Q10", @class = "form-control" })
         </td>
+        <td id="Q10List" style="visibility:hidden;">
+            @Html.DropDownList("SpeciesID", null, htmlAttributes: new { @id = "Q10Value", @class = "form-control" })
+        </td>
+
     </tr>
-    <tr id="Q11Block" style="visibility:hidden;" >
+
+    <tr id="Q11Block" style="visibility:hidden;">
         <td>@Model.ElementAt(11).QuestionText</td>
         <td>
-            <select id="Q10" style="width: 75px;" onChange='javascript:ShowQuestion("Submit");'>
-                <option value="" selected disabled hidden></option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
+            @Html.DropDownList("Q11List", new List<SelectListItem>
+            {
+                new SelectListItem{ Text="", Value = "" },
+                new SelectListItem{ Text="Yes", Value = "Yes" },
+                new SelectListItem{ Text="No", Value = "No" }
+            }, new { @id = "Q11", @class = "form-control" })
+        </td>
+        <td id="Q11List" style="visibility:hidden;">
+            @Html.DropDownList("SpeciesID", null, htmlAttributes: new { @id = "Q1Value", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Submit" style="visibility:hidden;" >
+
+    <tr id="Submit" style="visibility:hidden;">
         <td>
             <button type="button" onclick='javascript:ShowQuestion("ChooseText");'>Submit</button>
         </td>
     </tr>
 </table>
+
 <text id="ChooseText" style="visibility:hidden;">
     We will now choose your ideal pet
 </text>

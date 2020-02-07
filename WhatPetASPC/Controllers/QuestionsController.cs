@@ -16,6 +16,7 @@ namespace WhatPetASPC.Controllers
         }
         public ActionResult Selector()
         {
+            this.ViewBag.SpeciesID = new SelectList(this.db.AllSpecies, "SpeciesID", "SpeciesName");
             return this.View(this.db.AllQuestions.ToList());
         }
         // GET: Questions/Details/5
