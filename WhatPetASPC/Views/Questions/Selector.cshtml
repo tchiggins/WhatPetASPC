@@ -1,0 +1,25 @@
+﻿@model IEnumerable<WhatPetASPC.Models.Questions>
+@{
+    ViewBag.Title = "Selector";
+}
+<h2>Selector</h2>
+<table class="table">
+    <tr>
+        <td>@Model.ElementAt(1).QuestionText</td>
+        <td>
+            <select>
+                <option value="House">House</option>
+                <option value="Flat">Flat</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>@Model.ElementAt(2).QuestionText</td>
+        <td>
+            <select>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </td>
+    </tr>
+</table>
