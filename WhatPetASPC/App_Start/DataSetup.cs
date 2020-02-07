@@ -332,7 +332,17 @@ namespace WhatPetASPC.App_Start
                         db.AllSpecies.Add(sp);
                     }
                 }
-                db.SaveChanges();
+                Log.Information("Attempting to save changes to Species table...");
+                try
+                {
+                    db.SaveChanges();
+                    Log.Information("Successfully saved changes to Species table");
+                }
+                catch (Exception e)
+                {
+                    Log.Error("Failed to save changes to Species table");
+                    Log.Error(e.Message);
+                }
                 db.Dispose();
                 dt.Dispose();
             }
@@ -507,6 +517,9 @@ namespace WhatPetASPC.App_Start
                 // PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,CostID,PetImage
                 string CSVPath = HttpContext.Current.Server.MapPath(Constants.PetTypes.CSV_FileName);
                 var dt = new DataTable();
+                string ReadPetTypeIDString = null;
+                string ReadSpeciesIDString = null;
+                string ReadCostIDString = null;
                 LoadDataTable(CSVPath, ref dt);
                 int rows = dt.Rows.Count;
                 // Load all the data
@@ -514,21 +527,51 @@ namespace WhatPetASPC.App_Start
                 for (int r = 0; r < rows; r++)
                 {
                     // Read the Pet Type ID
-                    var ReadPetTypeIDString = dt.Rows[r].ItemArray[0].ToString();
+                    Log.Information("Attempting to read PetTypeID key...");
+                    try
+                    {
+                        ReadPetTypeIDString = dt.Rows[r].ItemArray[0].ToString();
+                        Log.Information("Successfully read PetTypeID key");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Failed to read PetTypeID key");
+                        Log.Error(e.Message);
+                    }
                     var ReadPetTypeID = 0;
                     if (ReadPetTypeIDString != null)
                     {
                         ReadPetTypeID = int.Parse(ReadPetTypeIDString);
                     }
                     // Read the Species ID
-                    var ReadSpeciesIDString = dt.Rows[r].ItemArray[Constants.PetTypes.SpeciesNamePos].ToString();
+                    Log.Information("Attempting to read SpeciesID key...");
+                    try
+                    {
+                        ReadSpeciesIDString = dt.Rows[r].ItemArray[Constants.PetTypes.SpeciesNamePos].ToString();
+                        Log.Information("Successfully read SpeciesID key");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Failed to read SpeciesID key");
+                        Log.Error(e.Message);
+                    }
                     var ReadSpeciesID = 0;
                     if (ReadSpeciesIDString != null)
                     {
                         ReadSpeciesID = getSpeciesID(ReadSpeciesIDString);
                     }
                     // Read the Cost ID
-                    var ReadCostIDString = dt.Rows[r].ItemArray[Constants.PetTypes.CostIDPos].ToString();
+                    Log.Information("Attempting to read CostID key...");
+                    try
+                    {
+                        ReadCostIDString = dt.Rows[r].ItemArray[Constants.PetTypes.CostIDPos].ToString();
+                        Log.Information("Successfully read CostID key");
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error("Failed to read CostID key");
+                        Log.Error(e.Message);
+                    }
                     var ReadCostID = 0;
                     if (ReadCostIDString != null)
                     {
