@@ -99,7 +99,6 @@ namespace WhatPetASPC.App_Start
                     try
                     {
                         db.AllQuestions.Add(pc);
-                        LoadFailed = false;
                     }
                     catch (Exception e)
                     {
@@ -434,6 +433,7 @@ namespace WhatPetASPC.App_Start
                 }
                 catch (Exception e)
                 {
+                    Log.Error("Failed to get SpeciesID foreign key");
                     Log.Error(e.Message);
                 }
                 Log.Information("Attempting to return SpeciesID foreign key...");
@@ -445,7 +445,7 @@ namespace WhatPetASPC.App_Start
                 {
                     Log.Error("Failed to return SpeciesID foreign key");
                     Log.Error(e.Message);
-                    return 0;
+                    return -1;
                 }
             }
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "Error prevention")]
@@ -478,7 +478,7 @@ namespace WhatPetASPC.App_Start
                 {
                     Log.Error("Failed to return CostID foreign key");
                     Log.Error(e.Message);
-                    return 0;
+                    return -1;
                 }
             }
             // Clear the PetType Table
@@ -559,6 +559,10 @@ namespace WhatPetASPC.App_Start
                     if (ReadSpeciesIDString != null)
                     {
                         ReadSpeciesID = getSpeciesID(ReadSpeciesIDString);
+                        if (ReadSpeciesID != -1)
+                        {
+                            Log.Information("Successfully returned SpeciesID foreign key");
+                        }
                     }
                     // Read the Cost ID
                     Log.Information("Attempting to read CostID key...");
@@ -576,6 +580,10 @@ namespace WhatPetASPC.App_Start
                     if (ReadCostIDString != null)
                     {
                         ReadCostID = getCostID(ReadCostIDString);
+                        if (ReadCostID != -1)
+                        {
+                            Log.Information("Successfully returned CostID foreign key");
+                        }
                     }
                     var pt = new Models.PetType()
                     {
