@@ -2,24 +2,133 @@
 @{
     ViewBag.Title = "Selector";
 }
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<script type="text/javascript">
+    function ShowQuestion(ElementID) {
+        document.getElementById(ElementID).style.visibility="visible";
+    };
+</script>
+
 <h2>Selector</h2>
 <table class="table">
     <tr>
-        <td>@Model.ElementAt(1).QuestionText</td>
+        <td>@Model.ElementAt(0).QuestionText</td>
         <td>
-            <select>
-                <option value="House">House</option>
-                <option value="Flat">Flat</option>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <td>@Model.ElementAt(2).QuestionText</td>
-        <td>
-            <select>
+            <select id="Q0" style="width: 75px;" onChange='javascript:ShowQuestion("Q1Block");'>
+                <option value="" selected disabled hidden></option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
             </select>
         </td>
     </tr>
+    <tr id="Q1Block" style="visibility:hidden;" >
+        <td id="Q1Text">@Model.ElementAt(1).QuestionText</td>
+        <td>
+            <select id="Q1" style="width: 75px;" onChange='javascript:ShowQuestion("Q2Block");'>
+                <option value="" selected disabled hidden></option>
+                <option value="House">House</option>
+                <option value="Flat">Flat</option>
+            </select>
+        </td>
+    </tr>
+    <tr id="Q2Block" style="visibility:hidden;" >
+        <td>@Model.ElementAt(2).QuestionText</td>
+        <td>
+            <select id="Q2" style="width: 75px;" onChange='javascript:ShowQuestion("Q3Block");'>
+                <option value="" selected disabled hidden></option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </td>
+    </tr>
+    <tr id="Q3Block" style="visibility:hidden;" >
+        <td>@Model.ElementAt(3).QuestionText</td>
+        <td>
+            <input type="text" id="GardenSize" style="width: 75px;" >
+            <button type="button" onclick='javascript:ShowQuestion("Q4Block");'>Submit</button>
+        </td>
+    </tr>
+    <tr id="Q4Block" style="visibility:hidden;" >
+        <td>@Model.ElementAt(4).QuestionText</td>
+        <td>
+            <select id="Q4" style="width: 75px;" onChange='javascript:ShowQuestion("Q5Block");'>
+                <option value="" selected disabled hidden></option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </td>
+    </tr>
+    <tr id="Q5Block" style="visibility:hidden;" >
+        <td>@Model.ElementAt(5).QuestionText</td>
+        <td>
+            <input type="text" id="PetBudget" style="width: 75px;" >
+            <button type="button" onclick='javascript:ShowQuestion("Q6Block");'>Submit</button>
+
+        </td>
+    </tr>
+    <tr id="Q6Block" style="visibility:hidden;" >
+        <td>@Model.ElementAt(6).QuestionText</td>
+        <td>
+            <input type="text" id="FoodBudget" style="width: 75px;" >
+            <button type="button" onclick='javascript:ShowQuestion("Q7Block");'>Submit</button>
+        </td>
+    </tr>
+    <tr id="Q7Block" style="visibility:hidden;" >
+        <td>@Model.ElementAt(7).QuestionText</td>
+        <td>
+            <select id="Q7" style="width: 75px;" onChange='javascript:ShowQuestion("Q8Block");'>
+                <option value="" selected disabled hidden></option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </td>
+    </tr>
+    <tr id="Q8Block" style="visibility:hidden;" >
+        <td>@Model.ElementAt(8).QuestionText</td>
+        <td>
+            <select id="Q8" style="width: 75px;" onChange='javascript:ShowQuestion("Q9Block");'>
+                <option value="" selected disabled hidden></option>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+            </select>
+        </td>
+    </tr>
+    <tr id="Q9Block" style="visibility:hidden;" >
+        <td>@Model.ElementAt(9).QuestionText</td>
+        <td>
+            <input type="text" id="Hours" style="width: 75px;" >
+            <button type="button" onclick='javascript:ShowQuestion("Q10Block");'>Submit</button>
+        </td>
+    </tr>
+    <tr id="Q10Block" style="visibility:hidden;" >
+        <td>@Model.ElementAt(10).QuestionText</td>
+        <td>
+            <select id="Q10" style="width: 75px;" onChange='javascript:ShowQuestion("Q11Block");'>
+                <option value="" selected disabled hidden></option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </td>
+    </tr>
+    <tr id="Q11Block" style="visibility:hidden;" >
+        <td>@Model.ElementAt(11).QuestionText</td>
+        <td>
+            <select id="Q10" style="width: 75px;" onChange='javascript:ShowQuestion("Submit");'>
+                <option value="" selected disabled hidden></option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </td>
+    </tr>
+    <tr id="Submit" style="visibility:hidden;" >
+        <td>
+            <button type="button" onclick='javascript:ShowQuestion("ChooseText");'>Submit</button>
+        </td>
+    </tr>
 </table>
+<text id="ChooseText" style="visibility:hidden;">
+    We will now choose your ideal pet
+</text>
