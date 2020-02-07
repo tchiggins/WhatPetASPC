@@ -41,6 +41,7 @@ namespace WhatPetASPC.App_Start
             }
             return dt;
         }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Error prevention")]
         public static class Questions
         {
             // Clear the Questions Table
@@ -71,7 +72,6 @@ namespace WhatPetASPC.App_Start
                 }
                 db.Dispose();
             }
-
             public static void CSVImport()
             {
                 bool LoadFailed = false;
@@ -141,7 +141,6 @@ namespace WhatPetASPC.App_Start
                 dt.Dispose();
             }
         }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Error prevention")]
         public static class PetClass
         {
@@ -390,7 +389,6 @@ namespace WhatPetASPC.App_Start
                     {
                         db.AllCostCategories.Add(cc);
                     }
-
                 }
                 Log.Information("Attempting to save changes to CostCategories table...");
                 try
@@ -440,7 +438,6 @@ namespace WhatPetASPC.App_Start
                     return 0;
                 }
             }
-
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "Error prevention")]
             public static int getCostID(string CostBracket)
             {
@@ -523,7 +520,6 @@ namespace WhatPetASPC.App_Start
                     {
                         ReadPetTypeID = int.Parse(ReadPetTypeIDString);
                     }
-
                     // Read the Species ID
                     var ReadSpeciesIDString = dt.Rows[r].ItemArray[Constants.PetTypes.SpeciesNamePos].ToString();
                     var ReadSpeciesID = 0;
@@ -531,7 +527,6 @@ namespace WhatPetASPC.App_Start
                     {
                         ReadSpeciesID = getSpeciesID(ReadSpeciesIDString);
                     }
-
                     // Read the Cost ID
                     var ReadCostIDString = dt.Rows[r].ItemArray[Constants.PetTypes.CostIDPos].ToString();
                     var ReadCostID = 0;
@@ -539,7 +534,6 @@ namespace WhatPetASPC.App_Start
                     {
                         ReadCostID = getCostID(ReadCostIDString);
                     }
-
                     var pt = new Models.PetType()
                     {
                         // PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage
@@ -560,7 +554,17 @@ namespace WhatPetASPC.App_Start
                         db.AllPetTypes.Add(pt);
                     }
                 }
-                db.SaveChanges();
+                Log.Information("Attempting to save changes to PetType table...");
+                try
+                {
+                    db.SaveChanges();
+                    Log.Information("Successfully saved changes to PetType table");
+                }
+                catch (Exception e)
+                {
+                    Log.Error("Failed to save changes to PetType table");
+                    Log.Error(e.Message);
+                }
                 db.Dispose();
                 dt.Dispose();
             }
