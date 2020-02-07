@@ -275,7 +275,7 @@ namespace WhatPetASPC.App_Start
                 {
                     Log.Error("Failed to return PetClassID foreign key");
                     Log.Error(e.Message);
-                    return 0;
+                    return -1;
                 }
             }
             // Clear the Species Table
@@ -326,9 +326,13 @@ namespace WhatPetASPC.App_Start
                         PetClassID = getPetClassID(dt.Rows[r].ItemArray[Constants.Species.ClassNamePos].ToString()),
                         SpeciesName = dt.Rows[r].ItemArray[Constants.Species.SpeciesNamePos].ToString()
                     };
-                    if (sp.PetClassID != 0)
+                    if (sp.PetClassID >= 1)
                     {
                         db.AllSpecies.Add(sp);
+                        if (sp.PetClassID != -1)
+                        {
+                            Log.Information("Successfully returned PetClassID foreign key");
+                        }
                     }
                 }
                 Log.Information("Attempting to save changes to Species table...");
