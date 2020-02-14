@@ -2,21 +2,17 @@
 @{
     ViewBag.Title = "Selector";
 }
-
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-
 <script type="text/javascript">
     function ShowQuestion(ElementID) {
         document.getElementById(ElementID).style.visibility = "visible";
     };
 </script>
-
 <script type="text/javascript">
     function HideQuestion(ElementID) {
         document.getElementById(ElementID).style.visibility = "hidden";
     };
 </script>
-
 <script type="text/javascript">
     function checkQ10FieldResult() {
         ShowQuestion("Q11Block");
@@ -29,7 +25,6 @@
         }
     };
 </script>
-
 <script type="text/javascript">
     function checkQ11FieldResult() {
         ShowQuestion("Submit");
@@ -42,7 +37,6 @@
         }
     };
 </script>
-
 <script type="text/javascript">$("body").on("change", "#Q0", function  () { ShowQuestion("Q1Block");  });</script>
 <script type="text/javascript">$("body").on("change", "#Q1", function  () { ShowQuestion("Q2Block");  });</script>
 <script type="text/javascript">$("body").on("change", "#Q2", function  () { ShowQuestion("Q3Block");  });</script>
@@ -55,7 +49,6 @@
 <script type="text/javascript">$("body").on("change", "#Q9", function  () { ShowQuestion("Q10Block");  });</script>
 <script type="text/javascript">$("body").on("change", "#Q10", function () { ShowQuestion("Q11Block"); checkQ10FieldResult(); });</script>
 <script type="text/javascript">$("body").on("change", "#Q11", function () { ShowQuestion("Submit");   checkQ11FieldResult(); });</script>
-
 <h2>Selector</h2>
 <table class="table">
     <tr>
@@ -69,7 +62,6 @@
             }, new { @id = "Q0", @class = "form-control" })
         </td>
     </tr>
-
     <tr id="Q1Block" style="visibility:hidden;">
         <td id="Q1Text">@Model.ElementAt(1).QuestionText</td>
         <td>
@@ -81,7 +73,6 @@
             }, new { @id = "Q1", @class = "form-control" })
         </td>
     </tr>
-
     <tr id="Q2Block" style="visibility:hidden;">
         <td>@Model.ElementAt(2).QuestionText</td>
         <td>
@@ -93,14 +84,12 @@
             }, new { @id = "Q2", @class = "form-control" })
         </td>
     </tr>
-
     <tr id="Q3Block" style="visibility:hidden;">
         <td>@Model.ElementAt(3).QuestionText</td>
         <td>
              @Html.TextBox("GardenSize", null, new { @id = "Q3", @class = "form-control" })
         </td>
     </tr>
-
     <tr id="Q4Block" style="visibility:hidden;">
         <td>@Model.ElementAt(4).QuestionText</td>
         <td>
@@ -112,7 +101,6 @@
             }, new { @id = "Q4", @class = "form-control" })
         </td>
     </tr>
-
     <tr id="Q5Block" style="visibility:hidden;">
         <td>@Model.ElementAt(5).QuestionText</td>
         <td>
@@ -125,39 +113,36 @@
             @Html.TextBox("FoodBudget", null, new { @id = "Q6", @class = "form-control" })
         </td>
     </tr>
-
     <tr id="Q7Block" style="visibility:hidden;">
         <td>@Model.ElementAt(7).QuestionText</td>
         <td>
             @Html.DropDownList("Q7List", new List<SelectListItem>
             {
                 new SelectListItem{ Text="", Value = "" },
-                new SelectListItem{ Text="Yes", Value = "Yes" },
-                new SelectListItem{ Text="No", Value = "No" }
+                new SelectListItem{ Text="I do not know what pet I would like", Value = "None" },
+                new SelectListItem{ Text="I know roughly what pet I would like (e.g. a cat or a dog)", Value = "Some" },
+                new SelectListItem{ Text="I know exactly what pet I would like (e.g. a Burmese cat or a Labrador dog)", Value = "Full" }
             }, new { @id = "Q7", @class = "form-control" })
         </td>
     </tr>
-
     <tr id="Q8Block" style="visibility:hidden;">
         <td>@Model.ElementAt(8).QuestionText</td>
         <td>
             @Html.DropDownList("Q8List", new List<SelectListItem>
             {
                 new SelectListItem{ Text="", Value = "" },
-                new SelectListItem{ Text="Small", Value = "Small" },
-                new SelectListItem{ Text="Medium", Value = "Medium" },
+                new SelectListItem{ Text="Small (e.g. toy poodle)", Value = "Small" },
+                new SelectListItem{ Text="Medium (e.g. Labrador)", Value = "Medium" },
                 new SelectListItem{ Text="Large", Value = "Large" }
             }, new { @id = "Q8", @class = "form-control" })
         </td>
     </tr>
-
     <tr id="Q9Block" style="visibility:hidden;">
         <td>@Model.ElementAt(9).QuestionText</td>
         <td>
             @Html.TextBox("Hours", null, new { @id = "Q9", @class = "form-control" })
         </td>
     </tr>
-
     <tr id="Q10Block" style="visibility:hidden;">
         <td>@Model.ElementAt(10).QuestionText</td>
         <td>
@@ -171,9 +156,7 @@
         <td id="Q10List" style="visibility:hidden;">
             @Html.DropDownList("SpeciesID", null, htmlAttributes: new { @id = "Q10Value", @class = "form-control" })
         </td>
-
     </tr>
-
     <tr id="Q11Block" style="visibility:hidden;">
         <td>@Model.ElementAt(11).QuestionText</td>
         <td>
@@ -188,14 +171,12 @@
             @Html.DropDownList("SpeciesID", null, htmlAttributes: new { @id = "Q1Value", @class = "form-control" })
         </td>
     </tr>
-
     <tr id="Submit" style="visibility:hidden;">
         <td>
             <button type="button" onclick='javascript:ShowQuestion("ChooseText");'>Submit</button>
         </td>
     </tr>
 </table>
-
 <text id="ChooseText" style="visibility:hidden;">
     We will now choose your ideal pet
 </text>
