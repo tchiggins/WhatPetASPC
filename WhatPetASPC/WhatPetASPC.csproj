@@ -278,6 +278,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\Images.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Selector.cs" />
     <Compile Include="Controllers\CostCategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PetClassesController.cs" />
@@ -662,6 +663,8 @@
     <Content Include="Views\Questions\Edit.cshtml" />
     <Content Include="Views\Questions\Index.cshtml" />
     <Content Include="Views\Questions\Selector.cshtml" />
+    <Content Include="Views\Shared\SelectorResults.cshtml" />
+    <Content Include="Views\Questions\Results.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />

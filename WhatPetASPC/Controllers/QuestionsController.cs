@@ -14,11 +14,26 @@ namespace WhatPetASPC.Controllers
         {
             return this.View(this.db.AllQuestions.ToList());
         }
+
+        public ActionResult Results()
+        {
+            var Q1Val = TempData["Q0"].ToString();
+            return this.View(this.db.AllQuestions.ToList());
+        }
+
         public ActionResult Selector()
         {
             this.ViewBag.SpeciesID = new SelectList(this.db.AllSpecies, "SpeciesID", "SpeciesName");
             return this.View(this.db.AllQuestions.ToList());
         }
+
+        [HttpPost]
+        public ActionResult SelectorResult(string Q0Val, string Q1Val)
+        {
+            this.TempData["Q0"] = Q0Val;
+            return this.RedirectToAction("Results");
+        }
+
         // GET: Questions/Details/5
         public ActionResult Details(int? id)
         {

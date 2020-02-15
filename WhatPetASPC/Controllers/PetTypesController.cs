@@ -27,6 +27,7 @@ namespace WhatPetASPC.Controllers
             return this.View(petType);
         }
         // GET: PetTypes
+        [HttpPut]
         public ActionResult Index(int? SelectedSpecies)
         {
             // Add the All type to the species list for the pulldown menu
@@ -138,6 +139,7 @@ namespace WhatPetASPC.Controllers
             this.db.SaveChanges();
             return this.RedirectToAction("Index");
         }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -4,6 +4,11 @@
 }
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
+</script>
+
+
+
+<script type="text/javascript">
     function ShowQuestion(ElementID) {
         document.getElementById(ElementID).style.visibility = "visible";
     };
@@ -37,18 +42,27 @@
         }
     };
 </script>
-<script type="text/javascript">$("body").on("change", "#Q0", function  () { ShowQuestion("Q1Block");  });</script>
-<script type="text/javascript">$("body").on("change", "#Q1", function  () { ShowQuestion("Q2Block");  });</script>
-<script type="text/javascript">$("body").on("change", "#Q2", function  () { ShowQuestion("Q3Block");  });</script>
-<script type="text/javascript">$("body").on("change", "#Q3", function  () { ShowQuestion("Q4Block");  });</script>
-<script type="text/javascript">$("body").on("change", "#Q4", function  () { ShowQuestion("Q5Block");  });</script>
-<script type="text/javascript">$("body").on("change", "#Q5", function  () { ShowQuestion("Q6Block");  });</script>
-<script type="text/javascript">$("body").on("change", "#Q6", function  () { ShowQuestion("Q7Block");  });</script>
-<script type="text/javascript">$("body").on("change", "#Q7", function  () { ShowQuestion("Q8Block");  });</script>
-<script type="text/javascript">$("body").on("change", "#Q8", function  () { ShowQuestion("Q9Block");  });</script>
-<script type="text/javascript">$("body").on("change", "#Q9", function  () { ShowQuestion("Q10Block");  });</script>
+<script type="text/javascript">$("body").on("change", "#Q0", function () { ShowQuestion("Q1Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q1", function () { ShowQuestion("Q2Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q2", function () { ShowQuestion("Q3Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q3", function () { ShowQuestion("Q4Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q4", function () { ShowQuestion("Q5Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q5", function () { ShowQuestion("Q6Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q6", function () { ShowQuestion("Q7Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q7", function () { ShowQuestion("Q8Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q8", function () { ShowQuestion("Q9Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q9", function () { ShowQuestion("Q10Block"); });</script>
 <script type="text/javascript">$("body").on("change", "#Q10", function () { ShowQuestion("Q11Block"); checkQ10FieldResult(); });</script>
-<script type="text/javascript">$("body").on("change", "#Q11", function () { ShowQuestion("Submit");   checkQ11FieldResult(); });</script>
+<script type="text/javascript">$("body").on("change", "#Q11", function () { ShowQuestion("Submit"); checkQ11FieldResult(); });</script>
+
+<script type="text/javascript">
+    function SubmitPressed() {
+        document.getElementById("Q0Val").value = document.getElementById("Q0").value;
+        document.getElementById("Q1Val").value = document.getElementById("Q1").value;
+        ddocument.forms["SelectorForm"].submit();
+    };
+</script>
+
 <h2>Selector</h2>
 <table class="table">
     <tr>
@@ -87,7 +101,7 @@
     <tr id="Q3Block" style="visibility:hidden;">
         <td>@Model.ElementAt(3).QuestionText</td>
         <td>
-             @Html.TextBox("GardenSize", null, new { @id = "Q3", @class = "form-control" })
+            @Html.TextBox("GardenSize", null, new { @id = "Q3", @class = "form-control" })
         </td>
     </tr>
     <tr id="Q4Block" style="visibility:hidden;">
@@ -171,12 +185,17 @@
             @Html.DropDownList("SpeciesID", null, htmlAttributes: new { @id = "Q1Value", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Submit" style="visibility:hidden;">
+    <tr id="Submit" style="visibility:visible;">
         <td>
-            <button type="button" onclick='javascript:ShowQuestion("ChooseText");'>Submit</button>
+            @using (Html.BeginForm("SelectorResult", "Questions", FormMethod.Post, new { @name = "SelectorForm" }))
+            {
+                @Html.Hidden("Q0Val", null, new { @id = "Q0Val" })
+                @Html.Hidden("Q1Val", null, new { @id = "Q1Val" })
+
+                <input type="submit" value="Find My Pets!" id="SelectorSubmit" onclick="SubmitPressed()" />
+            }
         </td>
     </tr>
 </table>
-<text id="ChooseText" style="visibility:hidden;">
-    We will now choose your ideal pet
-</text>
+
+
