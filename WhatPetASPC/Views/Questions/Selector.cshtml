@@ -59,7 +59,18 @@
     function SubmitPressed() {
         document.getElementById("Q0Val").value = document.getElementById("Q0").value;
         document.getElementById("Q1Val").value = document.getElementById("Q1").value;
-        ddocument.forms["SelectorForm"].submit();
+        document.getElementById("Q2Val").value = document.getElementById("Q2").value;
+        document.getElementById("Q3Val").value = document.getElementById("Q3").value;
+        document.getElementById("Q4Val").value = document.getElementById("Q4").value;
+        document.getElementById("Q5Val").value = document.getElementById("Q5").value;
+        document.getElementById("Q6Val").value = document.getElementById("Q6").value;
+        document.getElementById("Q7Val").value = document.getElementById("Q7").value;
+        document.getElementById("Q8Val").value = document.getElementById("Q8").value;
+        document.getElementById("Q9Val").value = document.getElementById("Q9").value;
+        document.getElementById("Q10Val").value = document.getElementById("Q10").value;
+        document.getElementById("Q10ValPet").value = document.getElementById("Q10Value").value;
+        document.getElementById("Q11Val").value = document.getElementById("Q11").value;
+        document.getElementById("Q11ValPet").value = document.getElementById("Q11Value").value;
     };
 </script>
 
@@ -182,7 +193,7 @@
             }, new { @id = "Q11", @class = "form-control" })
         </td>
         <td id="Q11List" style="visibility:hidden;">
-            @Html.DropDownList("SpeciesID", null, htmlAttributes: new { @id = "Q1Value", @class = "form-control" })
+            @Html.DropDownList("SpeciesID", null, htmlAttributes: new { @id = "Q11Value", @class = "form-control" })
         </td>
     </tr>
     <tr id="Submit" style="visibility:visible;">
@@ -191,7 +202,18 @@
             {
                 @Html.Hidden("Q0Val", null, new { @id = "Q0Val" })
                 @Html.Hidden("Q1Val", null, new { @id = "Q1Val" })
-
+                @Html.Hidden("Q2Val", null, new { @id = "Q2Val" })
+                @Html.Hidden("Q3Val", null, new { @id = "Q3Val" })
+                @Html.Hidden("Q4Val", null, new { @id = "Q4Val" })
+                @Html.Hidden("Q5Val", null, new { @id = "Q5Val" })
+                @Html.Hidden("Q6Val", null, new { @id = "Q6Val" })
+                @Html.Hidden("Q7Val", null, new { @id = "Q7Val" })
+                @Html.Hidden("Q8Val", null, new { @id = "Q8Val" })
+                @Html.Hidden("Q9Val", null, new { @id = "Q9Val" })
+                @Html.Hidden("Q10Val", null, new { @id = "Q10Val" })
+                @Html.Hidden("Q10ValPet", null, new { @id = "Q10ValPet" })
+                @Html.Hidden("Q11Val", null, new { @id = "Q11Val" })
+                @Html.Hidden("Q11ValPet", null, new { @id = "Q11ValPet" })
                 <input type="submit" value="Find My Pets!" id="SelectorSubmit" onclick="SubmitPressed()" />
             }
         </td>

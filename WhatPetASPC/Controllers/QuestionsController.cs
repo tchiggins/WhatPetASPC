@@ -15,12 +15,6 @@ namespace WhatPetASPC.Controllers
             return this.View(this.db.AllQuestions.ToList());
         }
 
-        public ActionResult Results()
-        {
-            var Q1Val = TempData["Q0"].ToString();
-            return this.View(this.db.AllQuestions.ToList());
-        }
-
         public ActionResult Selector()
         {
             this.ViewBag.SpeciesID = new SelectList(this.db.AllSpecies, "SpeciesID", "SpeciesName");
@@ -28,10 +22,24 @@ namespace WhatPetASPC.Controllers
         }
 
         [HttpPost]
-        public ActionResult SelectorResult(string Q0Val, string Q1Val)
+        public ActionResult SelectorResult( string Q0Val, string Q1Val, string Q2Val, string Q3Val, string Q4Val, string Q5Val, string Q6Val, string Q7Val, string Q8Val, string Q9Val, string Q10Val, string Q10ValPet, string Q11Val, string Q11ValPet)
         {
             this.TempData["Q0"] = Q0Val;
-            return this.RedirectToAction("Results");
+            this.TempData["Q1"] = Q1Val;
+            this.TempData["Q2"] = Q2Val;
+            this.TempData["Q3"] = Q3Val;
+            this.TempData["Q4"] = Q4Val;
+            this.TempData["Q5"] = Q5Val;
+            this.TempData["Q6"] = Q6Val;
+            this.TempData["Q7"] = Q7Val;
+            this.TempData["Q8"] = Q8Val;
+            this.TempData["Q9"] = Q9Val;
+            this.TempData["Q10"] = Q10Val;
+            this.TempData["Q10Value"] = Q10ValPet;
+            this.TempData["Q11"] = Q11Val;
+            this.TempData["Q11Value"] = Q11ValPet;
+
+            return this.RedirectToAction("Results", "PetTypes");
         }
 
         // GET: Questions/Details/5

@@ -663,8 +663,6 @@
     <Content Include="Views\Questions\Edit.cshtml" />
     <Content Include="Views\Questions\Index.cshtml" />
     <Content Include="Views\Questions\Selector.cshtml" />
-    <Content Include="Views\Shared\SelectorResults.cshtml" />
-    <Content Include="Views\Questions\Results.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />
