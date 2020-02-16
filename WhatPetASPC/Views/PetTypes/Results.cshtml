@@ -1,0 +1,79 @@
+﻿@model IEnumerable<WhatPetASPC.Models.PetType>
+
+@{
+    ViewBag.Title = "Results";
+}
+
+<h2>Results</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Species.SpeciesName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetSolitary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetIndoors)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetOutdoors)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetWalk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetDiet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetImage)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Species.SpeciesName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetSolitary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetIndoors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetOutdoors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetWalk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetDiet)
+            </td>
+            <td>
+                @{String Image = ("../Content/Images/pets/" + item.PetImage);}
+
+                @* Show a small image that displays the ShowImage view when clicked *@
+                <a href="@Url.Action("ShowImage", "PetTypes", new { id = item.PetTypeID })"><img alt="@Image" src="@Url.Content(Image)" style="height:100px;"></a>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PetTypeID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PetTypeID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PetTypeID })
+            </td>
+        </tr>
+    }
+</table>

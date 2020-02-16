@@ -12,6 +12,14 @@ namespace WhatPetASPC.Controllers
     public class PetTypesController : Controller
     {
         private PetDB db = new PetDB();
+
+        public ActionResult Results()
+        {
+            string Q0 = this.TempData["Q0"].ToString();
+
+            return this.View(this.db.AllPetTypes.ToList());
+        }
+
         // Show single image
         public ActionResult ShowImage(int? id)
         {
@@ -27,7 +35,6 @@ namespace WhatPetASPC.Controllers
             return this.View(petType);
         }
         // GET: PetTypes
-        [HttpPut]
         public ActionResult Index(int? SelectedSpecies)
         {
             // Add the All type to the species list for the pulldown menu
