@@ -22,8 +22,9 @@ namespace WhatPetASPC.Controllers
         }
 
         [HttpPost]
-        public ActionResult SelectorResult( string Q0Val, string Q1Val, string Q2Val, string Q3Val, string Q4Val, string Q5Val, string Q6Val, string Q7Val, string Q8Val, string Q9Val, string Q10Val, string Q10ValPet, string Q11Val, string Q11ValPet)
+        public ActionResult SelectorResult(string Q0Val, string Q1Val, string Q2Val, string Q3Val, string Q4Val, string Q5Val, string Q6Val, string Q7Val, string Q8Val, string Q9Val, string Q10Val, string Q10ValPet, string Q11Val, string Q11ValPet)
         {
+            // Put the answers in the TempData area so they can be shared with the PetTypes controller
             this.TempData["Q0"] = Q0Val;
             this.TempData["Q1"] = Q1Val;
             this.TempData["Q2"] = Q2Val;

@@ -21,11 +21,11 @@
                     <div class="nav-link">@Html.ActionLink("About", "About", "Home")</div>
                 </li>
                 <li class="nav-item active">
-                    <div class="nav-link">@Html.ActionLink("Contact", "Contact", "Home")</div>
+                    <div class="nav-link">@Html.ActionLink("Find Your Pet", "Selector", "Questions")</div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Data
+                        Admin
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @*<div class="dropdown-divider"></div>*@
@@ -34,13 +34,11 @@
                         <div class="dropdown-item">@Html.ActionLink("Pet Types", "Index", "PetTypes")</div>
                         <div class="dropdown-item">@Html.ActionLink("Cost Categories", "Index", "CostCategories")</div>
                         <div class="dropdown-item">@Html.ActionLink("Questions", "Index", "Questions")</div>
-                        <div class="dropdown-item">@Html.ActionLink("Selector", "Selector", "Questions")</div>
-
                     </div>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Login" aria-label="Login">
+                <input class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="Login">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
             </form>
         </div>

@@ -15,8 +15,66 @@ namespace WhatPetASPC.Controllers
 
         public ActionResult Results()
         {
-            string Q0 = this.TempData["Q0"].ToString();
+            // Get the answers that have been put in the TempData area from the Questions Controller
+            string Q0, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q10Value, Q11, Q11Value;
+            if (this.TempData["Q0"] != null)
+            {
+                Q0 = this.TempData["Q0"].ToString();
+            }
+            if (this.TempData["Q1"] != null)
+            {
+                Q1 = this.TempData["Q1"].ToString();
+            }
+            if (this.TempData["Q2"] != null)
+            {
+                Q2 = this.TempData["Q2"].ToString();
+            }
+            if (this.TempData["Q3"] != null)
+            {
+                Q3 = this.TempData["Q3"].ToString();
+            }
+            if (this.TempData["Q4"] != null)
+            {
+                Q4 = this.TempData["Q4"].ToString();
+            }
+            if (this.TempData["Q5"] != null)
+            {
+                Q5 = this.TempData["Q5"].ToString();
+            }
+            if (this.TempData["Q6"] != null)
+            {
+                Q6 = this.TempData["Q6"].ToString();
+            }
+            if (this.TempData["Q7"] != null)
+            {
+                Q7 = this.TempData["Q7"].ToString();
+            }
+            if (this.TempData["Q8"] != null)
+            {
+                Q8 = this.TempData["Q8"].ToString();
+            }
+            if (this.TempData["Q9"] != null)
+            {
+                Q9 = this.TempData["Q9"].ToString();
+            }
+            if (this.TempData["Q10"] != null)
+            {
+                Q10 = this.TempData["Q10"].ToString();
+            }
+            if (this.TempData["Q10Value"] != null)
+            {
+                Q10Value = this.TempData["Q10Value"].ToString();
+            }
+            if (this.TempData["Q11"] != null)
+            {
+                Q11 = this.TempData["Q11"].ToString();
+            }
+            if (this.TempData["Q11Value"] != null)
+            {
+                Q11Value = this.TempData["Q11Value"].ToString();
+            }
 
+            // Now run the algo to work out which pets fit the bill
             return this.View(this.db.AllPetTypes.ToList());
         }
 

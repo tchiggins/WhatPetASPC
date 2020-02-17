@@ -4,7 +4,7 @@
     ViewBag.Title = "Results";
 }
 
-<h2>Results</h2>
+<h2>Your ideal Pets</h2>
 <table class="table">
     <tr>
         <th>
@@ -68,11 +68,6 @@
 
                 @* Show a small image that displays the ShowImage view when clicked *@
                 <a href="@Url.Action("ShowImage", "PetTypes", new { id = item.PetTypeID })"><img alt="@Image" src="@Url.Content(Image)" style="height:100px;"></a>
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.PetTypeID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.PetTypeID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.PetTypeID })
             </td>
         </tr>
     }
