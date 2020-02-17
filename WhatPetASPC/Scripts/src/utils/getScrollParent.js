@@ -1,5 +1,6 @@
 import getStyleComputedProperty from './getStyleComputedProperty';
 import getParentNode from './getParentNode';
+
 /**
  * Returns the scrolling parent of the given element
  * @method
@@ -12,6 +13,7 @@ export default function getScrollParent(element) {
   if (!element) {
     return document.body
   }
+
   switch (element.nodeName) {
     case 'HTML':
     case 'BODY':
@@ -19,10 +21,12 @@ export default function getScrollParent(element) {
     case '#document':
       return element.body
   }
+
   // Firefox want us to check `-x` and `-y` variations as well
   const { overflow, overflowX, overflowY } = getStyleComputedProperty(element);
   if (/(auto|scroll|overlay)/.test(overflow + overflowY + overflowX)) {
     return element;
   }
+
   return getScrollParent(getParentNode(element));
 }

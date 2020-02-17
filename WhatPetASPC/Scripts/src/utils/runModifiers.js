@@ -1,6 +1,7 @@
 import isFunction from './isFunction';
 import findIndex from './findIndex';
 import getClientRect from '../utils/getClientRect';
+
 /**
  * Loop trough the list of modifiers and run them in order,
  * each of them will then edit the data object.
@@ -15,6 +16,7 @@ export default function runModifiers(modifiers, data, ends) {
   const modifiersToRun = ends === undefined
     ? modifiers
     : modifiers.slice(0, findIndex(modifiers, 'name', ends));
+
   modifiersToRun.forEach(modifier => {
     if (modifier['function']) { // eslint-disable-line dot-notation
       console.warn('`modifier.function` is deprecated, use `modifier.fn`!');
@@ -26,8 +28,10 @@ export default function runModifiers(modifiers, data, ends) {
       // mess with these values
       data.offsets.popper = getClientRect(data.offsets.popper);
       data.offsets.reference = getClientRect(data.offsets.reference);
+
       data = fn(data, modifier);
     }
   });
+
   return data;
 }

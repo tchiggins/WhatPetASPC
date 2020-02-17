@@ -1,5 +1,6 @@
 import getStyleComputedProperty from './getStyleComputedProperty';
 import getParentNode from './getParentNode';
+
 /**
  * Check if the given element is fixed or is inside a fixed parent
  * @method

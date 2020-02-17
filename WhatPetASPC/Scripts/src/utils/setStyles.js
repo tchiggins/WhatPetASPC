@@ -1,4 +1,5 @@
 import isNumeric from './isNumeric';
+
 /**
  * Set the style to the given popper
  * @method

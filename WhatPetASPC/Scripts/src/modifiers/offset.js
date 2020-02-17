@@ -1,6 +1,7 @@
 import isNumeric from '../utils/isNumeric';
 import getClientRect from '../utils/getClientRect';
 import find from '../utils/find';
+
 /**
  * Converts a string containing value + unit into a px value number
  * @function
@@ -18,10 +19,12 @@ export function toValue(str, measurement, popperOffsets, referenceOffsets) {
   const split = str.match(/((?:\-|\+)?\d*\.?\d*)(.*)/);
   const value = +split[1];
   const unit = split[2];
+
   // If it's not a number it's an operator, I guess
   if (!value) {
     return str;
   }
+
   if (unit.indexOf('%') === 0) {
     let element;
     switch (unit) {
@@ -33,6 +36,7 @@ export function toValue(str, measurement, popperOffsets, referenceOffsets) {
       default:
         element = referenceOffsets;
     }
+
     const rect = getClientRect(element);
     return rect[measurement] / 100 * value;
   } else if (unit === 'vh' || unit === 'vw') {
@@ -56,6 +60,7 @@ export function toValue(str, measurement, popperOffsets, referenceOffsets) {
     return value;
   }
 }
+
 /**
  * Parse an `offset` string to extrapolate `x` and `y` numeric offsets.
  * @function
@@ -74,23 +79,28 @@ export function parseOffset(
   basePlacement
 ) {
   const offsets = [0, 0];
+
   // Use height if placement is left or right and index is 0 otherwise use width
   // in this way the first offset will use an axis and the second one
   // will use the other one
   const useHeight = ['right', 'left'].indexOf(basePlacement) !== -1;
+
   // Split the offset string to obtain a list of values and operands
   // The regex addresses values with the plus or minus sign in front (+10, -20, etc)
   const fragments = offset.split(/(\+|\-)/).map(frag => frag.trim());
+
   // Detect if the offset string contains a pair of values or a single one
   // they could be separated by comma or space
   const divider = fragments.indexOf(
     find(fragments, frag => frag.search(/,|\s/) !== -1)
   );
+
   if (fragments[divider] && fragments[divider].indexOf(',') === -1) {
     console.warn(
       'Offsets separated by white space(s) are deprecated, use a comma (,) instead.'
     );
   }
+
   // If divider is found, we divide the list of values and operands to divide
   // them by ofset X and Y.
   const splitRegex = /\s*,\s*|\s+/;
@@ -104,6 +114,7 @@ export function parseOffset(
         ),
       ]
     : [fragments];
+
   // Convert the values with units to absolute pixels to allow our computations
   ops = ops.map((op, index) => {
     // Most of the units rely on the orientation of the popper
@@ -132,6 +143,7 @@ export function parseOffset(
         .map(str => toValue(str, measurement, popperOffsets, referenceOffsets))
     );
   });
+
   // Loop trough the offsets arrays and execute the operations
   ops.forEach((op, index) => {
     op.forEach((frag, index2) => {
@@ -142,6 +154,7 @@ export function parseOffset(
   });
   return offsets;
 }
+
 /**
  * @function
  * @memberof Modifiers
@@ -154,12 +167,14 @@ export function parseOffset(
 export default function offset(data, { offset }) {
   const { placement, offsets: { popper, reference } } = data;
   const basePlacement = placement.split('-')[0];
+
   let offsets;
   if (isNumeric(+offset)) {
     offsets = [+offset, 0];
   } else {
     offsets = parseOffset(offset, popper, reference, basePlacement);
   }
+
   if (basePlacement === 'left') {
     popper.top += offsets[0];
     popper.left -= offsets[1];
@@ -173,6 +188,7 @@ export default function offset(data, { offset }) {
     popper.left += offsets[0];
     popper.top += offsets[1];
   }
+
   data.popper = popper;
   return data;
 }

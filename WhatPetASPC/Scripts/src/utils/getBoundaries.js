@@ -7,6 +7,7 @@ import getViewportOffsetRectRelativeToArtbitraryNode from './getViewportOffsetRe
 import getWindowSizes from './getWindowSizes';
 import isFixed from './isFixed';
 import getFixedPositionOffsetParent from './getFixedPositionOffsetParent';
+
 /**
  * Computed the boundaries limits and return them
  * @method
@@ -26,12 +27,15 @@ export default function getBoundaries(
   fixedPosition = false
 ) {
   // NOTE: 1 DOM access here
+
   let boundaries = { top: 0, left: 0 };
   const offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, getReferenceNode(reference));
+
   // Handle viewport case
   if (boundariesElement === 'viewport' ) {
     boundaries = getViewportOffsetRectRelativeToArtbitraryNode(offsetParent, fixedPosition);
   }
+
   else {
     // Handle other cases based on DOM element used as boundaries
     let boundariesNode;
@@ -45,11 +49,13 @@ export default function getBoundaries(
     } else {
       boundariesNode = boundariesElement;
     }
+
     const offsets = getOffsetRectRelativeToArbitraryNode(
       boundariesNode,
       offsetParent,
       fixedPosition
     );
+
     // In case of HTML, we need a different computation
     if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
       const { height, width } = getWindowSizes(popper.ownerDocument);
@@ -62,6 +68,7 @@ export default function getBoundaries(
       boundaries = offsets;
     }
   }
+
   // Add paddings
   padding = padding || 0;
   const isPaddingNumber = typeof padding === 'number';
@@ -69,5 +76,6 @@ export default function getBoundaries(
   boundaries.top += isPaddingNumber ? padding : padding.top || 0; 
   boundaries.right -= isPaddingNumber ? padding : padding.right || 0; 
   boundaries.bottom -= isPaddingNumber ? padding : padding.bottom || 0; 
+
   return boundaries;
 }

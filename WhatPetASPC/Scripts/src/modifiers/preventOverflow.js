@@ -1,6 +1,7 @@
 import getOffsetParent from '../utils/getOffsetParent';
 import getBoundaries from '../utils/getBoundaries';
 import getSupportedPropertyName from '../utils/getSupportedPropertyName';
+
 /**
  * @function
  * @memberof Modifiers
@@ -11,12 +12,14 @@ import getSupportedPropertyName from '../utils/getSupportedPropertyName';
 export default function preventOverflow(data, options) {
   let boundariesElement =
     options.boundariesElement || getOffsetParent(data.instance.popper);
+
   // If offsetParent is the reference element, we really want to
   // go one step up and use the next offsetParent as reference to
   // avoid to make this modifier completely useless and look like broken
   if (data.instance.reference === boundariesElement) {
     boundariesElement = getOffsetParent(boundariesElement);
   }
+
   // NOTE: DOM access here
   // resets the popper's position so that the document size can be calculated excluding
   // the size of the popper element itself
@@ -26,6 +29,7 @@ export default function preventOverflow(data, options) {
   popperStyles.top = '';
   popperStyles.left = '';
   popperStyles[transformProp] = '';
+
   const boundaries = getBoundaries(
     data.instance.popper,
     data.instance.reference,
@@ -33,14 +37,18 @@ export default function preventOverflow(data, options) {
     boundariesElement,
     data.positionFixed
   );
+
   // NOTE: DOM access here
   // restores the original style properties after the offsets have been computed
   popperStyles.top = top;
   popperStyles.left = left;
   popperStyles[transformProp] = transform;
+
   options.boundaries = boundaries;
+
   const order = options.priority;
   let popper = data.offsets.popper;
+
   const check = {
     primary(placement) {
       let value = popper[placement];
@@ -68,11 +76,14 @@ export default function preventOverflow(data, options) {
       return { [mainSide]: value };
     },
   };
+
   order.forEach(placement => {
     const side =
       ['left', 'top'].indexOf(placement) !== -1 ? 'primary' : 'secondary';
     popper = { ...popper, ...check[side](placement) };
   });
+
   data.offsets.popper = popper;
+
   return data;
 }

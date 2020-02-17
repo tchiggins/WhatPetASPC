@@ -1,4 +1,5 @@
 import getOffsetParent from './getOffsetParent';
+
 export default function isOffsetContainer(element) {
   const { nodeName } = element;
   if (nodeName === 'BODY') {

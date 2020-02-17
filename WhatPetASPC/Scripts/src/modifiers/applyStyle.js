@@ -2,6 +2,7 @@ import setStyles from '../utils/setStyles';
 import setAttributes from '../utils/setAttributes';
 import getReferenceOffsets from '../utils/getReferenceOffsets';
 import computeAutoPlacement from '../utils/computeAutoPlacement';
+
 /**
  * @function
  * @memberof Modifiers
@@ -17,15 +18,19 @@ export default function applyStyle(data) {
   // Be aware, modifiers could override the properties defined in the previous
   // lines of this modifier!
   setStyles(data.instance.popper, data.styles);
+
   // any property present in `data.attributes` will be applied to the popper,
   // they will be set as HTML attributes of the element
   setAttributes(data.instance.popper, data.attributes);
+
   // if arrowElement is defined and arrowStyles has some properties
   if (data.arrowElement && Object.keys(data.arrowStyles).length) {
     setStyles(data.arrowElement, data.arrowStyles);
   }
+
   return data;
 }
+
 /**
  * Set the x-placement attribute before everything else because it could be used
  * to add margins to the popper margins needs to be calculated to get the
@@ -45,6 +50,7 @@ export function applyStyleOnLoad(
 ) {
   // compute reference element offsets
   const referenceOffsets = getReferenceOffsets(state, popper, reference, options.positionFixed);
+
   // compute auto placement, store placement inside the data object,
   // modifiers will be able to edit `placement` if needed
   // and refer to originalPlacement to know the original value
@@ -56,9 +62,12 @@ export function applyStyleOnLoad(
     options.modifiers.flip.boundariesElement,
     options.modifiers.flip.padding
   );
+
   popper.setAttribute('x-placement', placement);
+
   // Apply `position` to popper before anything else because
   // without the position applied we can't guarantee correct computations
   setStyles(popper, { position: options.positionFixed ? 'fixed' : 'absolute' });
+
   return options;
 }
