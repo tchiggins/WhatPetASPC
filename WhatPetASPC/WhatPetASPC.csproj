@@ -569,9 +569,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\accent.png" />
     <Content Include="Content\Images\bullet.png" />
-    <Content Include="Content\Images\HomePageImage.png" />
     <Content Include="Content\Images\Cat_Burmese.jpeg" />
     <Content Include="Content\Images\heroAccent.png" />
+    <Content Include="Content\Images\HomePageImage.jpg" />
     <Content Include="Content\Images\logo.jpeg" />
     <Content Include="Content\Images\orderedList0.png" />
     <Content Include="Content\Images\orderedList1.png" />
