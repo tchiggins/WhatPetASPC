@@ -10,7 +10,6 @@ namespace WhatPetASPC.DAL
         public DbSet<PetClass> AllPetClasses { get; set; }
         public DbSet<Species> AllSpecies { get; set; }
         public DbSet<PetType> AllPetTypes { get; set; }
-        public DbSet<Questions> AllQuestions { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             Contract.Requires(modelBuilder != null);

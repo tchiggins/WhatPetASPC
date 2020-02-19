@@ -1,0 +1,245 @@
+﻿@model WhatPetASPC.Models.PetType
+@{
+    ViewBag.Title = "Selector";
+}
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+</script>
+
+
+
+<script type="text/javascript">
+    function ShowQuestion(ElementID) {
+        document.getElementById(ElementID).style.visibility = "visible";
+    };
+</script>
+<script type="text/javascript">
+    function HideQuestion(ElementID) {
+        document.getElementById(ElementID).style.visibility = "hidden";
+    };
+</script>
+
+<script type="text/javascript">
+    function checkQ3FieldResult() {
+        var result = document.getElementById("Q3").value;
+        if (result == "Yes") {
+            ShowQuestion("Q3bBlock");
+            HideQuestion("Q4Block");
+        }
+        else {
+            HideQuestion("Q3bBlock");
+            ShowQuestion("Q4Block");
+        }
+    };
+</script>
+
+<script type="text/javascript">
+    function checkQ9FieldResult() {
+        var result = document.getElementById("Q9").value;
+        if (result == "Yes") {
+            HideQuestion("Q10Block");
+            ShowQuestion("Q9Value");
+        }
+        else {
+            ShowQuestion("Q10Block");
+            HideQuestion("Q9Value");
+        }
+    };
+</script>
+<script type="text/javascript">
+    function checkQ10FieldResult() {
+        var result = document.getElementById("Q10").value;
+        if (result == "Yes") {
+            ShowQuestion("Q10Value");
+            HideQuestion("Submit");
+        }
+        else {
+            HideQuestion("Q10Value");
+            ShowQuestion("Submit");
+        }
+    };
+</script>
+<script type="text/javascript">$("body").on("change", "#Q1", function () { ShowQuestion("Q2Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q2", function () { ShowQuestion("Q3Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q3", function () { checkQ3FieldResult(); });</script>
+<script type="text/javascript">$("body").on("change", "#Q3b", function () { ShowQuestion("Q4Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q4", function () { ShowQuestion("Q5Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q5", function () { ShowQuestion("Q6Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q6", function () { ShowQuestion("Q7Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q7", function () { ShowQuestion("Q8Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q8", function () { ShowQuestion("Q9Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q9", function () { checkQ9FieldResult(); });</script>
+<script type="text/javascript">$("body").on("change", "#Q9b", function () { ShowQuestion("Q10Block"); });</script>
+<script type="text/javascript">$("body").on("change", "#Q10", function () { checkQ10FieldResult(); });</script>
+<script type="text/javascript">$("body").on("change", "#Q10b", function () { ShowQuestion("Submit"); });</script>
+
+<script type="text/javascript">
+    function SubmitPressed() {
+        document.getElementById("Q1Val").value = document.getElementById("Q1").value;
+        document.getElementById("Q2Val").value = document.getElementById("Q2").value;
+        document.getElementById("Q3Val").value = document.getElementById("Q3").value;
+        document.getElementById("Q3bVal").value = document.getElementById("Q3b").value;
+        document.getElementById("Q4Val").value = document.getElementById("Q4").value;
+        document.getElementById("Q5Val").value = document.getElementById("Q5").value;
+        document.getElementById("Q6Val").value = document.getElementById("Q6").value;
+        document.getElementById("Q7Val").value = document.getElementById("Q7").value;
+        document.getElementById("Q8Val").value = document.getElementById("Q8").value;
+        document.getElementById("Q9Val").value = document.getElementById("Q9").value;
+        document.getElementById("Q10Val").value = document.getElementById("Q10").value;
+        document.getElementById("Q10bVal").value = document.getElementById("Q10b").value;
+        document.getElementById("Q11Val").value = document.getElementById("Q11").value;
+        document.getElementById("Q11bVal").value = document.getElementById("Q11b").value;
+    };
+</script>
+
+@*
+    1 Are you permitted to have pets at your property?
+    2 Do you live in a house or a flat?
+    3 Do you have access to a garden/yard or similar outside space?
+    3b How big is this outside space?
+    5 Do you have any animal-based allergies?
+    6 What is your budget for purchasing your pet?
+    7 What is your budget per month for ongoing costs for your pet?
+    8 How many hours during the daytime are you willing to dedicate solely to your pet?
+    9 What size of pet would you prefer?
+    10 Do you have an idea of what pet you want?
+    11 Do you have any existing pets?
+*@
+
+<h2>Selector</h2>
+<table class="table">
+    <tr id="Q1Block" style="visibility:visible;">
+        <td>"Are you permitted to have pets at your property?"</td>
+        <td>
+            @Html.DropDownList("Q1List", new List<SelectListItem>
+            {
+                new SelectListItem{ Text="", Value = "" },
+                new SelectListItem{ Text="Yes", Value = "Yes" },
+                new SelectListItem{ Text="No", Value = "No" }
+            }, new { @id = "Q1", @class = "form-control" })
+        </td>
+    </tr>
+    <tr id="Q2Block" style="visibility:hidden;">
+        <td>"Do you live in a house or a flat?"</td>
+        <td>
+            @Html.DropDownList("Q2List", new List<SelectListItem>
+            {
+                new SelectListItem{ Text="", Value = "" },
+                new SelectListItem{ Text="House", Value = "House" },
+                new SelectListItem{ Text="Flat", Value = "Flat" }
+            }, new { @id = "Q2", @class = "form-control" })
+        </td>
+    </tr>
+    <tr id="Q3Block" style="visibility:hidden;">
+        <td>"Do you have access to a garden/yard or similar outside space?"</td>
+        <td>
+            @Html.DropDownList("Q3List", new List<SelectListItem>
+            {
+                new SelectListItem{ Text="", Value = "" },
+                new SelectListItem{ Text="Yes", Value = "Yes" },
+                new SelectListItem{ Text="No", Value = "No" }
+            }, new { @id = "Q3", @class = "form-control" })
+        </td>
+    </tr>
+    <tr id="Q3bBlock" style="visibility:hidden;">
+        <td>"How big is this outside space?"</td>
+        <td>
+            @Html.TextBox("GardenSize", null, new { @id = "Q3b", @class = "form-control" })
+        </td>
+    </tr>
+    <tr id="Q4Block" style="visibility:hidden;">
+        <td>"Do you have any animal-based allergies?"</td>
+        <td>
+            @Html.DropDownList("Q4List", new List<SelectListItem>
+            {
+                new SelectListItem{ Text="", Value = "" },
+                new SelectListItem{ Text="Yes", Value = "Yes" },
+                new SelectListItem{ Text="No", Value = "No" }
+            }, new { @id = "Q4", @class = "form-control" })
+        </td>
+    </tr>
+    <tr id="Q5Block" style="visibility:hidden;">
+        <td>"What is your budget for purchasing your pet?"</td>
+        <td>
+            @Html.TextBox("PetBudget", null, new { @id = "Q5", @class = "form-control" })
+        </td>
+    </tr>
+    <tr id="Q6Block" style="visibility:hidden;">
+        <td>"What is your budget per month for ongoing costs for your pet?"</td>
+        <td>
+            @Html.TextBox("FoodBudget", null, new { @id = "Q6", @class = "form-control" })
+        </td>
+    </tr>
+    <tr id="Q7Block" style="visibility:hidden;">
+        <td>"How many hours during the daytime are you willing to dedicate solely to your pet?"</td>
+        <td>
+            @Html.TextBox("Hours", null, new { @id = "Q7", @class = "form-control" })
+        </td>
+    </tr>
+    <tr id="Q8Block" style="visibility:hidden;">
+        <td>"What size of pet would you prefer?"</td>
+        <td>
+            @Html.DropDownList("Q8List", new List<SelectListItem>
+            {
+                new SelectListItem{ Text="", Value = "" },
+                new SelectListItem{ Text="Small (e.g. toy poodle)", Value = "Small" },
+                new SelectListItem{ Text="Medium (e.g. Labrador)", Value = "Medium" },
+                new SelectListItem{ Text="Large (e.g. Great Dane)", Value = "Large" }
+            }, new { @id = "Q8", @class = "form-control" })
+        </td>
+    </tr>
+    <tr id="Q9Block" style="visibility:hidden;">
+        <td>"Do you have an idea of what pet you want?"</td>
+        <td>
+            @Html.DropDownList("Q9List", new List<SelectListItem>
+            {
+                new SelectListItem{ Text="", Value = "" },
+                new SelectListItem{ Text="Yes", Value = "Yes" },
+                new SelectListItem{ Text="No", Value = "No" }
+            }, new { @id = "Q9", @class = "form-control" })
+        </td>
+        <td id="Q9Value" style="visibility:hidden;">
+            @Html.DropDownList("SpeciesID", null, htmlAttributes: new { @id = "Q9b", @class = "form-control" })
+        </td>
+    </tr>
+    <tr id="Q10Block" style="visibility:hidden;">
+        <td>"Do you have any existing pets?"</td>
+        <td>
+            @Html.DropDownList("Q10List", new List<SelectListItem>
+            {
+                new SelectListItem{ Text="", Value = "" },
+                new SelectListItem{ Text="Yes", Value = "Yes" },
+                new SelectListItem{ Text="No", Value = "No" }
+            }, new { @id = "Q10", @class = "form-control" })
+        </td>
+        <td id="Q10Value" style="visibility:hidden;">
+            @Html.DropDownList("SpeciesID", null, htmlAttributes: new { @id = "Q10b", @class = "form-control" })
+        </td>
+    </tr>
+    <tr id="Submit" style="visibility:hidden;">
+        <td>
+            @using (Html.BeginForm("SelectorResult", "PetTypes", FormMethod.Post, new { @name = "SelectorForm" }))
+            {
+                @Html.Hidden("Q0Val", null, new { @id = "Q0Val" })
+                @Html.Hidden("Q1Val", null, new { @id = "Q1Val" })
+                @Html.Hidden("Q2Val", null, new { @id = "Q2Val" })
+                @Html.Hidden("Q3Val", null, new { @id = "Q3Val" })
+                @Html.Hidden("Q3bVal", null, new { @id = "Q3bVal" })
+                @Html.Hidden("Q4Val", null, new { @id = "Q4Val" })
+                @Html.Hidden("Q5Val", null, new { @id = "Q5Val" })
+                @Html.Hidden("Q6Val", null, new { @id = "Q6Val" })
+                @Html.Hidden("Q7Val", null, new { @id = "Q7Val" })
+                @Html.Hidden("Q8Val", null, new { @id = "Q8Val" })
+                @Html.Hidden("Q9Val", null, new { @id = "Q9Val" })
+                @Html.Hidden("Q10Val", null, new { @id = "Q10Val" })
+                @Html.Hidden("Q10bVal", null, new { @id = "Q10bVal" })
+                @Html.Hidden("Q11Val", null, new { @id = "Q11Val" })
+                @Html.Hidden("Q11bVal", null, new { @id = "Q11bVal" })
+                <input type="submit" value="Find My Pets!" id="SelectorSubmit" onclick="SubmitPressed()" class="form-control" />
+            }
+        </td>
+    </tr>
+</table>
+
+

@@ -16,7 +16,7 @@ namespace WhatPetASPC.Controllers
         public ActionResult Results()
         {
             // Get the answers that have been put in the TempData area from the Questions Controller
-            string Q0, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q10Value, Q11, Q11Value;
+            string Q0, Q1, Q2, Q3, Q3b, Q4, Q5, Q6, Q7, Q8, Q9, Q9b, Q10, Q10b;
             if (this.TempData["Q0"] != null)
             {
                 Q0 = this.TempData["Q0"].ToString();
@@ -32,6 +32,10 @@ namespace WhatPetASPC.Controllers
             if (this.TempData["Q3"] != null)
             {
                 Q3 = this.TempData["Q3"].ToString();
+            }
+            if (this.TempData["Q3b"] != null)
+            {
+                Q3b = this.TempData["Q3b"].ToString();
             }
             if (this.TempData["Q4"] != null)
             {
@@ -57,25 +61,49 @@ namespace WhatPetASPC.Controllers
             {
                 Q9 = this.TempData["Q9"].ToString();
             }
+            if (this.TempData["Q9b"] != null)
+            {
+                Q9b = this.TempData["Q9b"].ToString();
+            }
             if (this.TempData["Q10"] != null)
             {
                 Q10 = this.TempData["Q10"].ToString();
             }
-            if (this.TempData["Q10Value"] != null)
+            if (this.TempData["Q10b"] != null)
             {
-                Q10Value = this.TempData["Q10Value"].ToString();
-            }
-            if (this.TempData["Q11"] != null)
-            {
-                Q11 = this.TempData["Q11"].ToString();
-            }
-            if (this.TempData["Q11Value"] != null)
-            {
-                Q11Value = this.TempData["Q11Value"].ToString();
+                Q10b = this.TempData["Q10b"].ToString();
             }
 
             // Now run the algo to work out which pets fit the bill
             return this.View(this.db.AllPetTypes.ToList());
+        }
+
+        // Show the pet selector
+        public ActionResult Selector()
+        {
+            this.ViewBag.SpeciesID = new SelectList(this.db.AllSpecies, "SpeciesID", "SpeciesName");
+            return this.View();
+        }
+
+        [HttpPost]
+        public ActionResult SelectorResult(string Q0Val, string Q1Val, string Q2Val, string Q3Val, string Q3bVal, string Q4Val, string Q5Val, string Q6Val, string Q7Val, string Q8Val, string Q9Val, string Q9bVal, string Q10Val)
+        {
+            // Put the answers in the TempData area so they can be shared with the PetTypes controller
+            this.TempData["Q0"] = Q0Val;
+            this.TempData["Q1"] = Q1Val;
+            this.TempData["Q2"] = Q2Val;
+            this.TempData["Q3"] = Q3Val;
+            this.TempData["Q3"] = Q3bVal;
+            this.TempData["Q4"] = Q4Val;
+            this.TempData["Q5"] = Q5Val;
+            this.TempData["Q6"] = Q6Val;
+            this.TempData["Q7"] = Q7Val;
+            this.TempData["Q8"] = Q8Val;
+            this.TempData["Q9"] = Q9Val;
+            this.TempData["Q10"] = Q9bVal;
+            this.TempData["Q10Value"] = Q10Val;
+
+            return this.RedirectToAction("Results", "PetTypes");
         }
 
         // Show single image

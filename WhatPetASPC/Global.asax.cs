@@ -27,8 +27,6 @@ namespace WhatPetASPC
             DataSetup.Species.CSVImport();
             DataSetup.PetTypes.ClearTable();
             DataSetup.PetTypes.CSVImport();
-            DataSetup.Questions.ClearTable();
-            DataSetup.Questions.CSVImport();
         }
     }
 }
