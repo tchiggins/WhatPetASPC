@@ -16,7 +16,7 @@ namespace WhatPetASPC.Controllers
         public ActionResult Results()
         {
             // Get the answers that have been put in the TempData area from the Questions Controller
-            string Q0, Q1, Q2, Q3, Q3b, Q4, Q4b, Q5, Q6, Q7, Q8, Q9, Q9b, Q10, Q10b;
+            string Q0, Q1, Q2, Q3, Q3b, Q4, Q4b, Q5=null, Q6, Q7, Q8, Q9, Q9b, Q10, Q10b;
             if (this.TempData["Q0"] != null)
             {
                 Q0 = this.TempData["Q0"].ToString();
@@ -78,8 +78,14 @@ namespace WhatPetASPC.Controllers
                 Q10b = this.TempData["Q10b"].ToString();
             }
 
+            // Select the list of items that match the pulldown or all if All is selected
+            IQueryable<PetType> petTypeList = this.db.AllPetTypes
+                                .Where(c => c.PetCost == Q5)
+                                .OrderBy(d => d.SpeciesID);
+            var sql = petTypeList.ToString();
+
             // Now run the algo to work out which pets fit the bill
-            return this.View(this.db.AllPetTypes.ToList());
+            return this.View(petTypeList.ToList());
         }
 
         // Show the pet selector
