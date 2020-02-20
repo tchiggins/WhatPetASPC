@@ -252,74 +252,7 @@ namespace WhatPetASPC.App_Start
                 dt.Dispose();
             }
         }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Error prevention")]
-        public static class CostCategories
-        {
-            // Clear the CostCategories table
-            public static void ClearTable()
-            {
-                var db = new DAL.PetDB();
-                try
-                {
-                    Log.Information("Attempting to clear Cost Categories table...");
-                    db.AllCostCategories.RemoveRange(db.AllCostCategories);
-                    Log.Information("Attempting to save changes to Cost Categories table...");
-                    try
-                    {
-                        db.SaveChanges();
-                        Log.Information("Successfully saved changes to Cost Categories table");
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error("Failed to save changes to Cost Categories table");
-                        Log.Error(e.Message);
-                    }
-                }
-                catch (Exception e)
-                {
-                    Log.Error("Failed to clear Cost Categories table");
-                    Log.Error(e.Message);
-                }
-                db.Dispose();
-            }
-            // Load the CostCategories CSV file
-            public static void CSVImport()
-            {
-                // Upload and save the file
-                // CostID, CostCategory
-                string CSVPath = HttpContext.Current.Server.MapPath(Constants.CostCategories.CC_FileName);
-                var dt = new DataTable();
-                LoadDataTable(CSVPath, ref dt);
-                int rows = dt.Rows.Count;
-                // Load all the data
-                var db = new DAL.PetDB();
-                for (int r = 0; r < rows; r++)
-                {
-                    var cc = new Models.CostCategories()
-                    {
-                        CostID = int.Parse(dt.Rows[r].ItemArray[0].ToString()),
-                        CostBracket = dt.Rows[r].ItemArray[Constants.CostCategories.CostBracketPos].ToString()
-                    };
-                    if (cc.CostID != 0)
-                    {
-                        db.AllCostCategories.Add(cc);
-                    }
-                }
-                Log.Information("Attempting to save changes to CostCategories table...");
-                try
-                {
-                    db.SaveChanges();
-                    Log.Information("Successfully saved changes to CostCategories table");
-                }
-                catch (Exception e)
-                {
-                    Log.Error("Failed to save changes to CostCategories table");
-                    Log.Error(e.Message);
-                }
-                db.Dispose();
-                dt.Dispose();
-            }
-        }
+       
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Error prevention")]
         public static class PetTypes
         {
@@ -354,39 +287,7 @@ namespace WhatPetASPC.App_Start
                     return -1;
                 }
             }
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "Error prevention")]
-            public static int getCostID(string CostBracket)
-            {
-                IQueryable<int> MyCost = null;
-                var db = new DAL.PetDB();
-                string InfoLog;
-                Log.Information("Attempting to get CostID foreign key...");
-                try
-                {
-                    MyCost = from CostCategories in db.AllCostCategories
-                             where CostCategories.CostBracket == CostBracket
-                             select CostCategories.CostID;
-                    Log.Information("Successfully got CostID foreign key");
-                }
-                catch (Exception e)
-                {
-                    InfoLog = "Failed to get CostID foreign key for CostBracket ";
-                    InfoLog += CostBracket;
-                    Log.Error(InfoLog);
-                    Log.Error(e.Message);
-                }
-                Log.Information("Attempting to return CostID foreign key...");
-                try
-                {
-                    return MyCost.FirstOrDefault();
-                }
-                catch (Exception e)
-                {
-                    Log.Error("Failed to return CostID foreign key");
-                    Log.Error(e.Message);
-                    return -1;
-                }
-            }
+
             // Clear the PetType Table
             [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1202:Elements should be ordered by access", Justification = "Warning reason unclear")]
             public static void ClearTable()
@@ -470,27 +371,6 @@ namespace WhatPetASPC.App_Start
                             Log.Information("Successfully returned SpeciesID foreign key");
                         }
                     }
-                    // Read the Cost ID
-                    Log.Information("Attempting to read CostID key...");
-                    try
-                    {
-                        ReadCostIDString = dt.Rows[r].ItemArray[Constants.PetTypes.CostIDPos].ToString();
-                        Log.Information("Successfully read CostID key");
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error("Failed to read CostID key");
-                        Log.Error(e.Message);
-                    }
-                    var ReadCostID = 0;
-                    if (ReadCostIDString != null)
-                    {
-                        ReadCostID = getCostID(ReadCostIDString);
-                        if (ReadCostID != -1)
-                        {
-                            Log.Information("Successfully returned CostID foreign key");
-                        }
-                    }
                     var pt = new Models.PetType()
                     {
                         // PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage
@@ -503,7 +383,7 @@ namespace WhatPetASPC.App_Start
                         PetOutdoors = dt.Rows[r].ItemArray[Constants.PetTypes.PetOutdoorsPos].ToString(),
                         PetWalk = dt.Rows[r].ItemArray[Constants.PetTypes.PetWalkPos].ToString(),
                         PetDiet = dt.Rows[r].ItemArray[Constants.PetTypes.PetDietPos].ToString(),
-                        CostID = ReadCostID,
+                        PetCost = dt.Rows[r].ItemArray[Constants.PetTypes.PetCostPos].ToString(),
                         PetImage = dt.Rows[r].ItemArray[Constants.PetTypes.PetImagePos].ToString(),
                     };
                     if (pt.SpeciesID != 0)

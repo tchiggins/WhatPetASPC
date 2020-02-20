@@ -199,6 +199,7 @@ namespace WhatPetASPC.Controllers
             return this.View(petType);
         }
         // GET: PetTypes/Edit/5
+        [HttpGet]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -215,6 +216,7 @@ namespace WhatPetASPC.Controllers
         }
         // POST: PetTypes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
         public ActionResult Edit([Bind(Include = "PetTypeID,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage,SpeciesID")] PetType petType)
         {
             if (this.ModelState.IsValid)

@@ -19,8 +19,6 @@ namespace WhatPetASPC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             // Load the static data
-            DataSetup.CostCategories.ClearTable();
-            DataSetup.CostCategories.CSVImport();
             DataSetup.PetClass.ClearTable();
             DataSetup.PetClass.CSVImport();
             DataSetup.Species.ClearTable();

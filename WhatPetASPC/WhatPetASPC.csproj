@@ -396,7 +396,6 @@
     <Compile Include="App_Start\Selector.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CostCategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PetClassesController.cs" />
@@ -407,7 +406,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\CostCategories.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PetClass.cs" />
@@ -611,7 +609,6 @@
     <EmbeddedResource Include="Files\PetClass.csv" />
     <EmbeddedResource Include="Files\PetType.csv" />
     <EmbeddedResource Include="Files\Species.csv" />
-    <Content Include="Files\SizeCategories.csv" />
     <Content Include="bin\roslyn\csc.exe.config" />
     <Content Include="bin\roslyn\csc.rsp" />
     <Content Include="bin\roslyn\csi.exe.config" />
@@ -631,8 +628,6 @@
     <Content Include="obj\Debug\Tsc.out" />
     <Content Include="obj\Debug\WhatPetASPC.csproj.CopyComplete" />
     <Content Include="obj\Debug\WhatPetASPC.csprojAssemblyReference.cache" />
-    <Content Include="Files\CostCategories.csv" />
-    <Content Include="Files\Questions.csv" />
     <Content Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </Content>
@@ -765,11 +760,6 @@
     <Content Include="Views\PetTypes\Edit.cshtml" />
     <Content Include="Views\PetTypes\Index.cshtml" />
     <Content Include="Views\PetTypes\ShowImage.cshtml" />
-    <Content Include="Views\CostCategories\Create.cshtml" />
-    <Content Include="Views\CostCategories\Delete.cshtml" />
-    <Content Include="Views\CostCategories\Details.cshtml" />
-    <Content Include="Views\CostCategories\Edit.cshtml" />
-    <Content Include="Views\CostCategories\Index.cshtml" />
     <Content Include="Views\PetTypes\Results.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />

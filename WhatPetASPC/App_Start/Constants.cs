@@ -30,7 +30,7 @@
             public const int PetOutdoorsPos = 6;
             public const int PetWalkPos     = 7;
             public const int PetDietPos     = 8;
-            public const int CostIDPos      = 9;
+            public const int PetCostPos     = 9;
             public const int PetImagePos    = 10;
         }
         public static class SizeCategories
