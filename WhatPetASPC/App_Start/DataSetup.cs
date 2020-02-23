@@ -252,7 +252,7 @@ namespace WhatPetASPC.App_Start
                 dt.Dispose();
             }
         }
-       
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "Error prevention")]
         public static class PetTypes
         {
@@ -321,12 +321,10 @@ namespace WhatPetASPC.App_Start
             public static void CSVImport()
             {
                 // Upload and save the file
-                // PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,CostID,PetImage
                 string CSVPath = HttpContext.Current.Server.MapPath(Constants.PetTypes.CSV_FileName);
                 var dt = new DataTable();
                 string ReadPetTypeIDString = null;
                 string ReadSpeciesIDString = null;
-                string ReadCostIDString = null;
                 LoadDataTable(CSVPath, ref dt);
                 int rows = dt.Rows.Count;
                 // Load all the data
@@ -373,18 +371,15 @@ namespace WhatPetASPC.App_Start
                     }
                     var pt = new Models.PetType()
                     {
-                        // PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage
                         PetTypeID = ReadPetTypeID,
                         SpeciesID = ReadSpeciesID,
                         TypeName = dt.Rows[r].ItemArray[Constants.PetTypes.TypeNamePos].ToString(),
-                        PetSize = dt.Rows[r].ItemArray[Constants.PetTypes.PetSizePos].ToString(),
-                        PetSolitary = dt.Rows[r].ItemArray[Constants.PetTypes.PetSolitaryPos].ToString(),
-                        PetIndoors = dt.Rows[r].ItemArray[Constants.PetTypes.PetIndoorsPos].ToString(),
-                        PetOutdoors = dt.Rows[r].ItemArray[Constants.PetTypes.PetOutdoorsPos].ToString(),
-                        PetWalk = dt.Rows[r].ItemArray[Constants.PetTypes.PetWalkPos].ToString(),
-                        PetDiet = dt.Rows[r].ItemArray[Constants.PetTypes.PetDietPos].ToString(),
-                        PetCost = dt.Rows[r].ItemArray[Constants.PetTypes.PetCostPos].ToString(),
-                        PetImage = dt.Rows[r].ItemArray[Constants.PetTypes.PetImagePos].ToString(),
+                        Size = dt.Rows[r].ItemArray[Constants.PetTypes.SizePos].ToString(),
+                        Outdoors = dt.Rows[r].ItemArray[Constants.PetTypes.OutdoorsPos].ToString(),
+                        PurchaseCost = dt.Rows[r].ItemArray[Constants.PetTypes.PurchaseCostPos].ToString(),
+                        MonthlyCost = dt.Rows[r].ItemArray[Constants.PetTypes.MonthlyCostPos].ToString(),
+                        HoursNeeded = dt.Rows[r].ItemArray[Constants.PetTypes.HoursNeededPos].ToString(),
+                        PetImage = dt.Rows[r].ItemArray[Constants.PetTypes.ImagePos].ToString(),
                     };
                     if (pt.SpeciesID != 0)
                     {

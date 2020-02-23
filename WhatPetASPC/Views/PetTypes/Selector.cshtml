@@ -8,157 +8,123 @@
 
 <h2>Selector</h2>
 <table class="table">
-    <tr id="Q1Block" style="visibility:visible;">
+    <tr id="QPetsAllowedBlock" style="visibility:visible;">
         <td>Are you permitted to have pets at your property?</td>
         <td>
-            @Html.DropDownList("Q1List", new List<SelectListItem>
+            @Html.DropDownList("QPetsAllowedList", new List<SelectListItem>
             {
                 new SelectListItem{ Text="", Value = "", Selected = true, Disabled = true },
                 new SelectListItem{ Text="Yes", Value = "Yes" },
                 new SelectListItem{ Text="No", Value = "No" }
-            }, new { @id = "Q1", @class = "form-control" })
+            }, new { @id = "QPetsAllowed", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Q2Block" style="visibility:hidden;">
-        <td>Do you live in a house or a flat?</td>
-        <td>
-            @Html.DropDownList("Q2List", new List<SelectListItem>
-            {
-                new SelectListItem{ Text="", Value = "", Selected = true, Disabled = true },
-                new SelectListItem{ Text="House", Value = "House" },
-                new SelectListItem{ Text="Flat", Value = "Flat" }
-            }, new { @id = "Q2", @class = "form-control" })
-        </td>
-    </tr>
-    <tr id="Q3Block" style="visibility:hidden;">
+    <tr id="QGardenBlock" style="visibility:hidden;">
         <td>Do you have access to a garden/yard or similar outside space?</td>
         <td>
-            @Html.DropDownList("Q3List", new List<SelectListItem>
+            @Html.DropDownList("QGardenList", new List<SelectListItem>
             {
                 new SelectListItem{ Text="", Value = "", Selected = true, Disabled = true },
                 new SelectListItem{ Text="Yes", Value = "Yes" },
                 new SelectListItem{ Text="No", Value = "No" }
-            }, new { @id = "Q3", @class = "form-control" })
-        </td>
-        <td id="Q3bBlock" style="visibility:hidden;">
-            @Html.DropDownList("Q3bList", new List<SelectListItem>
-                {
-                    new SelectListItem{ Text="", Value = "", Selected = true, Disabled = true },
-                    new SelectListItem{ Text="Small", Value = "Small" },
-                    new SelectListItem{ Text="Medium", Value = "Medium" },
-                    new SelectListItem{ Text="Large", Value = "Large" }
-                }, new { @id = "Q3b", @class = "form-control" })
+            }, new { @id = "QGarden", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Q4Block" style="visibility:hidden;">
+    <tr id="QAllergiesBlock" style="visibility:hidden;">
         <td>Do you have any animal-based allergies?</td>
         <td>
-            @Html.DropDownList("Q4List", new List<SelectListItem>
+            @Html.DropDownList("QAllergiesList", new List<SelectListItem>
             {
                 new SelectListItem{ Text="", Value = "", Selected = true, Disabled = true },
                 new SelectListItem{ Text="Yes", Value = "Yes" },
                 new SelectListItem{ Text="No", Value = "No" }
-            }, new { @id = "Q4", @class = "form-control" })
+            }, new { @id = "QAllergies", @class = "form-control" })
         </td>
-        <td id="Q4bBlock" style="visibility:hidden;">
-            @Html.DropDownList("SpeciesID", null, htmlAttributes: new { @id = "Q4b", @class = "form-control" })
+        <td id="QAllergiesbBlock" style="visibility:hidden;">
+            @Html.DropDownList("SpeciesID", null, htmlAttributes: new { @id = "QAllergiesb", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Q5Block" style="visibility:hidden;">
+    <tr id="QPurchaseCostBlock" style="visibility:hidden;">
         <td>What is your budget for purchasing your pet?</td>
         <td>
             @Html.DropDownList("PetBudget", new List<SelectListItem>
             {
                 new SelectListItem{ Text="", Value = "", Selected = true, Disabled = true },
+                new SelectListItem{ Text="Any", Value = "Any" },
                 new SelectListItem{ Text="Less than £100", Value = "Low" },
                 new SelectListItem{ Text="Between £100 and £500", Value = "Medium" },
                 new SelectListItem{ Text="Greater than £500", Value = "High" }
-            }, new { @id = "Q5", @class = "form-control" })
+            }, new { @id = "QPurchaseCost", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Q6Block" style="visibility:hidden;">
+    <tr id="QMonthlyCostBlock" style="visibility:hidden;">
         <td>What is your budget per month for ongoing costs for your pet?</td>
         <td>
             @Html.DropDownList("FoodBudget", new List<SelectListItem>
             {
                 new SelectListItem{ Text="", Value = "", Selected = true, Disabled = true },
+                new SelectListItem{ Text="Any", Value = "Any" },
                 new SelectListItem{ Text="Less than £50", Value = "Low" },
                 new SelectListItem{ Text="Between £50 and £100", Value = "Medium" },
                 new SelectListItem{ Text="Greater than £100", Value = "High" }
-            }, new { @id = "Q6", @class = "form-control" })
+            }, new { @id = "QMonthlyCost", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Q7Block" style="visibility:hidden;">
+    <tr id="QHoursNeededBlock" style="visibility:hidden;">
         <td>How many hours during the daytime are you willing to dedicate solely to your pet?</td>
         <td>
             @Html.DropDownList("Hours", new List<SelectListItem>
             {
                 new SelectListItem{ Text="", Value = "", Selected = true, Disabled = true },
+                new SelectListItem{ Text="Any", Value = "Any" },
                 new SelectListItem{ Text="Less than 2", Value = "Low" },
                 new SelectListItem{ Text="Between 2 and 6", Value = "Medium" },
                 new SelectListItem{ Text="Greater than 6", Value = "High" }
-            }, new { @id = "Q7", @class = "form-control" })
+            }, new { @id = "QHoursNeeded", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Q8Block" style="visibility:hidden;">
+    <tr id="QSizeBlock" style="visibility:hidden;">
         <td>What size of pet would you prefer?</td>
         <td>
-            @Html.DropDownList("Q8List", new List<SelectListItem>
+            @Html.DropDownList("QSizeList", new List<SelectListItem>
             {
                 new SelectListItem{ Text="", Value = "", Selected = true, Disabled = true },
+                new SelectListItem{ Text="Any", Value = "Any" },
                 new SelectListItem{ Text="Small (e.g. toy poodle)", Value = "Small" },
                 new SelectListItem{ Text="Medium (e.g. Labrador)", Value = "Medium" },
                 new SelectListItem{ Text="Large (e.g. Great Dane)", Value = "Large" }
-            }, new { @id = "Q8", @class = "form-control" })
+            }, new { @id = "QSize", @class = "form-control" })
         </td>
     </tr>
-    <tr id="Q9Block" style="visibility:hidden;">
-        <td>Do you have an idea of what pet you want?</td>
+    <tr id="QSpeciesWantedBlock" style="visibility:hidden;">
+        <td>Do you have an idea of what species you want?</td>
         <td>
-            @Html.DropDownList("Q9List", new List<SelectListItem>
+            @Html.DropDownList("QSpeciesWantedList", new List<SelectListItem>
             {
                 new SelectListItem{ Text="", Value = "", Selected = true, Disabled = true },
                 new SelectListItem{ Text="Yes", Value = "Yes" },
                 new SelectListItem{ Text="No", Value = "No" }
-            }, new { @id = "Q9", @class = "form-control" })
+            }, new { @id = "QSpeciesWanted", @class = "form-control" })
         </td>
-        <td id="Q9bBlock" style="visibility:hidden;">
-            @Html.DropDownList("SpeciesID", null, htmlAttributes: new { @id = "Q9b", @class = "form-control" })
-        </td>
-    </tr>
-    <tr id="Q10Block" style="visibility:hidden;">
-        <td>Do you have any existing pets?</td>
-        <td>
-            @Html.DropDownList("Q10List", new List<SelectListItem>
-            {
-                new SelectListItem{ Text="", Value = "", Selected = true, Disabled = true },
-                new SelectListItem{ Text="Yes", Value = "Yes" },
-                new SelectListItem{ Text="No", Value = "No" }
-            }, new { @id = "Q10", @class = "form-control" })
-        </td>
-        <td id="Q10bBlock" style="visibility:hidden;">
-            @Html.DropDownList("SpeciesID", null, htmlAttributes: new { @id = "Q10b", @class = "form-control" })
+        <td id="QSpeciesWantedbBlock" style="visibility:hidden;">
+            @Html.DropDownList("SpeciesID", null, htmlAttributes: new { @id = "QSpeciesWantedb", @class = "form-control" })
         </td>
     </tr>
     <tr id="Submit" style="visibility:hidden;">
         <td>
             @using (Html.BeginForm("SelectorResult", "PetTypes", FormMethod.Post, new { @name = "SelectorForm" }))
             {
-                @Html.Hidden("Q0Val", null, new { @id = "Q0Val" })
-                @Html.Hidden("Q1Val", null, new { @id = "Q1Val" })
-                @Html.Hidden("Q2Val", null, new { @id = "Q2Val" })
-                @Html.Hidden("Q3Val", null, new { @id = "Q3Val" })
-                @Html.Hidden("Q3bVal", null, new { @id = "Q3bVal" })
-                @Html.Hidden("Q4Val", null, new { @id = "Q4Val" })
-                @Html.Hidden("Q4bVal", null, new { @id = "Q4bVal" })
-                @Html.Hidden("Q5Val", null, new { @id = "Q5Val" })
-                @Html.Hidden("Q6Val", null, new { @id = "Q6Val" })
-                @Html.Hidden("Q7Val", null, new { @id = "Q7Val" })
-                @Html.Hidden("Q8Val", null, new { @id = "Q8Val" })
-                @Html.Hidden("Q9Val", null, new { @id = "Q9Val" })
-                @Html.Hidden("Q9bVal", null, new { @id = "Q9bVal" })
-                @Html.Hidden("Q10Val", null, new { @id = "Q10Val" })
-                @Html.Hidden("Q10bVal", null, new { @id = "Q10bVal" })
+                @Html.Hidden("QPetsAllowedVal", null, new { @id = "QPetsAllowedVal" })
+                @Html.Hidden("QGardenVal", null, new { @id = "QGardenVal" })
+                @Html.Hidden("QAllergiesVal", null, new { @id = "QAllergiesVal" })
+                @Html.Hidden("QAllergiesbVal", null, new { @id = "QAllergiesbVal" })
+                @Html.Hidden("QPurchaseCostVal", null, new { @id = "QPurchaseCostVal" })
+                @Html.Hidden("QMonthlyCostVal", null, new { @id = "QMonthlyCostVal" })
+                @Html.Hidden("QHoursNeededVal", null, new { @id = "QHoursNeededVal" })
+                @Html.Hidden("QSizeVal", null, new { @id = "QSizeVal" })
+                @Html.Hidden("QSpeciesWantedVal", null, new { @id = "QSpeciesWantedVal" })
+                @Html.Hidden("QSpeciesWantedbVal", null, new { @id = "QSpeciesWantedbVal" })
+
                 <input type="submit" value="Find My Pets!" id="SelectorSubmit" onclick="SubmitPressed()" class="form-control" />
             }
         </td>

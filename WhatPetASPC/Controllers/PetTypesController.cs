@@ -16,71 +16,47 @@ namespace WhatPetASPC.Controllers
         public ActionResult Results()
         {
             // Get the answers that have been put in the TempData area from the Questions Controller
-            string Q0, Q1, Q2, Q3, Q3b, Q4, Q4b, Q5=null, Q6, Q7, Q8, Q9, Q9b, Q10, Q10b;
-            if (this.TempData["Q0"] != null)
-            {
-                Q0 = this.TempData["Q0"].ToString();
-            }
-            if (this.TempData["Q1"] != null)
-            {
-                Q1 = this.TempData["Q1"].ToString();
-            }
-            if (this.TempData["Q2"] != null)
-            {
-                Q2 = this.TempData["Q2"].ToString();
-            }
-            if (this.TempData["Q3"] != null)
-            {
-                Q3 = this.TempData["Q3"].ToString();
-            }
-            if (this.TempData["Q3b"] != null)
-            {
-                Q3b = this.TempData["Q3b"].ToString();
-            }
-            if (this.TempData["Q4"] != null)
-            {
-                Q4 = this.TempData["Q4"].ToString();
-            }
-            if (this.TempData["Q4b"] != null)
-            {
-                Q4b = this.TempData["Q4b"].ToString();
-            }
-            if (this.TempData["Q5"] != null)
-            {
-                Q5 = this.TempData["Q5"].ToString();
-            }
-            if (this.TempData["Q6"] != null)
-            {
-                Q6 = this.TempData["Q6"].ToString();
-            }
-            if (this.TempData["Q7"] != null)
-            {
-                Q7 = this.TempData["Q7"].ToString();
-            }
-            if (this.TempData["Q8"] != null)
-            {
-                Q8 = this.TempData["Q8"].ToString();
-            }
-            if (this.TempData["Q9"] != null)
-            {
-                Q9 = this.TempData["Q9"].ToString();
-            }
-            if (this.TempData["Q9b"] != null)
-            {
-                Q9b = this.TempData["Q9b"].ToString();
-            }
-            if (this.TempData["Q10"] != null)
-            {
-                Q10 = this.TempData["Q10"].ToString();
-            }
-            if (this.TempData["Q10b"] != null)
-            {
-                Q10b = this.TempData["Q10b"].ToString();
-            }
+            string  QPetsAllowedVal, QGardenVal, QAllergiesVal, QAllergiesbVal, QPurchaseCostVal, QMonthlyCostVal,
+                    QHoursNeededVal, QSizeVal, QSpeciesWantedVal, QSpeciesWantedbVal, QExistingPetsVal, QExistingPetsbVal;
 
-            // Select the list of items that match the pulldown or all if All is selected
+            QPetsAllowedVal =       this.TempData["QPetsAllowedVal"].ToString();
+            QGardenVal =            this.TempData["QGardenVal"].ToString();
+            QAllergiesVal =         this.TempData["QAllergiesVal"].ToString();
+            QAllergiesbVal =        this.TempData["QAllergiesbVal"].ToString();
+            QPurchaseCostVal =      this.TempData["QPurchaseCostVal"].ToString();
+            QMonthlyCostVal =       this.TempData["QMonthlyCostVal"].ToString();
+            QHoursNeededVal =       this.TempData["QHoursNeededVal"].ToString();
+            QSizeVal =              this.TempData["QSizeVal"].ToString();
+            QSpeciesWantedVal =     this.TempData["QSpeciesWantedVal"].ToString();
+            QSpeciesWantedbVal =    this.TempData["QSpeciesWantedbVal"].ToString();
+
+            // Select the list of items that match the requests
             IQueryable<PetType> petTypeList = this.db.AllPetTypes
-                                .Where(c => c.PetCost == Q5)
+                                .Where(c =>
+
+                                // If the pet needs outdoor space do we have that available?
+                                ((c.Outdoors == "TRUE" && QGardenVal == "Yes") || (c.Outdoors == "FALSE")) &&
+
+                                // Do we have any allergies to this species of pet?
+                                (((QAllergiesVal == "Yes") && (c.SpeciesID.ToString() != QAllergiesbVal)) || (QAllergiesVal == "No")) &&
+
+                                // Is the purchase cost in our range?
+                                ((c.PurchaseCost == QPurchaseCostVal) || (QPurchaseCostVal == "Any")) &&
+
+                                // Is the monthly cost in our range?
+                                ((c.MonthlyCost == QMonthlyCostVal) || (QMonthlyCostVal == "Any")) &&
+
+                                // Are the hours needed in our range?
+                                ((c.HoursNeeded == QHoursNeededVal) || (QHoursNeededVal == "Any")) &&
+
+                                // Does the pet fit our size critera?
+                                ((c.Size == QSizeVal) || (QSizeVal  == "Any")) &&
+
+                                // Have we specified that we want this particular species of pet?
+                                (((QSpeciesWantedVal == "Yes") && (c.SpeciesID.ToString() == QSpeciesWantedbVal)) || (QSpeciesWantedVal == "No"))
+
+                                )
+
                                 .OrderBy(d => d.SpeciesID);
             var sql = petTypeList.ToString();
 
@@ -108,24 +84,22 @@ namespace WhatPetASPC.Controllers
         }
 
         [HttpPost]
-        public ActionResult SelectorResult(string Q0Val, string Q1Val, string Q2Val, string Q3Val, string Q3bVal, string Q4Val, string Q4bVal, string Q5Val, string Q6Val, string Q7Val, string Q8Val, string Q9Val, string Q9bVal, string Q10Val, string Q10bVal)
+        public ActionResult SelectorResult(string QPetsAllowedVal, string QGardenVal, string QAllergiesVal,
+                                            string QAllergiesbVal, string QPurchaseCostVal, string QMonthlyCostVal,
+                                            string QHoursNeededVal, string QSizeVal, string QSpeciesWantedVal,
+                                            string QSpeciesWantedbVal, string QExistingPetsVal, string QExistingPetsbVal)
         {
             // Put the answers in the TempData area so they can be shared with the PetTypes controller
-            this.TempData["Q0"] = Q0Val;
-            this.TempData["Q1"] = Q1Val;
-            this.TempData["Q2"] = Q2Val;
-            this.TempData["Q3"] = Q3Val;
-            this.TempData["Q3b"] = Q3bVal;
-            this.TempData["Q4"] = Q4Val;
-            this.TempData["Q4b"] = Q4bVal;
-            this.TempData["Q5"] = Q5Val;
-            this.TempData["Q6"] = Q6Val;
-            this.TempData["Q7"] = Q7Val;
-            this.TempData["Q8"] = Q8Val;
-            this.TempData["Q9"] = Q9Val;
-            this.TempData["Q9b"] = Q9bVal;
-            this.TempData["Q10"] = Q9bVal;
-            this.TempData["Q10b"] = Q10bVal;
+            this.TempData["QPetsAllowedVal"] = QPetsAllowedVal;
+            this.TempData["QGardenVal"] = QGardenVal;
+            this.TempData["QAllergiesVal"] = QAllergiesVal;
+            this.TempData["QAllergiesbVal"] = QAllergiesbVal;
+            this.TempData["QPurchaseCostVal"] = QPurchaseCostVal;
+            this.TempData["QMonthlyCostVal"] = QMonthlyCostVal;
+            this.TempData["QHoursNeededVal"] = QHoursNeededVal;
+            this.TempData["QSizeVal"] = QSizeVal;
+            this.TempData["QSpeciesWantedVal"] = QSpeciesWantedVal;
+            this.TempData["QSpeciesWantedbVal"] = QSpeciesWantedbVal;
 
             return this.RedirectToAction("Results", "PetTypes");
         }
@@ -189,10 +163,11 @@ namespace WhatPetASPC.Controllers
             this.ViewBag.SpeciesID = new SelectList(this.db.AllSpecies, "SpeciesID", "SpeciesName");
             return this.View();
         }
+
         // POST: PetTypes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create([Bind(Include = "PetTypeID,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage,SpeciesID")] PetType petType)
+        public ActionResult Create([Bind(Include = "PetTypeID,TypeName,Size,Outdoors,PurchaseCost,MonthlyCost,HoursNeeded,PetImage,SpeciesID")] PetType petType)
         {
             if (this.ModelState.IsValid)
             {
@@ -223,7 +198,7 @@ namespace WhatPetASPC.Controllers
         // POST: PetTypes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "PetTypeID,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetDietCost,PetImage,SpeciesID")] PetType petType)
+        public ActionResult Edit([Bind(Include = "PetTypeID,TypeName,Size,Outdoors,PurchaseCost,MonthlyCost,HoursNeeded,PetImage,SpeciesID")] PetType petType)
         {
             if (this.ModelState.IsValid)
             {

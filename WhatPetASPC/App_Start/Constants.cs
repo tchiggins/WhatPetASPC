@@ -19,19 +19,17 @@
         }
         public static class PetTypes
         {
-            // PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,CostID,PetImage
+            // PetTypeID SpeciesName TypeName Size    Outdoors PurchaseCost    MonthlyCost HoursNeeded Image
             public const string CSV_FileName = "~/Files/PetType.csv";
-            public const int PetTypeIDPos   = 0;
-            public const int SpeciesNamePos = 1;
-            public const int TypeNamePos    = 2;
-            public const int PetSizePos     = 3;
-            public const int PetSolitaryPos = 4;
-            public const int PetIndoorsPos  = 5;
-            public const int PetOutdoorsPos = 6;
-            public const int PetWalkPos     = 7;
-            public const int PetDietPos     = 8;
-            public const int PetCostPos     = 9;
-            public const int PetImagePos    = 10;
+            public const int PetTypeIDPos       = 0;
+            public const int SpeciesNamePos     = 1;
+            public const int TypeNamePos        = 2;
+            public const int SizePos            = 3;
+            public const int OutdoorsPos        = 4;
+            public const int PurchaseCostPos    = 5;
+            public const int MonthlyCostPos     = 6;
+            public const int HoursNeededPos     = 7;
+            public const int ImagePos           = 8;
         }
         public static class SizeCategories
         {

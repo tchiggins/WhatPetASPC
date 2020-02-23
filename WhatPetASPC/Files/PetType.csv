@@ -1,14 +1,23 @@
-PetTypeID,SpeciesName,TypeName,PetSize,PetSolitary,PetIndoors,PetOutdoors,PetWalk,PetDiet,PetCost,PetImage
-1,Cat,Abyssinian,Small,FALSE,TRUE,FALSE,FALSE,Carnivore,Low,cat/abyssinian.jpg
-2,Cat,Aegean,Small,FALSE,TRUE,TRUE,FALSE,Carnivore,Medium,cat/aegean.jfif
-3,Cat,American Bobtail,Large,FALSE,TRUE,FALSE,FALSE,Carnivore,Medium,cat/american_bobtail.jfif
-4,Cat,American Curl,Small,FALSE,TRUE,FALSE,FALSE,Carnivore,High,cat/american_curl.jpg
-5,Cat,American Shorthair,Large,FALSE,TRUE,FALSE,FALSE,Carnivore,Medium,cat/american_shorthair.jpg
-6,Cat,American Wirehair,Large,FALSE,TRUE,FALSE,FALSE,Carnivore,High,cat/american_wirehair.jpg
-7,Cat,Aphrodite Giant,Large,FALSE,TRUE,TRUE,FALSE,Carnivore,High,cat/aphrodite_giant.jpg
-8,Cat,Arabian Mau,Medium,FALSE,TRUE,TRUE,FALSE,Carnivore,Low,cat/arabian_mau.jpg
-9,Cat,Asian,Medium,FALSE,TRUE,FALSE,FALSE,Carnivore,Low,cat/asian.jfif
-10,Cat,Asian Semi-Longhair,Medium,FALSE,TRUE,FALSE,FALSE,Carnivore,Medium,cat/asian_semi_longhair.jpg
-11,Cat,Australian Mist,Medium,FALSE,TRUE,TRUE,FALSE,Carnivore,High,cat/australian_mist.jpg
-12,Cat,Balinese,Small,FALSE,TRUE,FALSE,FALSE,Carnivore,Medium,cat/balinese.png
-13,Cat,Bambino,Small,FALSE,TRUE,FALSE,FALSE,Carnivore,High,cat/bambino.jpg
+PetTypeID,SpeciesName,TypeName,Size,Outdoors,PurchaseCost,MonthlyCost,HoursNeeded,Image
+1,Cat,Abyssinian,Small,FALSE,Low,Medium,Low,cat/abyssinian.jpg
+2,Cat,Aegean,Small,TRUE,Medium,Medium,Low,cat/aegean.jfif
+3,Cat,American Bobtail,Large,FALSE,Medium,Medium,Low,cat/american_bobtail.jfif
+4,Cat,American Curl,Small,FALSE,High,Medium,Low,cat/american_curl.jpg
+5,Cat,American Shorthair,Large,FALSE,Medium,Medium,Low,cat/american_shorthair.jpg
+6,Cat,American Wirehair,Large,FALSE,High,Medium,Low,cat/american_wirehair.jpg
+7,Cat,Aphrodite Giant,Large,TRUE,High,Medium,Low,cat/aphrodite_giant.jpg
+8,Cat,Arabian Mau,Medium,TRUE,Low,Medium,Low,cat/arabian_mau.jpg
+9,Cat,Asian,Medium,FALSE,Low,Medium,Low,cat/asian.jfif
+10,Cat,Asian Semi-Longhair,Medium,FALSE,Medium,Medium,Low,cat/asian_semi_longhair.jpg
+11,Cat,Australian Mist,Medium,TRUE,High,Medium,Low,cat/australian_mist.jpg
+12,Cat,Balinese,Small,FALSE,Medium,Medium,Low,cat/balinese.png
+13,Cat,Bambino,Small,FALSE,High,Medium,Low,cat/bambino.jpg
+14,Cat,Burmese,Small,FALSE,Medium,Medium,Medium,cat/burmese.jpg
+15,Dog,Labrador,Medium,TRUE,High,High,High,dog/labrador.jpg
+16,Dog,Akbash,Large,TRUE,High,High,High,dog/akbash.jpg
+17,Dog,Airedale Terrier,Medium,TRUE,High,High,Medium,dog/airedale_terrier.jpg
+18,Dog,Aidi,Medium,TRUE,High,High,Medium,dog/aidi.jpg
+19,Dog,Afghan Shepherd,Large,TRUE,High,High,High,dog/afghan_shepherd.jpg
+20,Dog,Afghan Hound,Large,TRUE,High,High,High,dog/afghan_hound.jfif
+21,Dog,Affenpinscher,Medium,TRUE,High,High,Medium,dog/affenpinscher.jpg
+22,Chicken,Rhode Island Red,Small,TRUE,Low,Low,Low,chicken/Rhode_Island_red_Laying_hen.jpg
