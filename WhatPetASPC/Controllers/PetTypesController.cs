@@ -17,7 +17,7 @@ namespace WhatPetASPC.Controllers
         {
             // Get the answers that have been put in the TempData area from the Questions Controller
             string  QPetsAllowedVal, QGardenVal, QAllergiesVal, QAllergiesbVal, QPurchaseCostVal, QMonthlyCostVal,
-                    QHoursNeededVal, QSizeVal, QSpeciesWantedVal, QSpeciesWantedbVal, QExistingPetsVal, QExistingPetsbVal;
+                    QHoursNeededVal, QSizeVal, QSpeciesWantedVal, QSpeciesWantedbVal;
 
             QPetsAllowedVal =       this.TempData["QPetsAllowedVal"].ToString();
             QGardenVal =            this.TempData["QGardenVal"].ToString();
@@ -87,7 +87,7 @@ namespace WhatPetASPC.Controllers
         public ActionResult SelectorResult(string QPetsAllowedVal, string QGardenVal, string QAllergiesVal,
                                             string QAllergiesbVal, string QPurchaseCostVal, string QMonthlyCostVal,
                                             string QHoursNeededVal, string QSizeVal, string QSpeciesWantedVal,
-                                            string QSpeciesWantedbVal, string QExistingPetsVal, string QExistingPetsbVal)
+                                            string QSpeciesWantedbVal)
         {
             // Put the answers in the TempData area so they can be shared with the PetTypes controller
             this.TempData["QPetsAllowedVal"] = QPetsAllowedVal;

@@ -216,14 +216,3 @@ C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASP
 C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.csproj.CopyComplete
 C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.dll
 C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.pdb
-C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\Microsoft.DotNet.PlatformAbstractions.xml
-C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\Microsoft.Extensions.Configuration.xml
-C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\Microsoft.Extensions.Configuration.Abstractions.xml
-C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\Microsoft.Extensions.Configuration.Binder.xml
-C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
-C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\Microsoft.Extensions.DependencyModel.xml
-C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\Microsoft.Extensions.Options.xml
-C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\Microsoft.Extensions.Options.ConfigurationExtensions.xml
-C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\Microsoft.Extensions.Primitives.xml
-C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\bin\System.Data.SqlClient.xml
-C:\Users\tom\Source\Repos\tchiggins\WhatPetASPC\WhatPetASPC\obj\Debug\WhatPetASPC.csprojAssemblyReference.cache
