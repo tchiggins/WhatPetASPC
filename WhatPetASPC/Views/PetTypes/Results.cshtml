@@ -5,34 +5,42 @@
 }
 
 <h2>Your ideal Pets</h2>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Species.SpeciesName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TypeName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PetImage)
-        </th>
-        <th></th>
-    </tr>
-    @foreach (var item in Model)
-    {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Species.SpeciesName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.TypeName)
-    </td>
-    <td>
-        @{String Image = ("../Content/Images/pets/" + item.PetImage);}
 
-        @* Show a small image that displays the ShowImage view when clicked *@
-        <a href="@Url.Action("ShowImage", "PetTypes", new { id = item.PetTypeID })"><img alt="@Image" src="@Url.Content(Image)" style="height:100px;"></a>
-    </td>
-</tr>
-    }
-</table>
+@if (ViewBag.WarningMessage != null)
+{
+    <p>
+        @ViewBag.WarningMessage.ToString()
+    </p>
+}
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Species.SpeciesName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PetImage)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Species.SpeciesName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeName)
+                </td>
+                <td>
+                    @{String Image = ("../Content/Images/pets/" + item.PetImage);}
+
+                    @* Show a small image that displays the ShowImage view when clicked *@
+                    <a href="@Url.Action("ShowImage", "PetTypes", new { id = item.PetTypeID })"><img alt="@Image" src="@Url.Content(Image)" style="height:100px;"></a>
+                </td>
+            </tr>
+        }
+    </table>

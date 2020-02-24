@@ -30,6 +30,16 @@ namespace WhatPetASPC.Controllers
             QSpeciesWantedVal =     this.TempData["QSpeciesWantedVal"].ToString();
             QSpeciesWantedbVal =    this.TempData["QSpeciesWantedbVal"].ToString();
 
+            // Should we issue a warning?
+            if (QPetsAllowedVal == "No")
+            {
+                this.ViewBag.WarningMessage = "Please check with the property owner or agent if pets are allowed";
+            }
+            else
+            {
+                this.ViewBag.WarningMessage = string.Empty;
+            }
+
             // Select the list of items that match the requests
             IQueryable<PetType> petTypeList = this.db.AllPetTypes
                                 .Where(c =>
