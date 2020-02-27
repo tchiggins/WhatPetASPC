@@ -29,25 +29,19 @@
             @Html.DisplayNameFor(model => model.TypeName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PetSize)
+            @Html.DisplayNameFor(model => model.Size)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PetSolitary)
+            @Html.DisplayNameFor(model => model.Outdoors)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PetIndoors)
+            @Html.DisplayNameFor(model => model.PurchaseCost)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PetOutdoors)
+            @Html.DisplayNameFor(model => model.MonthlyCost)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PetWalk)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PetDiet)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PetCost)
+            @Html.DisplayNameFor(model => model.HoursNeeded)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PetImage)
@@ -64,25 +58,19 @@
         @Html.DisplayFor(modelItem => item.TypeName)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.PetSize)
+        @Html.DisplayFor(modelItem => item.Size)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.PetSolitary)
+        @Html.DisplayFor(modelItem => item.Outdoors)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.PetIndoors)
+        @Html.DisplayFor(modelItem => item.PurchaseCost)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.PetOutdoors)
+        @Html.DisplayFor(modelItem => item.MonthlyCost)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.PetWalk)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PetDiet)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PetCost)
+        @Html.DisplayFor(modelItem => item.HoursNeeded)
     </td>
     <td>
         @{String Image = ("../Content/Images/pets/" + item.PetImage);}

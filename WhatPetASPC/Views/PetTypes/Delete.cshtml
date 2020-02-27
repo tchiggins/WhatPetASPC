@@ -21,55 +21,41 @@
             @Html.DisplayFor(model => model.TypeName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.PetSize)
+            @Html.DisplayNameFor(model => model.Size)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.PetSize)
+            @Html.DisplayFor(model => model.Size)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.PetSolitary)
+            @Html.DisplayNameFor(model => model.Outdoors)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.PetSolitary)
+            @Html.DisplayFor(model => model.Outdoors)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.PetIndoors)
+            @Html.DisplayNameFor(model => model.PurchaseCost)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.PetIndoors)
+            @Html.DisplayFor(model => model.PurchaseCost)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.PetOutdoors)
+            @Html.DisplayNameFor(model => model.MonthlyCost)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.PetOutdoors)
+            @Html.DisplayFor(model => model.MonthlyCost)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.PetWalk)
+            @Html.DisplayNameFor(model => model.HoursNeeded)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.PetWalk)
+            @Html.DisplayFor(model => model.HoursNeeded)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PetDiet)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PetDiet)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PetCost)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PetCost)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PetImage)
-        </dt>
         <dd>
             @Html.DisplayFor(model => model.PetImage)
         </dd>
     </dl>
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
