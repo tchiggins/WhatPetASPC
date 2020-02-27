@@ -9,6 +9,7 @@ namespace MvcApplication8.Models
             builder.MergeAttribute("src", src);
             builder.MergeAttribute("alt", altText);
             builder.MergeAttribute("height", height);
+            builder.MergeAttribute("class", "center-fit");
             return MvcHtmlString.Create(builder.ToString(TagRenderMode.SelfClosing));
         }
     }

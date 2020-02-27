@@ -21,3 +21,5 @@ PetTypeID,SpeciesName,TypeName,Size,Outdoors,PurchaseCost,MonthlyCost,HoursNeede
 20,Dog,Afghan Hound,Large,TRUE,High,High,High,dog/afghan_hound.jfif
 21,Dog,Affenpinscher,Medium,TRUE,High,High,Medium,dog/affenpinscher.jpg
 22,Chicken,Rhode Island Red,Small,TRUE,Low,Low,Low,chicken/Rhode_Island_red_Laying_hen.jpg
+23,Duck,Wood,Small,TRUE,Low,Low,Low,duck/wood.jpg
+24,Goose,Pilgrim,Small,TRUE,Low,Low,Low,goose/pilgrim.jpg
