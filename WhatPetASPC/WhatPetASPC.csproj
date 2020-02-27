@@ -26,8 +26,10 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44357</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -56,6 +58,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
+    <LegacyPublishPropertiesPageEnabled>true</LegacyPublishPropertiesPageEnabled>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CsvHelper, Version=12.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
@@ -425,138 +430,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Antlr3.Runtime.dll" />
-    <Content Include="bin\Antlr3.Runtime.pdb" />
-    <Content Include="bin\CsvHelper.dll" />
-    <Content Include="bin\CsvHelper.xml" />
-    <Content Include="bin\EntityFramework.dll" />
-    <Content Include="bin\EntityFramework.SqlServer.dll" />
-    <Content Include="bin\EntityFramework.SqlServer.xml" />
-    <Content Include="bin\EntityFramework.xml" />
-    <Content Include="bin\Microsoft.Bcl.AsyncInterfaces.dll" />
-    <Content Include="bin\Microsoft.Bcl.AsyncInterfaces.xml" />
-    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
-    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
-    <Content Include="bin\Microsoft.DotNet.PlatformAbstractions.dll" />
-    <Content Include="bin\Microsoft.DotNet.PlatformAbstractions.xml" />
-    <Content Include="bin\Microsoft.Extensions.Configuration.Abstractions.dll" />
-    <Content Include="bin\Microsoft.Extensions.Configuration.Abstractions.xml" />
-    <Content Include="bin\Microsoft.Extensions.Configuration.Binder.dll" />
-    <Content Include="bin\Microsoft.Extensions.Configuration.Binder.xml" />
-    <Content Include="bin\Microsoft.Extensions.Configuration.dll" />
-    <Content Include="bin\Microsoft.Extensions.Configuration.xml" />
-    <Content Include="bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
-    <Content Include="bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml" />
-    <Content Include="bin\Microsoft.Extensions.DependencyModel.dll" />
-    <Content Include="bin\Microsoft.Extensions.DependencyModel.xml" />
-    <Content Include="bin\Microsoft.Extensions.Options.ConfigurationExtensions.dll" />
-    <Content Include="bin\Microsoft.Extensions.Options.ConfigurationExtensions.xml" />
-    <Content Include="bin\Microsoft.Extensions.Options.dll" />
-    <Content Include="bin\Microsoft.Extensions.Options.xml" />
-    <Content Include="bin\Microsoft.Extensions.Primitives.dll" />
-    <Content Include="bin\Microsoft.Extensions.Primitives.xml" />
-    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
-    <Content Include="bin\Newtonsoft.Json.dll" />
-    <Content Include="bin\Newtonsoft.Json.xml" />
-    <Content Include="bin\PostSharp.dll" />
-    <Content Include="bin\PostSharp.xml" />
-    <Content Include="bin\roslyn\csc.exe" />
-    <Content Include="bin\roslyn\csi.exe" />
-    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
-    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
-    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
-    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
-    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll" />
-    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
-    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll" />
-    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll" />
-    <Content Include="bin\roslyn\Microsoft.Win32.Primitives.dll" />
-    <Content Include="bin\roslyn\System.AppContext.dll" />
-    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
-    <Content Include="bin\roslyn\System.Console.dll" />
-    <Content Include="bin\roslyn\System.Diagnostics.DiagnosticSource.dll" />
-    <Content Include="bin\roslyn\System.Diagnostics.FileVersionInfo.dll" />
-    <Content Include="bin\roslyn\System.Diagnostics.StackTrace.dll" />
-    <Content Include="bin\roslyn\System.Globalization.Calendars.dll" />
-    <Content Include="bin\roslyn\System.IO.Compression.dll" />
-    <Content Include="bin\roslyn\System.IO.Compression.ZipFile.dll" />
-    <Content Include="bin\roslyn\System.IO.FileSystem.dll" />
-    <Content Include="bin\roslyn\System.IO.FileSystem.Primitives.dll" />
-    <Content Include="bin\roslyn\System.Net.Http.dll" />
-    <Content Include="bin\roslyn\System.Net.Sockets.dll" />
-    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
-    <Content Include="bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll" />
-    <Content Include="bin\roslyn\System.Security.Cryptography.Algorithms.dll" />
-    <Content Include="bin\roslyn\System.Security.Cryptography.Encoding.dll" />
-    <Content Include="bin\roslyn\System.Security.Cryptography.Primitives.dll" />
-    <Content Include="bin\roslyn\System.Security.Cryptography.X509Certificates.dll" />
-    <Content Include="bin\roslyn\System.Text.Encoding.CodePages.dll" />
-    <Content Include="bin\roslyn\System.Threading.Tasks.Extensions.dll" />
-    <Content Include="bin\roslyn\System.ValueTuple.dll" />
-    <Content Include="bin\roslyn\System.Xml.ReaderWriter.dll" />
-    <Content Include="bin\roslyn\System.Xml.XmlDocument.dll" />
-    <Content Include="bin\roslyn\System.Xml.XPath.dll" />
-    <Content Include="bin\roslyn\System.Xml.XPath.XDocument.dll" />
-    <Content Include="bin\roslyn\vbc.exe" />
-    <Content Include="bin\roslyn\VBCSCompiler.exe" />
-    <Content Include="bin\Serilog.dll" />
-    <Content Include="bin\Serilog.Exceptions.dll" />
-    <Content Include="bin\Serilog.Exceptions.pdb" />
-    <Content Include="bin\Serilog.Exceptions.xml" />
-    <Content Include="bin\Serilog.Settings.AppSettings.dll" />
-    <Content Include="bin\Serilog.Settings.Configuration.dll" />
-    <Content Include="bin\Serilog.Settings.Configuration.xml" />
-    <Content Include="bin\Serilog.Sinks.Console.dll" />
-    <Content Include="bin\Serilog.Sinks.Console.xml" />
-    <Content Include="bin\Serilog.Sinks.File.dll" />
-    <Content Include="bin\Serilog.Sinks.File.pdb" />
-    <Content Include="bin\Serilog.Sinks.File.xml" />
-    <Content Include="bin\Serilog.Sinks.MSSqlServer.dll" />
-    <Content Include="bin\Serilog.Sinks.MSSqlServer.xml" />
-    <Content Include="bin\Serilog.Sinks.PeriodicBatching.dll" />
-    <Content Include="bin\Serilog.Sinks.PeriodicBatching.xml" />
-    <Content Include="bin\Serilog.xml" />
-    <Content Include="bin\System.Buffers.dll" />
-    <Content Include="bin\System.Buffers.xml" />
-    <Content Include="bin\System.ComponentModel.Annotations.dll" />
-    <Content Include="bin\System.Configuration.ConfigurationManager.dll" />
-    <Content Include="bin\System.Configuration.ConfigurationManager.xml" />
-    <Content Include="bin\System.Data.SqlClient.dll" />
-    <Content Include="bin\System.Data.SqlClient.xml" />
-    <Content Include="bin\System.Memory.dll" />
-    <Content Include="bin\System.Memory.xml" />
-    <Content Include="bin\System.Numerics.Vectors.dll" />
-    <Content Include="bin\System.Numerics.Vectors.xml" />
-    <Content Include="bin\System.Runtime.CompilerServices.Unsafe.dll" />
-    <Content Include="bin\System.Runtime.CompilerServices.Unsafe.xml" />
-    <Content Include="bin\System.Runtime.InteropServices.RuntimeInformation.dll" />
-    <Content Include="bin\System.Security.AccessControl.dll" />
-    <Content Include="bin\System.Security.AccessControl.xml" />
-    <Content Include="bin\System.Security.Permissions.dll" />
-    <Content Include="bin\System.Security.Permissions.xml" />
-    <Content Include="bin\System.Security.Principal.Windows.dll" />
-    <Content Include="bin\System.Security.Principal.Windows.xml" />
-    <Content Include="bin\System.Threading.Tasks.Extensions.dll" />
-    <Content Include="bin\System.Threading.Tasks.Extensions.xml" />
-    <Content Include="bin\System.ValueTuple.dll" />
-    <Content Include="bin\System.ValueTuple.xml" />
-    <Content Include="bin\System.Web.Helpers.dll" />
-    <Content Include="bin\System.Web.Helpers.xml" />
-    <Content Include="bin\System.Web.Mvc.dll" />
-    <Content Include="bin\System.Web.Mvc.xml" />
-    <Content Include="bin\System.Web.Optimization.dll" />
-    <Content Include="bin\System.Web.Optimization.xml" />
-    <Content Include="bin\System.Web.Razor.dll" />
-    <Content Include="bin\System.Web.Razor.xml" />
-    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
-    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
-    <Content Include="bin\System.Web.WebPages.dll" />
-    <Content Include="bin\System.Web.WebPages.Razor.dll" />
-    <Content Include="bin\System.Web.WebPages.Razor.xml" />
-    <Content Include="bin\System.Web.WebPages.xml" />
-    <Content Include="bin\WebGrease.dll" />
-    <Content Include="bin\WhatPetASPC.dll" />
-    <Content Include="bin\WhatPetASPC.pdb" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -579,14 +452,31 @@
     <Content Include="Content\Images\orderedList7.png" />
     <Content Include="Content\Images\orderedList8.png" />
     <Content Include="Content\Images\orderedList9.png" />
+    <Content Include="Content\Images\pets\cat\abyssinian.jpg" />
+    <Content Include="Content\Images\pets\cat\aegean.jfif" />
+    <Content Include="Content\Images\pets\cat\american_bobtail.jfif" />
+    <Content Include="Content\Images\pets\cat\american_curl.jpg" />
+    <Content Include="Content\Images\pets\cat\american_shorthair.jpg" />
+    <Content Include="Content\Images\pets\cat\american_wirehair.jpg" />
+    <Content Include="Content\Images\pets\cat\aphrodite_giant.jpg" />
+    <Content Include="Content\Images\pets\cat\arabian_mau.jpg" />
+    <Content Include="Content\Images\pets\cat\asian.jfif" />
+    <Content Include="Content\Images\pets\cat\asian_semi_longhair.jpg" />
+    <Content Include="Content\Images\pets\cat\australian_mist.jpg" />
+    <Content Include="Content\Images\pets\cat\balinese.png" />
+    <Content Include="Content\Images\pets\cat\bambino.jpg" />
+    <Content Include="Content\Images\pets\cat\burmese.jpg" />
+    <Content Include="Content\Images\pets\chicken\Rhode_Island_red_Laying_hen.jpg" />
+    <Content Include="Content\Images\pets\dog\affenpinscher.jpg" />
+    <Content Include="Content\Images\pets\dog\afghan_hound.jfif" />
+    <Content Include="Content\Images\pets\dog\afghan_shepherd.jpg" />
+    <Content Include="Content\Images\pets\dog\aidi.jpg" />
+    <Content Include="Content\Images\pets\dog\airedale_terrier.jpg" />
+    <Content Include="Content\Images\pets\dog\akbash.jpg" />
+    <Content Include="Content\Images\pets\dog\labrador.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="obj\Debug\Before-PostSharp\WhatPetASPC.dll" />
-    <Content Include="obj\Debug\Before-PostSharp\WhatPetASPC.pdb" />
-    <Content Include="obj\Debug\WhatPetASPC.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\WhatPetASPC.dll" />
-    <Content Include="obj\Debug\WhatPetASPC.pdb" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -609,25 +499,6 @@
     <EmbeddedResource Include="Files\PetClass.csv" />
     <EmbeddedResource Include="Files\PetType.csv" />
     <EmbeddedResource Include="Files\Species.csv" />
-    <Content Include="bin\roslyn\csc.exe.config" />
-    <Content Include="bin\roslyn\csc.rsp" />
-    <Content Include="bin\roslyn\csi.exe.config" />
-    <Content Include="bin\roslyn\csi.rsp" />
-    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
-    <Content Include="bin\roslyn\Microsoft.Managed.Core.targets" />
-    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
-    <Content Include="bin\roslyn\vbc.exe.config" />
-    <Content Include="bin\roslyn\vbc.rsp" />
-    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
-    <Content Include="bin\WhatPetASPC.dll.config" />
-    <Content Include="bin\WhatPetASPC.pssym" />
-    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
-    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <Content Include="obj\Debug\PostSharp\postsharp.config" />
-    <Content Include="obj\Debug\PostSharp\postsharp.merged.app.config" />
-    <Content Include="obj\Debug\Tsc.out" />
-    <Content Include="obj\Debug\WhatPetASPC.csproj.CopyComplete" />
-    <Content Include="obj\Debug\WhatPetASPC.csprojAssemblyReference.cache" />
     <Content Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </Content>
@@ -635,6 +506,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Properties\PublishProfiles\whatpet.co.uk - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -791,9 +663,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\PetTypes\Selector.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="obj\Debug\TempPE\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
