@@ -102,6 +102,7 @@ namespace WhatPetASPC.Controllers
             return this.View(species);
         }
         // GET: Species/Delete/5
+        [HttpGet]
         public ActionResult Delete(int? id)
         {
             if (id == null)

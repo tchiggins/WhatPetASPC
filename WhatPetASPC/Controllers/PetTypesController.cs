@@ -221,6 +221,7 @@ namespace WhatPetASPC.Controllers
             return this.View(petType);
         }
         // GET: PetTypes/Delete/5
+        [HttpGet]
         public ActionResult Delete(int? id)
         {
             if (id == null)
